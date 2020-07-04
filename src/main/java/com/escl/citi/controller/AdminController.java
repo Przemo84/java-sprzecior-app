@@ -24,8 +24,8 @@ public class AdminController extends AbstractPublishController {
     public String index() {
         User user = authManager.user();
 
-        if(user.getRole() != null && user.getRole().getName().equals("Dealer")){
-            return "dashboard";
+        if(user.getRole() != null){
+            return "dashboard.index";
         }
 
         return "redirect:/admin/dashboard";

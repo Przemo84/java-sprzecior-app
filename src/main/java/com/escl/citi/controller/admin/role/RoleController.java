@@ -9,7 +9,6 @@ import com.escl.citi.utils.Flash;
 import com.escl.citi.utils.PageSort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,8 +19,7 @@ import javax.validation.Valid;
 
 
 @Controller
-@PreAuthorize("hasAuthority('Administrator') or hasAuthority('Developer')")
-@RequestMapping(value = "/admin/role")
+@RequestMapping(value = "/admin/roles")
 public class RoleController extends AbstractPublishController {
 
     @Autowired
@@ -29,7 +27,7 @@ public class RoleController extends AbstractPublishController {
 
     @ModelAttribute("moduleBaseUrl")
     public String moduleBaseUrl() {
-        return "/admin/role";
+        return "/admin/roles";
     }
 
     @ModelAttribute("title")
@@ -74,7 +72,7 @@ public class RoleController extends AbstractPublishController {
         roleService.save(role);
         Flash.success(redirectAttributes);
 
-        return "redirect:/admin/role";
+        return "redirect:/admin/roles";
     }
 
     @RequestMapping(value = "/delete/{id}")
@@ -86,11 +84,11 @@ public class RoleController extends AbstractPublishController {
             roleService.delete(id);
         } catch (AdminOperationNotAllowedException e) {
             Flash.error(redirectAttributes, "Operacja dozwolona tylko dla Administratora");
-            return "redirect:/admin/role";
+            return "redirect:/admin/roles";
         }
 
         Flash.success(redirectAttributes);
-        return "redirect:/admin/role";
+        return "redirect:/admin/roles";
     }
 
 

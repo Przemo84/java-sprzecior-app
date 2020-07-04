@@ -1,15 +1,12 @@
 package com.escl.citi.service.user;
 
 import com.escl.citi.data.UserPasswordDto;
-import com.escl.citi.data.dto.DealerDto;
-import com.escl.citi.data.mapper.DealerDtoMapper;
 import com.escl.citi.entity.Role;
 import com.escl.citi.entity.User;
 import com.escl.citi.exception.*;
 import com.escl.citi.persistence.repository.RoleRepository;
 import com.escl.citi.persistence.repository.UserRepository;
 import com.escl.citi.security.AuthManager;
-import com.escl.citi.service.Role.RoleService;
 import com.escl.citi.service.user.activity.UserActivitiesService;
 import com.escl.citi.storage.CroppedImageParams;
 import com.escl.citi.storage.StorageException;
@@ -22,12 +19,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -42,25 +34,21 @@ public class UserServiceImpl implements UserService {
 
     private UserActivitiesService userActivitiesService;
 
-    private DealerDtoMapper dealerDtoMapper;
 
     private static Role admin;
-    private static Role dealer;
-    private static Role pinSupervisor;
+    private static Role employee;
 
     public UserServiceImpl(UserRepository repository, @Lazy PasswordEncoder passwordEncoder, AuthManager authManager,
                            RoleRepository roleRepository, StorageService storageService,
-                           UserActivitiesService userActivitiesService, DealerDtoMapper dealerDtoMapper) {
+                           UserActivitiesService userActivitiesService) {
         this.repository = repository;
         this.passwordEncoder = passwordEncoder;
         this.authManager = authManager;
         this.storageService = storageService;
         this.userActivitiesService = userActivitiesService;
-        this.dealerDtoMapper = dealerDtoMapper;
 
         admin = roleRepository.findOne(User.RoleName.ADMIN_ROLE.getValue());
-        dealer = roleRepository.findOne(User.RoleName.DEALER_ROLE.getValue());
-        pinSupervisor = roleRepository.findOne(User.RoleName.EMPLOYEE_ROLE.getValue());
+        employee = roleRepository.findOne(User.RoleName.EMPLOYEE_ROLE.getValue());
     }
 
 
@@ -88,7 +76,7 @@ public class UserServiceImpl implements UserService {
     public User save(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        User savedUser = repository.save(sanitizeUserOrPinSupervisor(user));
+        User savedUser = repository.save(sanitizeUser(user));
         saveUserActionHistory(user, "Utworzenie");
 
         return savedUser;
@@ -174,59 +162,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Page<User> findAllDealers(PageRequest page) {
-        return repository.findUsersByRoleAndLockDateIsNull(dealer, page);
-    }
-
-    @Override
-    public List<User> findAllDealers() {
-        return repository.findUsersByRoleAndLockDateIsNull(dealer);
-    }
-
-    @Override
     public Page<User> findAllAdmins(PageRequest page) {
         return repository.findUsersByRoleAndLockDateIsNull(admin, page);
     }
 
     @Override
-    public Page<User> findAllPinSupervisors(PageRequest page) {
-        return repository.findUsersByRoleAndLockDateIsNull(pinSupervisor, page);
-    }
-
-    @Override
-    public Page<User> findAllUsersNotAdminsNotDealersNotPinSupervisors(PageRequest page) {
-        List<Role> roles = new ArrayList<>();
-        roles.add(admin);
-        roles.add(dealer);
-        roles.add(pinSupervisor);
-
-        return repository.findUsersByRoleIsNotIn(roles, page);
-    }
-
-    @Override
-    public void save(DealerDto dealerDto) {
-        User user = dealerDtoMapper.map(dealerDto);
-        user.setRole(dealer);
-
-        MultipartFile file = dealerDto.getFile();
-        CroppedImageParams imageParams = dealerDto.getImageParams();
-
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-
-
-        if (user.getId() == null) {
-            saveDealer(user, file, imageParams);
-        } else {
-            User existingUser = findById(dealerDto.getId());
-            user.setLastLoginDate(existingUser.getLastLoginDate());
-            user.setActive(existingUser.getActive());
-
-            if (user.getPassword().isEmpty()) {
-                user.setPassword(existingUser.getPassword());
-            }
-
-            updateDealer(user, file, imageParams);
-        }
+    public Page<User> findAllEmployees(PageRequest page) {
+        return repository.findUsersByRoleAndLockDateIsNull(employee, page);
     }
 
     @Override
@@ -236,59 +178,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateWithOldPassword(User user) {
-        if (user.getRole().getName().equals("Dealer"))
-            repository.save(sanitizeDealer(user));
-        else {
-            repository.save(sanitizeUserOrPinSupervisor(user));
-        }
+        repository.save(sanitizeUser(user));
 
         saveUserActionHistory(user, "Edycja");
-
     }
 
 
-    private void saveDealer(User user, MultipartFile file, CroppedImageParams croppedImageParams) {
-        //no-image loaded
-        if (file.isEmpty())
-            throw new GenericImageException("error.image.needed");
-
-        try {
-            user.setIcon(storageService.getImageFileNameAndStore(file, croppedImageParams));
-        } catch (StorageException e) {
-            throw new GenericImageException("error.image.file.type");
-        } catch (ImageWrongScaleException e) {
-            throw new GenericImageException("error.image.scale");
-        }
-
-        user.setActive(true);
-
-        repository.save(sanitizeDealer(user));
-        userActivitiesService.saveActivity("Utworzono Dealera ID: <a href=\"/admin/dealer/form/"
-                + user.getId() + "\">" + user.getId() + "</a>");
-    }
-
-    private void updateDealer(User user, MultipartFile file, CroppedImageParams croppedImageParams) {
-        try {
-            //if is old image on update
-            if (file.isEmpty() && !croppedImageParams.getOldImageName().isEmpty()) {
-                String filename = storageService.store(storageService.getExistingImageAsMultipartFile(croppedImageParams.getOldImageName()), croppedImageParams);
-                user.setIcon(filename);
-            }
-
-            //new image
-            if (!file.isEmpty()) {
-                user.setIcon(storageService.getImageFileNameAndStore(file, croppedImageParams));
-            }
-        } catch (StorageException e) {
-            throw new GenericImageException("error.image.file.type");
-        } catch (ImageWrongScaleException e) {
-            throw new GenericImageException("error.image.scale");
-        }
-
-        repository.save(sanitizeDealer(user));
-        userActivitiesService.saveActivity("Edycja Dealera ID: <a href=\"/admin/dealer/form/"
-                + user.getId() + "\">" + user.getId() + "</a>");
-    }
 
     private void saveUserActionHistory(User user, String action) {
 
@@ -298,13 +193,9 @@ public class UserServiceImpl implements UserService {
                         + user.getId() + "\">" + user.getId() + "</a>");
                 break;
             }
-            case "Dealer": {
-                userActivitiesService.saveActivity(action + " Dealera ID: <a href=\"/admin/dealer/form/"
-                        + user.getId() + "\">" + user.getId() + "</a>");
-                break;
-            }
+
             case "Pracownik": {
-                userActivitiesService.saveActivity(action + " Zarządcy Pin ID: <a href=\"/admin/pin-supervisor/form/"
+                userActivitiesService.saveActivity(action + " Pracownika ID: <a href=\"/admin/employees/form/"
                         + user.getId() + "\">" + user.getId() + "</a>");
                 break;
             }
@@ -312,7 +203,7 @@ public class UserServiceImpl implements UserService {
 
     }
 
-    private User sanitizeUserOrPinSupervisor(User user) {
+    private User sanitizeUser(User user) {
         user.setEmail(Sanitizer.text(user.getEmail()));
         user.setUsername(Sanitizer.text(user.getUsername()));
         user.setFirstName(Sanitizer.text(user.getFirstName()));
@@ -321,13 +212,4 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
-    private User sanitizeDealer(User user) {
-        user.setFirstName(Sanitizer.text(user.getFirstName()));
-        user.setLastName(Sanitizer.text(user.getLastName()));
-        user.setEmail(Sanitizer.text(user.getEmail()));
-        user.setUsername(Sanitizer.text(user.getUsername()));
-        user.setMobile(Sanitizer.text(user.getMobile()));
-
-        return user;
-    }
 }

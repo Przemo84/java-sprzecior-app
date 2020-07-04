@@ -1,4 +1,4 @@
-package com.escl.citi.controller.admin.user.pin.supervisor;
+package com.escl.citi.controller.admin.user.employee;
 
 
 import com.escl.citi.controller.AbstractPublishController;
@@ -29,7 +29,7 @@ import javax.websocket.server.PathParam;
 
 @Controller
 @RequestMapping(value = "/admin/employees")
-public class PinSupervisorController extends AbstractPublishController {
+public class EmployeeController extends AbstractPublishController {
 
     @Autowired
     private UserService userService;
@@ -56,8 +56,8 @@ public class PinSupervisorController extends AbstractPublishController {
 
     @RequestMapping("")
     public String index(PageSort pageSort, Model model) {
-        Page<User> pinSupervisorPage = userService.findAllPinSupervisors(pageSort.getPage(model));
-        model.addAttribute("page", pinSupervisorPage);
+        Page<User> employeePage = userService.findAllEmployees(pageSort.getPage(model));
+        model.addAttribute("page", employeePage);
 
         return "users.employees.index";
     }
@@ -71,10 +71,10 @@ public class PinSupervisorController extends AbstractPublishController {
 
     @RequestMapping("/form/{id}")
     public String form(@PathVariable("id") int id, Model model) {
-        User pinSupervisor = userService.findById(id);
-        pinSupervisor.setPassword(null);
+        User employee = userService.findById(id);
+        employee.setPassword(null);
 
-        model.addAttribute("user", pinSupervisor);
+        model.addAttribute("user", employee);
 
         return "user.employees.form";
     }
@@ -97,9 +97,9 @@ public class PinSupervisorController extends AbstractPublishController {
             user.setRole(roleService.findById(User.RoleName.EMPLOYEE_ROLE.getValue()));
             userService.updateWithOldPassword(user);
         } else {
-            User pinSupervisor = userDtoMapper.map(userDto);
-            pinSupervisor.setRole(roleService.findById(User.RoleName.EMPLOYEE_ROLE.getValue()));
-            userService.save(pinSupervisor);
+            User employee = userDtoMapper.map(userDto);
+            employee.setRole(roleService.findById(User.RoleName.EMPLOYEE_ROLE.getValue()));
+            userService.save(employee);
         }
 
         Flash.success(redirectAttributes);

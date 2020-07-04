@@ -10,7 +10,6 @@ import com.escl.citi.utils.Flash;
 import com.escl.citi.utils.PageSort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,11 +23,9 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 
 @Controller
-@PreAuthorize("hasAuthority('Administrator') or hasAuthority('Developer')")
 @RequestMapping(value = "/admin/history")
 public class ActionHistoryController extends AbstractPublishController {
 

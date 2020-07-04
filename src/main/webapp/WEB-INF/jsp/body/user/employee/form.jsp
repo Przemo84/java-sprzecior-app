@@ -19,7 +19,7 @@
             <i class="icon-angle-right"></i>
         </li>
         <li>
-            <a href="<c:url value="${moduleBaseUrl}"/>"><fmt:message key="menu.pin.supervisors"/></a>
+            <a href="<c:url value="${moduleBaseUrl}"/>"><fmt:message key="menu.employees"/></a>
             <i class="icon-angle-right"></i>
         </li>
         <li>

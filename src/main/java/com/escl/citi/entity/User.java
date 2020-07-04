@@ -22,8 +22,7 @@ public class User {
 
     public enum RoleName {
         ADMIN_ROLE(1),
-        DEALER_ROLE(2),
-        EMPLOYEE_ROLE(3);
+        EMPLOYEE_ROLE(2);
 
         private final int value;
 

@@ -4,10 +4,6 @@
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
 
-    <definition name="home" template="/WEB-INF/jsp/body/home.jsp"/>
-
-    <definition name="promo.qr" template="/WEB-INF/jsp/body/promo/qr.jsp"/>
-
     <definition name="defLogin" template="/WEB-INF/jsp/layouts/login-layout.jsp">
         <put-attribute name="title" value=""/>
         <put-attribute name="body" value=""/>
@@ -36,18 +32,6 @@
         <put-attribute name="body" value="/WEB-INF/jsp/body/user/change-password/form.jsp"/>
     </definition>
 
-    <definition name="locked.users.index" extends="defCommon">
-        <put-attribute name="body" value="/WEB-INF/jsp/body/user/locked/index.jsp"/>
-    </definition>
-
-    <definition name="users.dealers.index" extends="defCommon">
-        <put-attribute name="body" value="/WEB-INF/jsp/body/user/dealer/index.jsp"/>
-    </definition>
-
-    <definition name="user.dealer.form" extends="defCommon">
-        <put-attribute name="body" value="/WEB-INF/jsp/body/user/dealer/form.jsp"/>
-    </definition>
-
     <definition name="users.employees.index" extends="defCommon">
         <put-attribute name="body" value="/WEB-INF/jsp/body/user/employee/index.jsp"/>
     </definition>
@@ -56,12 +40,8 @@
         <put-attribute name="body" value="/WEB-INF/jsp/body/user/employee/form.jsp"/>
     </definition>
 
-    <definition name="users.index" extends="defCommon">
-        <put-attribute name="body" value="/WEB-INF/jsp/body/user/user/index.jsp"/>
-    </definition>
-
-    <definition name="user.form" extends="defCommon">
-        <put-attribute name="body" value="/WEB-INF/jsp/body/user/user/form.jsp"/>
+    <definition name="locked.users.index" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/user/locked/index.jsp"/>
     </definition>
 
     <definition name="roles.index" extends="defCommon">
@@ -79,27 +59,6 @@
     <definition name="dashboard.index" extends="defCommon">
         <put-attribute name="body" value="/WEB-INF/jsp/body/dashboard/index.jsp"/>
     </definition>
-
-    <definition name="not.found.404" extends="defLogin">
-        <put-attribute name="body" value="/WEB-INF/jsp/body/error-pages/not-found-404.jsp"/>
-    </definition>
-
-    <definition name="bad.request.400" extends="defLogin">
-        <put-attribute name="body" value="/WEB-INF/jsp/body/error-pages/bad-request-400.jsp"/>
-    </definition>
-
-    <definition name="unauthorized.401" extends="defLogin">
-        <put-attribute name="body" value="/WEB-INF/jsp/body/error-pages/unauthorized-401.jsp"/>
-    </definition>
-
-    <definition name="forbidden.403" extends="defLogin">
-        <put-attribute name="body" value="/WEB-INF/jsp/body/error-pages/forbidden-403.jsp"/>
-    </definition>
-
-    <definition name="server.error.500" extends="defLogin">
-        <put-attribute name="body" value="/WEB-INF/jsp/body/error-pages/server-error-500.jsp"/>
-    </definition>
-
 
 
 </tiles-definitions>
