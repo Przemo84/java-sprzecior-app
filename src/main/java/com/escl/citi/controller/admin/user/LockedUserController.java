@@ -20,7 +20,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
-@PreAuthorize("hasAuthority('Administrator') or hasAuthority('Developer')")
 @RequestMapping(value = "/admin/locked-user")
 public class LockedUserController extends AbstractPublishController {
 

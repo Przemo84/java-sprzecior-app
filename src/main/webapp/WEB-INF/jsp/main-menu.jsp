@@ -18,8 +18,8 @@
         <li class="<c:if test="${fn:contains(currentUrl, 'admin/admins')}">active</c:if>">
             <a href="<c:url value="/admin/admins/"/>"><fmt:message key="menu.admins"/> </a>
         </li>
-        <li class="<c:if test="${fn:contains(currentUrl, 'admin/pin-supervisor')}">active</c:if>">
-            <a href="<c:url value="/admin/pin-supervisor/"/>"><fmt:message key="menu.employees"/></a>
+        <li class="<c:if test="${fn:contains(currentUrl, 'admin/employees')}">active</c:if>">
+            <a href="<c:url value="/admin/employees/"/>"><fmt:message key="menu.employees"/></a>
         </li>
         <li class="<c:if test="${fn:contains(currentUrl, 'admin/dealer')}">active</c:if>">
             <a href="<c:url value="/admin/dealer/"/>"><fmt:message key="menu.dealers"/></a>

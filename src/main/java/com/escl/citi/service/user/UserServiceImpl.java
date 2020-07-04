@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService {
 
         admin = roleRepository.findOne(User.RoleName.ADMIN_ROLE.getValue());
         dealer = roleRepository.findOne(User.RoleName.DEALER_ROLE.getValue());
-        pinSupervisor = roleRepository.findOne(User.RoleName.PIN_SUPERVISOR_ROLE.getValue());
+        pinSupervisor = roleRepository.findOne(User.RoleName.EMPLOYEE_ROLE.getValue());
     }
 
 
@@ -87,7 +87,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public User save(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setMaker(authManager.user());
 
         User savedUser = repository.save(sanitizeUserOrPinSupervisor(user));
         saveUserActionHistory(user, "Utworzenie");
@@ -213,14 +212,12 @@ public class UserServiceImpl implements UserService {
         CroppedImageParams imageParams = dealerDto.getImageParams();
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setMaker(authManager.user());
 
 
         if (user.getId() == null) {
             saveDealer(user, file, imageParams);
         } else {
             User existingUser = findById(dealerDto.getId());
-            user.setChecker(existingUser.getChecker());
             user.setLastLoginDate(existingUser.getLastLoginDate());
             user.setActive(existingUser.getActive());
 
@@ -249,36 +246,6 @@ public class UserServiceImpl implements UserService {
 
     }
 
-    @Override
-    public void check(Integer id) {
-        User user = repository.findById(id);
-        User currentUser = authManager.user();
-
-
-        if (user.getMaker().equals(currentUser) && !currentUser.getRole().getName().equals("Developer"))
-            throw new MakerCheckerViolationException();
-
-        user.setChecker(authManager.user());
-        repository.save(user);
-
-        Role role = authManager.user().getRole();
-
-        switch (role.getName()) {
-            case "Administrator": {
-                userActivitiesService.saveActivity("Akcja CHECK dla administratora ID: <a href=\"/admin/admins/form/"
-                        + id + "\">" + id + "</a>");
-            }
-            case "Dealer": {
-                userActivitiesService.saveActivity("Akcja CHECK dla dealera ID: <a href=\"/admin/dealer/form/"
-                        + id + "\">" + id + "</a>");
-            }
-            case "Zarządca PIN": {
-                userActivitiesService.saveActivity("Akcja CHECK dla Pin opiekuna ID: <a href=\"/admin/pin-supervisor/form/"
-                        + id + "\">" + id + "</a>");
-            }
-        }
-
-    }
 
     private void saveDealer(User user, MultipartFile file, CroppedImageParams croppedImageParams) {
         //no-image loaded
@@ -336,7 +303,7 @@ public class UserServiceImpl implements UserService {
                         + user.getId() + "\">" + user.getId() + "</a>");
                 break;
             }
-            case "Pin_Supervisor": {
+            case "Pracownik": {
                 userActivitiesService.saveActivity(action + " Zarządcy Pin ID: <a href=\"/admin/pin-supervisor/form/"
                         + user.getId() + "\">" + user.getId() + "</a>");
                 break;

@@ -23,7 +23,7 @@ public class User {
     public enum RoleName {
         ADMIN_ROLE(1),
         DEALER_ROLE(2),
-        PIN_SUPERVISOR_ROLE(3);
+        EMPLOYEE_ROLE(3);
 
         private final int value;
 
@@ -100,14 +100,6 @@ public class User {
 
     @JsonIgnore
     private Boolean mustChangePassword = true;
-
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "maker_id")
-    private User maker;
-
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "checker_id")
-    private User checker;
 
     public User() { }
 
@@ -253,14 +245,6 @@ public class User {
     public Boolean getMustChangePassword() { return mustChangePassword; }
 
     public void setMustChangePassword(Boolean mustChangePassword) { this.mustChangePassword = mustChangePassword; }
-
-    public User getMaker() { return maker; }
-
-    public void setMaker(User maker) { this.maker = maker; }
-
-    public User getChecker() { return checker; }
-
-    public void setChecker(User checker) { this.checker = checker; }
 
     @Override
     public boolean equals(Object o) {

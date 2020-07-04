@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Sprzęcior Nordgeo</title>
+    <title>v0.1.0</title>
 </head>
 <body>
 

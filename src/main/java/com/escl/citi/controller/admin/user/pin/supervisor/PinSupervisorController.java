@@ -7,8 +7,6 @@ import com.escl.citi.data.mapper.UserDtoMapper;
 import com.escl.citi.entity.User;
 import com.escl.citi.exception.AdminNotAllowedToDeleteHimselfException;
 import com.escl.citi.exception.AdminOperationNotAllowedException;
-import com.escl.citi.exception.ImageWrongScaleException;
-import com.escl.citi.exception.MakerCheckerViolationException;
 import com.escl.citi.service.Role.RoleService;
 import com.escl.citi.service.user.UserService;
 import com.escl.citi.utils.Flash;
@@ -16,7 +14,6 @@ import com.escl.citi.utils.PageSort;
 import com.escl.citi.validation.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -31,8 +28,7 @@ import javax.websocket.server.PathParam;
 
 
 @Controller
-@PreAuthorize("hasAuthority('Administrator') or hasAuthority('Developer')")
-@RequestMapping(value = "/admin/pin-supervisor")
+@RequestMapping(value = "/admin/employees")
 public class PinSupervisorController extends AbstractPublishController {
 
     @Autowired
@@ -49,12 +45,12 @@ public class PinSupervisorController extends AbstractPublishController {
 
     @ModelAttribute("moduleBaseUrl")
     public String moduleBaseUrl() {
-        return "/admin/pin-supervisor";
+        return "/admin/employees";
     }
 
     @ModelAttribute("title")
     public String setTitle() {
-        return "pin-supervisor.title";
+        return "employee.title";
     }
 
 
@@ -63,14 +59,14 @@ public class PinSupervisorController extends AbstractPublishController {
         Page<User> pinSupervisorPage = userService.findAllPinSupervisors(pageSort.getPage(model));
         model.addAttribute("page", pinSupervisorPage);
 
-        return "users.pin.supervisors.index";
+        return "users.employees.index";
     }
 
     @RequestMapping("/form")
     public String form(Model model) {
         model.addAttribute("user", new User());
 
-        return "user.pin.supervisors.form";
+        return "user.employees.form";
     }
 
     @RequestMapping("/form/{id}")
@@ -80,7 +76,7 @@ public class PinSupervisorController extends AbstractPublishController {
 
         model.addAttribute("user", pinSupervisor);
 
-        return "user.pin.supervisors.form";
+        return "user.employees.form";
     }
 
     @PostMapping(value = "/save")
@@ -92,23 +88,23 @@ public class PinSupervisorController extends AbstractPublishController {
         userValidator.validate(userDto, result);
 
         if (result.hasErrors())
-            return "user.pin.supervisors.form";
+            return "user.employees.form";
 
         if (userDto.getId() != null && userDto.getPassword().isEmpty()) {
             User user = userService.findById(userDto.getId());
             userDto.setPassword(user.getPassword());
             user = userDtoMapper.map(userDto);
-            user.setRole(roleService.findById(User.RoleName.PIN_SUPERVISOR_ROLE.getValue()));
+            user.setRole(roleService.findById(User.RoleName.EMPLOYEE_ROLE.getValue()));
             userService.updateWithOldPassword(user);
         } else {
             User pinSupervisor = userDtoMapper.map(userDto);
-            pinSupervisor.setRole(roleService.findById(User.RoleName.PIN_SUPERVISOR_ROLE.getValue()));
+            pinSupervisor.setRole(roleService.findById(User.RoleName.EMPLOYEE_ROLE.getValue()));
             userService.save(pinSupervisor);
         }
 
         Flash.success(redirectAttributes);
 
-        return "redirect:/admin/pin-supervisor";
+        return "redirect:/admin/employees";
     }
 
     @RequestMapping(value = "/lock/{id}")
@@ -118,13 +114,13 @@ public class PinSupervisorController extends AbstractPublishController {
             userService.lock(id);
         } catch (AdminOperationNotAllowedException e) {
             Flash.error(redirectAttributes, "Operacja dozwolona tylko dla Administratora");
-            return "redirect:/admin/pin-supervisor";
+            return "redirect:/admin/employees";
         } catch (AdminNotAllowedToDeleteHimselfException e) {
             Flash.error(redirectAttributes, "Nie możesz zablokować samego siebie");
-            return "redirect:/admin/pin-supervisor";
+            return "redirect:/admin/employees";
         }
 
-        return "redirect:/admin/pin-supervisor";
+        return "redirect:/admin/employees";
     }
 
 
@@ -138,29 +134,15 @@ public class PinSupervisorController extends AbstractPublishController {
             userService.massAction(ids, action);
         } catch (AdminOperationNotAllowedException e) {
             Flash.error(redirectAttributes, "Operacja dozwolona tylko dla Administratora");
-            return "redirect:/admin/pin-supervisor";
+            return "redirect:/admin/employees";
         } catch (AdminNotAllowedToDeleteHimselfException e) {
             Flash.error(redirectAttributes, "Nie możesz zablokować samego siebie");
-            return "redirect:/admin/pin-supervisor";
+            return "redirect:/admin/employees";
         }
 
         Flash.success(redirectAttributes);
-        return "redirect:/admin/pin-supervisor";
+        return "redirect:/admin/employees";
     }
 
-    @RequestMapping(value = "/check/{id}")
-    public String check(@PathVariable("id") Integer id, final RedirectAttributes redirectAttributes) {
-
-
-        try {
-            userService.check(id);
-        } catch (MakerCheckerViolationException e) {
-            Flash.error(redirectAttributes, "Maker nie może być Checker'em");
-            return "redirect:/admin/pin-supervisor";
-        }
-
-        Flash.success(redirectAttributes, "Akcja zakończona powodzeniem");
-        return "redirect:/admin/pin-supervisor";
-    }
 
 }

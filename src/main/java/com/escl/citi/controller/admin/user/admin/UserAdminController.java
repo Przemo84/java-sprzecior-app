@@ -7,8 +7,6 @@ import com.escl.citi.data.mapper.UserDtoMapper;
 import com.escl.citi.entity.User;
 import com.escl.citi.exception.AdminNotAllowedToDeleteHimselfException;
 import com.escl.citi.exception.AdminOperationNotAllowedException;
-import com.escl.citi.exception.MakerCheckerViolationException;
-import com.escl.citi.persistence.repository.RoleRepository;
 import com.escl.citi.service.Role.RoleService;
 import com.escl.citi.service.user.UserService;
 import com.escl.citi.utils.Flash;
@@ -16,7 +14,6 @@ import com.escl.citi.utils.PageSort;
 import com.escl.citi.validation.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,7 +25,6 @@ import javax.websocket.server.PathParam;
 
 
 @Controller
-@PreAuthorize("hasAuthority('Administrator') or hasAuthority('Developer')")
 @RequestMapping(value = "/admin/admins")
 public class UserAdminController extends AbstractPublishController {
 
@@ -138,21 +134,6 @@ public class UserAdminController extends AbstractPublishController {
         }
 
         Flash.success(redirectAttributes);
-        return "redirect:/admin/admins";
-    }
-
-    @RequestMapping(value = "/check/{id}")
-    public String check(@PathVariable("id") Integer id, final RedirectAttributes redirectAttributes) {
-
-
-        try {
-            userService.check(id);
-        } catch (MakerCheckerViolationException e) {
-            Flash.error(redirectAttributes, "Maker nie może być Checker'em");
-            return "redirect:/admin/admins";
-        }
-
-        Flash.success(redirectAttributes, "Akcja zakończona powodzeniem");
         return "redirect:/admin/admins";
     }
 

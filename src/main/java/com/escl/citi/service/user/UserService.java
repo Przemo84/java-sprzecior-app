@@ -48,6 +48,4 @@ public interface UserService {
     Iterable<User> findAll();
 
     void updateWithOldPassword(User user);
-
-    void check(Integer id);
 }

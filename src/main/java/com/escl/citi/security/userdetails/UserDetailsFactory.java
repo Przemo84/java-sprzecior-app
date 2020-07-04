@@ -27,8 +27,6 @@ public class UserDetailsFactory {
 
             grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
 
-            if(role.getName().equalsIgnoreCase("Zarządca PIN"))
-                grantedAuthorities.add(new SimpleGrantedAuthority("Pin_Supervisor"));
 
             if (!role.getName().equals("Dealer"))
                 grantedAuthorities.add(new SimpleGrantedAuthority("can_change_assign_pin"));
@@ -39,7 +37,6 @@ public class UserDetailsFactory {
             if(role.getName().equalsIgnoreCase("Developer")){
                 grantedAuthorities.add(new SimpleGrantedAuthority("can_change_assign_pin"));
                 grantedAuthorities.add(new SimpleGrantedAuthority("can_generate_pin"));
-                grantedAuthorities.add(new SimpleGrantedAuthority("Pin_Supervisor"));
             }
         }
 
@@ -63,6 +60,6 @@ public class UserDetailsFactory {
             return false;
         }
 
-        return (!user.getActive() || user.getChecker() == null);
+        return !user.getActive();
     }
 }

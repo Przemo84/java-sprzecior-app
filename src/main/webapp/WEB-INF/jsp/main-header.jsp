@@ -5,7 +5,7 @@
 
 
 <div class="container-fluid">
-    <a href="#" id="brand">etdCMS</a>
+    <a href="#" id="brand">   v0.1.0</a>
     <a href="#" class="toggle-nav" rel="tooltip" data-placement="bottom" title="Toggle navigation">
         <i class="icon-reorder"></i>
     </a>
@@ -21,7 +21,7 @@
         <ul class="icon-nav">
 
             <li style="width: 300px">
-                <h4 class="pull-left" style=" color: white">v0.1.0</h4>
+                <h4 class="pull-left" style=" color: white">Sprzęcior Nordgeo CMS</h4>
             </li>
 
             <li class="auth-timer" style="color: white; margin-top: 1px;">

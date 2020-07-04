@@ -8,19 +8,15 @@ import com.escl.citi.entity.User;
 import com.escl.citi.exception.*;
 import com.escl.citi.service.Role.RoleService;
 import com.escl.citi.service.user.UserService;
-import com.escl.citi.storage.CroppedImageParams;
-import com.escl.citi.storage.StorageException;
 import com.escl.citi.utils.Flash;
 import com.escl.citi.utils.PageSort;
 import com.escl.citi.validation.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -29,7 +25,6 @@ import java.io.IOException;
 
 
 @Controller
-@PreAuthorize("hasAuthority('Administrator') or hasAuthority('Developer')")
 @RequestMapping(value = "/admin/dealer")
 public class DealerController extends AbstractPublishController {
 
@@ -142,20 +137,6 @@ public class DealerController extends AbstractPublishController {
         return "redirect:/admin/dealer";
     }
 
-    @RequestMapping(value = "/check/{id}")
-    public String check(@PathVariable("id") Integer id, final RedirectAttributes redirectAttributes) {
-
-
-        try {
-            userService.check(id);
-        } catch (MakerCheckerViolationException e) {
-            Flash.error(redirectAttributes, "Maker nie może być Checker'em");
-            return "redirect:/admin/dealer";
-        }
-
-        Flash.success(redirectAttributes, "Akcja zakończona powodzeniem");
-        return "redirect:/admin/dealer";
-    }
 
 
 }

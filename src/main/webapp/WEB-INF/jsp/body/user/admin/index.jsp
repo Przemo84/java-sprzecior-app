@@ -124,19 +124,6 @@
                                         <fmt:formatDate value="${item.lastLoginDate}" pattern="dd.MM.yyyy"/>
                                     </td>
 
-                                    <td style="width: 32px; text-align: center; ">
-                                        <c:if test="${item.checker eq null}">
-                                            <a href="<c:url value="${moduleBaseUrl}/check/${item.id}"/>" rel="tooltip"
-                                               title="Wykonaj akcję check" class="btn btn-warning" >
-                                                <i class="icon-minus"></i>
-                                            </a>
-                                        </c:if>
-                                        <c:if test="${item.checker ne null}">
-                                            <a href="" rel="tooltip" title="Zatwierdzony" class="btn btn-success" disabled="true">
-                                                <i class="fa fa-check"></i>
-                                            </a>
-                                        </c:if>
-                                    </td>
                                     <td style="width: 32px; text-align: center;">
                                         <a href="<c:url value="${moduleBaseUrl}/form/${item.id}"/>" rel="tooltip"
                                            title="Edytuj" class="btn">

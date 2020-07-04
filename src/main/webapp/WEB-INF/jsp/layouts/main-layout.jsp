@@ -20,7 +20,7 @@
     <meta content="" name="description"/>
     <meta content="" name="author"/>
 
-    <title>Panel Administratora</title>
+    <title>Sprzęcior - Panel Administratora</title>
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"

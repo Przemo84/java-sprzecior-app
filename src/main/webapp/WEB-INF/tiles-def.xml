@@ -48,12 +48,12 @@
         <put-attribute name="body" value="/WEB-INF/jsp/body/user/dealer/form.jsp"/>
     </definition>
 
-    <definition name="users.pin.supervisors.index" extends="defCommon">
-        <put-attribute name="body" value="/WEB-INF/jsp/body/user/pin.supervisor/index.jsp"/>
+    <definition name="users.employees.index" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/user/employee/index.jsp"/>
     </definition>
 
-    <definition name="user.pin.supervisors.form" extends="defCommon">
-        <put-attribute name="body" value="/WEB-INF/jsp/body/user/pin.supervisor/form.jsp"/>
+    <definition name="user.employees.form" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/user/employee/form.jsp"/>
     </definition>
 
     <definition name="users.index" extends="defCommon">
