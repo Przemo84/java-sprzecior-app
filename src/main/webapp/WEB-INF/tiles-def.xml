@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+    <definition name="home" template="/WEB-INF/jsp/body/home.jsp"/>
+
+    <definition name="promo.qr" template="/WEB-INF/jsp/body/promo/qr.jsp"/>
+
+    <definition name="defLogin" template="/WEB-INF/jsp/layouts/login-layout.jsp">
+        <put-attribute name="title" value=""/>
+        <put-attribute name="body" value=""/>
+    </definition>
+
+    <definition name="login" extends="defLogin">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/login.jsp"/>
+    </definition>
+
+    <definition name="defCommon" template="/WEB-INF/jsp/layouts/main-layout.jsp">
+        <put-attribute name="header" value="/WEB-INF/jsp/main-header.jsp"/>
+        <put-attribute name="menu" value="/WEB-INF/jsp/main-menu.jsp"/>
+        <put-attribute name="body" value=""/>
+        <put-attribute name="footer" value="/WEB-INF/jsp/main-footer.jsp"/>
+    </definition>
+
+    <definition name="users.admins.index" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/user/admin/index.jsp"/>
+    </definition>
+
+    <definition name="users.admins.form" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/user/admin/form.jsp"/>
+    </definition>
+
+    <definition name="user.change.password.form" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/user/change-password/form.jsp"/>
+    </definition>
+
+    <definition name="locked.users.index" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/user/locked/index.jsp"/>
+    </definition>
+
+    <definition name="authors.index" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/author/index.jsp"/>
+    </definition>
+
+    <definition name="author.form" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/author/form.jsp"/>
+    </definition>
+
+    <definition name="comments.index" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/comment/index.jsp"/>
+    </definition>
+
+    <definition name="comment.form" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/comment/form.jsp"/>
+    </definition>
+
+    <definition name="comments.archived.index" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/comment/archived/index.jsp"/>
+    </definition>
+
+    <definition name="comment.archived.view" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/comment/archived/view.jsp"/>
+    </definition>
+
+    <definition name="users.dealers.index" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/user/dealer/index.jsp"/>
+    </definition>
+
+    <definition name="user.dealer.form" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/user/dealer/form.jsp"/>
+    </definition>
+
+    <definition name="users.pin.supervisors.index" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/user/pin.supervisor/index.jsp"/>
+    </definition>
+
+    <definition name="user.pin.supervisors.form" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/user/pin.supervisor/form.jsp"/>
+    </definition>
+
+    <definition name="users.index" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/user/user/index.jsp"/>
+    </definition>
+
+    <definition name="user.form" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/user/user/form.jsp"/>
+    </definition>
+
+    <definition name="currency.index" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/currency/index.jsp"/>
+    </definition>
+
+    <definition name="raw.material.index" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/rawMaterial/index.jsp"/>
+    </definition>
+
+    <definition name="stock.index" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/stock/index.jsp"/>
+    </definition>
+
+    <definition name="wibor.index" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/wibor/index.jsp"/>
+    </definition>
+
+    <definition name="debentures.index" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/debentures/index.jsp"/>
+    </definition>
+
+    <definition name="messages.index" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/message/index.jsp"/>
+    </definition>
+
+    <definition name="message.form" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/message/form.jsp"/>
+    </definition>
+
+    <definition name="forecast.form" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/forecast/form.jsp"/>
+    </definition>
+
+    <definition name="forecast.import" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/forecast/import.jsp"/>
+    </definition>
+
+
+    <definition name="group.pin.index" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/group.pin/index.jsp"/>
+    </definition>
+
+    <definition name="group.pin.form" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/group.pin/form.jsp"/>
+    </definition>
+
+    <definition name="polls.index" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/poll/index.jsp"/>
+    </definition>
+
+    <definition name="polls.results.index" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/poll/results/index.jsp"/>
+    </definition>
+
+    <definition name="poll.results.view" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/poll/results/result.jsp"/>
+    </definition>
+
+    <definition name="poll.form" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/poll/form.jsp"/>
+    </definition>
+
+    <definition name="poll.edit.form" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/poll/editForm.jsp"/>
+    </definition>
+
+    <definition name="calendar.index" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/calendar/index.jsp"/>
+    </definition>
+
+    <definition name="calendar.form" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/calendar/form.jsp"/>
+    </definition>
+
+    <definition name="calendar.import" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/calendar/import.jsp"/>
+    </definition>
+
+    <definition name="pins.index" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/pin/index.jsp"/>
+    </definition>
+
+    <definition name="pin.form.for.dealer" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/pin/form-for-dealer.jsp"/>
+    </definition>
+
+    <definition name="pin.form.for.pin_supervisor" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/pin/form-for-pinSupervisor.jsp"/>
+    </definition>
+
+    <definition name="code.assign.form" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/pin/assign-form.jsp"/>
+    </definition>
+
+    <definition name="pin.import" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/pin/import.jsp"/>
+    </definition>
+
+    <definition name="roles.index" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/role/index.jsp"/>
+    </definition>
+
+    <definition name="role.form" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/role/form.jsp"/>
+    </definition>
+
+    <definition name="info.texts.form" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/info.texts/form.jsp"/>
+    </definition>
+
+
+    <definition name="info.texts.statute" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/info.texts/statute.jsp"/>
+    </definition>
+
+    <definition name="info.texts.clause" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/info.texts/clause.jsp"/>
+    </definition>
+
+
+    <definition name="codes-stats.index" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/pin/stats/index.jsp"/>
+    </definition>
+
+
+    <definition name="history.index" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/history/index.jsp"/>
+    </definition>
+
+    <definition name="dashboard" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/dashboard.jsp"/>
+    </definition>
+
+    <definition name="dashboard.editor" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/dashboard-editor.jsp"/>
+    </definition>
+
+    <definition name="dashboard.admin" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/dashboard-admin.jsp"/>
+    </definition>
+
+    <definition name="dashboard.keepers" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/dashboard-keepers.jsp"/>
+    </definition>
+
+    <definition name="dashboard.keepers.form" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/dashboard-keepers-form.jsp"/>
+    </definition>
+
+    <definition name="dashboard.index" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/dashboard/index.jsp"/>
+    </definition>
+
+    <definition name="analytics.currencies" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/analytics/currencies/index.jsp"/>
+    </definition>
+
+    <definition name="analytics.views" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/analytics/views/index.jsp"/>
+    </definition>
+
+    <definition name="analytics.reports" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/analytics/reports/index.jsp"/>
+    </definition>
+
+    <definition name="not.found.404" extends="defLogin">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/error-pages/not-found-404.jsp"/>
+    </definition>
+
+    <definition name="bad.request.400" extends="defLogin">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/error-pages/bad-request-400.jsp"/>
+    </definition>
+
+    <definition name="unauthorized.401" extends="defLogin">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/error-pages/unauthorized-401.jsp"/>
+    </definition>
+
+    <definition name="forbidden.403" extends="defLogin">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/error-pages/forbidden-403.jsp"/>
+    </definition>
+
+    <definition name="server.error.500" extends="defLogin">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/error-pages/server-error-500.jsp"/>
+    </definition>
+
+
+
+</tiles-definitions>
