@@ -7,7 +7,7 @@
 
     <tag>
         <name>paginate</name>
-        <tag-class>com.escl.citi.taglib.PaginationTag</tag-class>
+        <tag-class>com.nordgeo.taglib.PaginationTag</tag-class>
         <body-content>empty</body-content>
 
         <attribute>
@@ -54,7 +54,7 @@
 
     <tag>
         <name>th</name>
-        <tag-class>com.escl.citi.taglib.TableHeadTag</tag-class>
+        <tag-class>com.nordgeo.taglib.TableHeadTag</tag-class>
         <body-content>scriptless</body-content>
 
         <attribute>
