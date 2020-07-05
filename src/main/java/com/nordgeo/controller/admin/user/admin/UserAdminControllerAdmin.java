@@ -1,7 +1,7 @@
-package com.nordgeo.controller.admin.user.employee;
+package com.nordgeo.controller.admin.user.admin;
 
 
-import com.nordgeo.controller.AbstractPublishController;
+import com.nordgeo.controller.AdminAbstractController;
 import com.nordgeo.data.dto.UserDto;
 import com.nordgeo.data.mapper.UserDtoMapper;
 import com.nordgeo.entity.User;
@@ -17,10 +17,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -28,83 +25,80 @@ import javax.websocket.server.PathParam;
 
 
 @Controller
-@RequestMapping(value = "/admin/employees")
-public class EmployeeController extends AbstractPublishController {
+@RequestMapping(value = "/admin/admins")
+public class UserAdminControllerAdmin extends AdminAbstractController {
+
+    @ModelAttribute("moduleBaseUrl")
+    public String moduleBaseUrl() {
+        return "/admin/admins";
+    }
+
+    @ModelAttribute("title")
+    public String setTitle() {
+        return "user.title";
+    }
 
     @Autowired
     private UserService userService;
 
     @Autowired
-    private RoleService roleService;
+    private UserValidator userValidator;
 
     @Autowired
     private UserDtoMapper userDtoMapper;
 
     @Autowired
-    private UserValidator userValidator;
-
-    @ModelAttribute("moduleBaseUrl")
-    public String moduleBaseUrl() {
-        return "/admin/employees";
-    }
-
-    @ModelAttribute("title")
-    public String setTitle() {
-        return "employee.title";
-    }
-
+    private RoleService roleService;
 
     @RequestMapping("")
-    public String index(PageSort pageSort, Model model) {
-        Page<User> employeePage = userService.findAllEmployees(pageSort.getPage(model));
-        model.addAttribute("page", employeePage);
+    public String indexAdmins(PageSort pageSort, Model model) {
+        Page<User> adminPage = userService.findAllAdmins(pageSort.getPage(model));
+        model.addAttribute("page", adminPage);
 
-        return "users.employees.index";
+        return "users.admins.index";
     }
 
-    @RequestMapping("/form")
+    @GetMapping("/form")
     public String form(Model model) {
-        model.addAttribute("user", new User());
+        model.addAttribute("user", new UserDto());
 
-        return "user.employees.form";
+        return "users.admins.form";
     }
 
-    @RequestMapping("/form/{id}")
+    @GetMapping("/form/{id}")
     public String form(@PathVariable("id") int id, Model model) {
-        User employee = userService.findById(id);
-        employee.setPassword(null);
+        User adminUser = userService.findById(id);
+        adminUser.setPassword(null);
 
-        model.addAttribute("user", employee);
+        model.addAttribute("user", adminUser);
 
-        return "user.employees.form";
+        return "users.admins.form";
     }
 
     @PostMapping(value = "/save")
-    public String submit(
-            @Valid @ModelAttribute("user") UserDto userDto,
-            BindingResult result,
-            final RedirectAttributes redirectAttributes) {
+    public String submit(@Valid @ModelAttribute("user") UserDto userDto, BindingResult result,
+                         final RedirectAttributes redirectAttributes) {
 
         userValidator.validate(userDto, result);
 
         if (result.hasErrors())
-            return "user.employees.form";
+            return "users.admins.form";
+
 
         if (userDto.getId() != null && userDto.getPassword().isEmpty()) {
             User user = userService.findById(userDto.getId());
             userDto.setPassword(user.getPassword());
             user = userDtoMapper.map(userDto);
-            user.setRole(roleService.findById(User.RoleName.EMPLOYEE_ROLE.getValue()));
+            user.setRole(roleService.findById(User.RoleName.ADMIN_ROLE.getValue()));
             userService.updateWithOldPassword(user);
         } else {
-            User employee = userDtoMapper.map(userDto);
-            employee.setRole(roleService.findById(User.RoleName.EMPLOYEE_ROLE.getValue()));
-            userService.save(employee);
+            User adminUser = userDtoMapper.map(userDto);
+            adminUser.setRole(roleService.findById(User.RoleName.ADMIN_ROLE.getValue()));
+            userService.save(adminUser);
         }
 
-        Flash.success(redirectAttributes);
-
-        return "redirect:/admin/employees";
+        Flash.success(redirectAttributes, "Akcja zakończona powodzeniem.");
+        return "redirect:/admin/admins";
     }
 
     @RequestMapping(value = "/lock/{id}")
@@ -114,34 +108,33 @@ public class EmployeeController extends AbstractPublishController {
             userService.lock(id);
         } catch (AdminOperationNotAllowedException e) {
             Flash.error(redirectAttributes, "Operacja dozwolona tylko dla Administratora");
-            return "redirect:/admin/employees";
+            return "redirect:/admin/admins";
         } catch (AdminNotAllowedToDeleteHimselfException e) {
             Flash.error(redirectAttributes, "Nie możesz zablokować samego siebie");
-            return "redirect:/admin/employees";
+            return "redirect:/admin/admins";
         }
 
-        return "redirect:/admin/employees";
+        Flash.success(redirectAttributes);
+        return "redirect:/admin/admins";
     }
 
 
     @PostMapping(value = "/checkbox")
-    public String massLock(
-            @PathParam("ids") Integer ids[],
-            @PathParam("action") String action,
-            final RedirectAttributes redirectAttributes) {
+    public String massLock(@PathParam("ids") Integer ids[], @PathParam("action") String action,
+                           final RedirectAttributes redirectAttributes) {
 
         try {
             userService.massAction(ids, action);
         } catch (AdminOperationNotAllowedException e) {
             Flash.error(redirectAttributes, "Operacja dozwolona tylko dla Administratora");
-            return "redirect:/admin/employees";
+            return "redirect:/admin/admins";
         } catch (AdminNotAllowedToDeleteHimselfException e) {
             Flash.error(redirectAttributes, "Nie możesz zablokować samego siebie");
-            return "redirect:/admin/employees";
+            return "redirect:/admin/admins";
         }
 
         Flash.success(redirectAttributes);
-        return "redirect:/admin/employees";
+        return "redirect:/admin/admins";
     }
 
 

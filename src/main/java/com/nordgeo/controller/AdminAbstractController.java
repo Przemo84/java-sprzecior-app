@@ -17,7 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @PreAuthorize("hasAuthority('Administrator')")
-public abstract class AbstractPublishController {
+public abstract class AdminAbstractController {
 
 
     @ModelAttribute("baseUrl")

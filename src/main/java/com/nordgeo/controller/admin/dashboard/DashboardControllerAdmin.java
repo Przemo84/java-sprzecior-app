@@ -1,7 +1,7 @@
 package com.nordgeo.controller.admin.dashboard;
 
 
-import com.nordgeo.controller.AbstractPublishController;
+import com.nordgeo.controller.AdminAbstractController;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping(value = "/admin")
-public class DashboardController extends AbstractPublishController {
+public class DashboardControllerAdmin extends AdminAbstractController {
 
 
     @ModelAttribute("moduleBaseUrl")

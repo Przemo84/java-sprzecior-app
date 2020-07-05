@@ -1,7 +1,7 @@
 package com.nordgeo.controller.admin.user;
 
 
-import com.nordgeo.controller.AbstractPublishController;
+import com.nordgeo.controller.AdminAbstractController;
 import com.nordgeo.data.UserPasswordDto;
 import com.nordgeo.exception.UserLastSixPasswordException;
 import com.nordgeo.service.user.UserService;
@@ -22,7 +22,7 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping(value = "/admin/account/")
-public class UserAccountController extends AbstractPublishController {
+public class UserAccountControllerAdmin extends AdminAbstractController {
 
 
     @ModelAttribute("moduleBaseUrl")

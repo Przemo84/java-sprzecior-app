@@ -1,7 +1,7 @@
 package com.nordgeo.controller.admin.user;
 
 
-import com.nordgeo.controller.AbstractPublishController;
+import com.nordgeo.controller.AdminAbstractController;
 import com.nordgeo.entity.User;
 import com.nordgeo.exception.AdminNotAllowedToDeleteHimselfException;
 import com.nordgeo.exception.AdminOperationNotAllowedException;
@@ -20,7 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping(value = "/admin/locked-users")
-public class LockedUserController extends AbstractPublishController {
+public class LockedUserControllerAdmin extends AdminAbstractController {
 
 
     @ModelAttribute("moduleBaseUrl")

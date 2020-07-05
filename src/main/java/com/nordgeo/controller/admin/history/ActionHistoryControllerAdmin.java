@@ -1,7 +1,7 @@
 package com.nordgeo.controller.admin.history;
 
 
-import com.nordgeo.controller.AbstractPublishController;
+import com.nordgeo.controller.AdminAbstractController;
 import com.nordgeo.entity.ActionHistory;
 import com.nordgeo.error.DatesSelectValidator;
 import com.nordgeo.service.history.ActionHistoryService;
@@ -27,7 +27,7 @@ import java.util.Date;
 
 @Controller
 @RequestMapping(value = "/admin/history")
-public class ActionHistoryController extends AbstractPublishController {
+public class ActionHistoryControllerAdmin extends AdminAbstractController {
 
     @Autowired
     private ActionHistoryService actionHistoryService;
