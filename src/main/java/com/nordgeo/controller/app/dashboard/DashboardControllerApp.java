@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 
 
 @Controller
-@RequestMapping(value = "")
+@RequestMapping(value = "/app")
 public class DashboardControllerApp extends AppAbstractController {
 
 
