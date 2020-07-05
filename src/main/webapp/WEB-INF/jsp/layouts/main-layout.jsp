@@ -169,7 +169,7 @@
     </style>
 
 </head>
-<body class="theme-grey">
+<body class="theme-darkblue">
 
 <div id="navigation">
     <tiles:insertAttribute name="header"/>

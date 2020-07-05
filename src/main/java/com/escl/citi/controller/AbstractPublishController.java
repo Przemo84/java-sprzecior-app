@@ -5,6 +5,7 @@ import com.escl.citi.security.AuthManager;
 import com.escl.citi.service.Role.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,7 +15,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
+@PreAuthorize("hasAuthority('Administrator')")
 public abstract class AbstractPublishController {
 
 

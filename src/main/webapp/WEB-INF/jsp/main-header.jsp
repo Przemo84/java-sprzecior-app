@@ -5,7 +5,7 @@
 
 
 <div class="container-fluid">
-    <a href="#" id="brand">   v0.1.0</a>
+    <a href="#" id="brand">v0.1.0</a>
     <a href="#" class="toggle-nav" rel="tooltip" data-placement="bottom" title="Toggle navigation">
         <i class="icon-reorder"></i>
     </a>

@@ -27,17 +27,6 @@ public class UserDetailsFactory {
 
             grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
 
-
-//            if (!role.getName().equals("Dealer"))
-//                grantedAuthorities.add(new SimpleGrantedAuthority("can_change_assign_pin"));
-//
-//            if (!role.getName().equals("Administrator"))
-//                grantedAuthorities.add(new SimpleGrantedAuthority("can_generate_pin"));
-//
-//            if(role.getName().equalsIgnoreCase("Developer")){
-//                grantedAuthorities.add(new SimpleGrantedAuthority("can_change_assign_pin"));
-//                grantedAuthorities.add(new SimpleGrantedAuthority("can_generate_pin"));
-//            }
         }
 
         boolean disabled = isDisabled(user);

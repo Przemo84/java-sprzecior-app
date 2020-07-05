@@ -36,10 +36,10 @@ public class UsersSeeder {
         roleRepository.save(employeeRole);
 
         User user = new User();
-        user.setEmail("foo@bar.com");
-        user.setUsername("foo");
-        user.setFirstName("foo");
-        user.setLastName("foo");
+        user.setEmail("mike@bar.com");
+        user.setUsername("mike");
+        user.setFirstName("Michał");
+        user.setLastName("Kmiecik");
         user.setMustChangePassword(false);
         user.setPassword(passwordEncoder.encode("random"));
         user.setRole(adminRole);
@@ -54,15 +54,7 @@ public class UsersSeeder {
         employee.setRole(employeeRole);
 
         try{
-            User foo = userRepository.save(user);
-            userRepository.save(employee);
-
-        } catch (DataIntegrityViolationException e){
-            System.out.println(e.getMessage());
-        }
-
-        try{
-            User bar = userRepository.findByUsername("dealer");
+            userRepository.save(user);
             userRepository.save(employee);
 
         } catch (DataIntegrityViolationException e){

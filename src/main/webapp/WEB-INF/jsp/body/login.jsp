@@ -6,7 +6,7 @@
 
 <div class="wrapper">
     <div class="login-body">
-        <h2>ZALOGUJ SIĘ</h2>
+        <h2>LOGOWANIE</h2>
         <form autocomplete="new-password" action='<spring:url value="/signin"/>' method="post" class="form-signin" autocomplete="off">
             <div class="email">
                 <input type="text" autocomplete="off" name='userid' placeholder="Login" class='input-block-level'>

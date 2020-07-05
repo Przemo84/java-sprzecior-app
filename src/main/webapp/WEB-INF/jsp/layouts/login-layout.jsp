@@ -37,7 +37,7 @@
     <script src="<c:url value="/resources/js/application.min.js"/> "></script>
 </head>
 
-<body class="login theme-grey">
+<body class="login theme-darkblue">
 <div class="login-logo"  style="text-align: center; padding: 36px"><img src="<c:url value="/resources/img/logo_login.png"/> " alt=""></div>
     <div>
         <tiles:insertAttribute name="body"/>

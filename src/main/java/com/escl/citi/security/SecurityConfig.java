@@ -69,7 +69,7 @@ public class SecurityConfig {
                     .loginProcessingUrl("/signin")
                     .usernameParameter("userid")
                     .passwordParameter("passwd")
-                    .defaultSuccessUrl("/admin")
+                    .defaultSuccessUrl("/admin/dashboard")
                     .failureUrl(LOGIN_PAGE).permitAll()
                     .and()
                     .logout()
