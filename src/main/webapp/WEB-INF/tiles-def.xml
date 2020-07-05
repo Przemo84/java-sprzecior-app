@@ -10,7 +10,7 @@
     </definition>
 
     <definition name="login" extends="defLogin">
-        <put-attribute name="body" value="/WEB-INF/jsp/body/login.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/login.jsp"/>
     </definition>
 
     <definition name="defCommon" template="/WEB-INF/jsp/layouts/main-layout.jsp">
@@ -21,51 +21,51 @@
     </definition>
 
     <definition name="users.admins.index" extends="defCommon">
-        <put-attribute name="body" value="/WEB-INF/jsp/body/user/admin/index.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/admin/body/user/admin/index.jsp"/>
     </definition>
 
     <definition name="users.admins.form" extends="defCommon">
-        <put-attribute name="body" value="/WEB-INF/jsp/body/user/admin/form.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/admin/body/user/admin/form.jsp"/>
     </definition>
 
     <definition name="user.change.password.form" extends="defCommon">
-        <put-attribute name="body" value="/WEB-INF/jsp/body/user/change-password/form.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/admin/body/user/change-password/form.jsp"/>
     </definition>
 
     <definition name="users.employees.index" extends="defCommon">
-        <put-attribute name="body" value="/WEB-INF/jsp/body/user/employee/index.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/admin/body/user/employee/index.jsp"/>
     </definition>
 
     <definition name="user.employees.form" extends="defCommon">
-        <put-attribute name="body" value="/WEB-INF/jsp/body/user/employee/form.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/admin/body/user/employee/form.jsp"/>
     </definition>
 
     <definition name="locked.users.index" extends="defCommon">
-        <put-attribute name="body" value="/WEB-INF/jsp/body/user/locked/index.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/admin/body/user/locked/index.jsp"/>
     </definition>
 
     <definition name="roles.index" extends="defCommon">
-        <put-attribute name="body" value="/WEB-INF/jsp/body/role/index.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/admin/body/role/index.jsp"/>
     </definition>
 
     <definition name="role.form" extends="defCommon">
-        <put-attribute name="body" value="/WEB-INF/jsp/body/role/form.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/admin/body/role/form.jsp"/>
     </definition>
 
     <definition name="history.index" extends="defCommon">
-        <put-attribute name="body" value="/WEB-INF/jsp/body/history/index.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/admin/body/history/index.jsp"/>
     </definition>
 
     <definition name="dashboard.index" extends="defCommon">
-        <put-attribute name="body" value="/WEB-INF/jsp/body/dashboard/index.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/admin/body/dashboard/index.jsp"/>
     </definition>
 
     <definition name="tools.index" extends="defCommon">
-        <put-attribute name="body" value="/WEB-INF/jsp/body/tool/index.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/admin/body/tool/index.jsp"/>
     </definition>
 
     <definition name="tools.form" extends="defCommon">
-        <put-attribute name="body" value="/WEB-INF/jsp/body/tool/form.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/admin/body/tool/form.jsp"/>
     </definition>
 
 
