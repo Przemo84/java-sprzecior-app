@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -40,6 +41,10 @@ public class SecurityConfig {
     public static class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         private static final String LOGIN_PAGE = "/login";
+
+        @Autowired
+        private AuthenticationSuccessHandler successHandler;
+
         @Autowired
         private PasswordEncoder passwordEncoder;
 
@@ -68,7 +73,7 @@ public class SecurityConfig {
                     .loginProcessingUrl("/signin")
                     .usernameParameter("userid")
                     .passwordParameter("passwd")
-                    .defaultSuccessUrl("/admin/dashboard")
+                    .successHandler(successHandler)
                     .failureUrl(LOGIN_PAGE).permitAll()
                     .and()
                     .logout()

@@ -1,6 +1,7 @@
 package com.nordgeo;
 
 
+import com.nordgeo.security.MySimpleUrlAuthenticationSuccessHandler;
 import com.nordgeo.security.encoder.TokenProperties;
 import com.nordgeo.storage.StorageProperties;
 import com.nordgeo.storage.StorageService;
@@ -9,11 +10,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.web.servlet.HandlerExceptionResolver;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @SpringBootApplication
 @EnableConfigurationProperties({StorageProperties.class, TokenProperties.class})
@@ -35,14 +35,8 @@ public class SprzeciorApp extends SpringBootServletInitializer {
         return (args) -> storageService.init();
     }
 
-
     @Bean
-    public HandlerExceptionResolver sentryExceptionResolver() {
-        return new io.sentry.spring.SentryExceptionResolver();
-    }
-
-    @Bean
-    public ServletContextInitializer sentryServletContextInitializer() {
-        return new io.sentry.spring.SentryServletContextInitializer();
+    public AuthenticationSuccessHandler myAuthenticationSuccessHandler(){
+        return new MySimpleUrlAuthenticationSuccessHandler();
     }
 }
