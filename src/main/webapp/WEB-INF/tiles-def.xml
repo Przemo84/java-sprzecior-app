@@ -4,7 +4,7 @@
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
 
-    <definition name="defLogin" template="/WEB-INF/jsp/layouts/login-layout.jsp">
+    <definition name="defLogin" template="/WEB-INF/jsp/login-layout.jsp">
         <put-attribute name="title" value=""/>
         <put-attribute name="body" value=""/>
     </definition>
@@ -13,11 +13,11 @@
         <put-attribute name="body" value="/WEB-INF/jsp/login.jsp"/>
     </definition>
 
-    <definition name="defCommon" template="/WEB-INF/jsp/layouts/main-layout.jsp">
-        <put-attribute name="header" value="/WEB-INF/jsp/main-header.jsp"/>
-        <put-attribute name="menu" value="/WEB-INF/jsp/main-menu.jsp"/>
+    <definition name="defCommon" template="/WEB-INF/jsp/admin/layouts/main-layout.jsp">
+        <put-attribute name="header" value="/WEB-INF/jsp/admin/main-header.jsp"/>
+        <put-attribute name="menu" value="/WEB-INF/jsp/admin/main-menu.jsp"/>
         <put-attribute name="body" value=""/>
-        <put-attribute name="footer" value="/WEB-INF/jsp/main-footer.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/jsp/admin/main-footer.jsp"/>
     </definition>
 
     <definition name="users.admins.index" extends="defCommon">
@@ -70,6 +70,10 @@
 
     <definition name="app.dashboard.index" extends="defCommon">
         <put-attribute name="body" value="/WEB-INF/jsp/app/body/dashboard/index.jsp"/>
+    </definition>
+
+    <definition name="app.tools.index" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/app/body/tool/index.jsp"/>
     </definition>
 
 
