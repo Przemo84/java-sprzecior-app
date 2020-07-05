@@ -68,5 +68,9 @@
         <put-attribute name="body" value="/WEB-INF/jsp/admin/body/tool/form.jsp"/>
     </definition>
 
+    <definition name="app.dashboard.index" extends="defCommon">
+        <put-attribute name="body" value="/WEB-INF/jsp/app/body/dashboard/index.jsp"/>
+    </definition>
+
 
 </tiles-definitions>

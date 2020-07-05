@@ -20,8 +20,6 @@ public class UserDetailsFactory {
 
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
 
-        grantedAuthorities.add(new SimpleGrantedAuthority("cms"));
-
         if (user.getRole() != null) {
             Role role = user.getRole();
 

@@ -61,7 +61,7 @@ public class SecurityConfig {
 
             http.authorizeRequests()
                     .antMatchers("/admin/**")
-                    .hasAuthority("cms")
+                    .hasAuthority("Administrator")
                     .and()
                     .formLogin()
                     .loginPage(LOGIN_PAGE)

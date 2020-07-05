@@ -28,6 +28,6 @@ public class DashboardControllerApp extends AppAbstractController {
     public String index( HttpSession session) {
         session.invalidate();
 
-        return "dashboard.index";
+        return "app.dashboard.index";
     }
 }
