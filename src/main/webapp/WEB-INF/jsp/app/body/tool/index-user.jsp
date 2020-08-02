@@ -19,7 +19,7 @@
             <i class="icon-angle-right"></i>
         </li>
         <li>
-            <a href="<c:url value="${moduleBaseUrl}"/>"><fmt:message key="menu.action.tools"/></a>
+            <a href="<c:url value="${moduleBaseUrl}"/>"><fmt:message key="menu.action.tools.user"/></a>
         </li>
     </ul>
     <div class="close-bread">
@@ -137,17 +137,11 @@
                                     <td style="text-align: center;">${item.user.fullName}</td>
 
                                     <td style="width: 32px; text-align: center;">
-                                        <a href="<c:url value="${moduleBaseUrl}/form/${item.id}"/>" rel="tooltip"
-                                           title="Edytuj" class="btn">
-                                            <i class="icon-pencil"></i>
-                                        </a>
-                                    </td>
-                                    <td style="width: 32px; text-align: center;">
                                         <a href="javascript:void(0);"
                                            onclick="javascript:confirm_action('<c:url
-                                                   value="${moduleBaseUrl}/delete/${item.id}"/>');"
-                                           rel="tooltip" title="Zablokuj" class="btn btn-danger">
-                                            <i class="icon-minus-sign"></i>
+                                                   value="${moduleBaseUrl}/return/${item.id}"/>');"
+                                           rel="tooltip" title="Zwróć" class="btn btn-danger">
+                                            <i class="icon-remove"></i>
                                         </a>
                                     </td>
                                 </tr>

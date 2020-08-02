@@ -11,49 +11,19 @@
     <div class="subnav-title">
         <a href="#" class="toggle-subnav">
             <i class="icon-angle-down"></i>
-            <span>Użytkownicy</span>
-        </a>
-    </div>
-    <ul class="subnav-menu">
-        <li class="<c:if test="${fn:contains(currentUrl, 'admin/admins')}">active</c:if>">
-            <a href="<c:url value="/admin/admins/"/>"><fmt:message key="menu.admins"/> </a>
-        </li>
-        <li class="<c:if test="${fn:contains(currentUrl, 'admin/employees')}">active</c:if>">
-            <a href="<c:url value="/admin/employees/"/>"><fmt:message key="menu.employees"/></a>
-        </li>
-        <li class="<c:if test="${fn:contains(currentUrl, 'admin/user/locked')}">active</c:if>">
-            <a href="<c:url value="/admin/locked-users/"/>"><fmt:message key="menu.users.locked"/> </a>
-        </li>
-        <li class="<c:if test="${fn:contains(currentUrl, 'admin/roles')}">active</c:if>">
-            <a href="<c:url value="/admin/roles/"/>"><fmt:message key="menu.roles"/> </a>
-        </li>
-    </ul>
-</div>
-
-<div class="subnav">
-    <div class="subnav-title">
-        <a href="#" class="toggle-subnav">
-            <i class="icon-angle-down"></i>
             <span>Sprzęt</span>
         </a>
     </div>
     <ul class="subnav-menu">
-        <li class="<c:if test="${fn:contains(currentUrl, 'admin/tools')}">active</c:if>">
-            <a href="<c:url value="/admin/tools/"/>"><fmt:message key="menu.action.tools"/> </a>
+        <li class="<c:if test="${fn:contains(currentUrl, 'app/tools/available')}">active</c:if>">
+            <a href="<c:url value="/app/tools/available"/>"><fmt:message key="menu.action.tools.available"/> </a>
+        </li>
+        <li class="<c:if test="${fn:contains(currentUrl, 'app/tools/unavailable')}">active</c:if>">
+            <a href="<c:url value="/app/tools/unavailable"/>"><fmt:message key="menu.action.tools.unavailable"/> </a>
+        </li>
+        <li class="<c:if test="${fn:contains(currentUrl, 'app/tools/user')}">active</c:if>">
+            <a href="<c:url value="/app/tools/user"/>"><fmt:message key="menu.action.tools.user"/> </a>
         </li>
     </ul>
 </div>
 
-<div class="subnav">
-    <div class="subnav-title">
-        <a href="#" class="toggle-subnav">
-            <i class="icon-angle-down"></i>
-            <span>Historia</span>
-        </a>
-    </div>
-    <ul class="subnav-menu">
-        <li class="<c:if test="${fn:contains(currentUrl, 'admin/history')}">active</c:if>">
-            <a href="<c:url value="/admin/history/"/>"><fmt:message key="menu.action.history"/> </a>
-        </li>
-    </ul>
-</div>

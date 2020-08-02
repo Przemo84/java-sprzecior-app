@@ -16,4 +16,14 @@ public interface ToolService {
     void save(Tool tool);
 
     void delete(int id) throws AdminOperationNotAllowedException;
+
+    void append(int id);
+
+    Page<Tool> findAllAvailable(PageRequest page);
+
+    Page<Tool> findAllUnavailable(PageRequest page);
+
+    Page<Tool> findAllUserTools(PageRequest page);
+
+    void returnTool(int id);
 }

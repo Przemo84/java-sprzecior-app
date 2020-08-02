@@ -10,10 +10,10 @@ INSERT INTO `user` (first_name, last_name, email, username, password, role_id, a
 -- --
 INSERT INTO tool (company_id, title, tool_type, available) VALUES ('abc001', 'Statyw Leica ciężki','Statyw', 1)
 INSERT INTO tool (company_id, title, tool_type, available) VALUES ('abc002', 'Tachimetr Lecia TS12','Tachimetr', 1)
-INSERT INTO tool (company_id, title, tool_type, available) VALUES ('abc003', 'Tachimetr Lecia TS15','Tachimetr', 0)
+INSERT INTO tool (company_id, title, tool_type, available) VALUES ('abc003', 'Tachimetr Lecia TS15','Tachimetr', 1)
 INSERT INTO tool (company_id, title, tool_type, available) VALUES ('abc004', 'Tachimetr Lecia 1012','Tachimetr', 1)
 INSERT INTO tool (company_id, title, tool_type, available) VALUES ('abc005', 'Niwelator precyzyjny Leica 506','Nivelator', 1)
 INSERT INTO tool (company_id, title, tool_type, available) VALUES ('abc006', 'Niwelator precyzyjny Leica 1002','Nivelator', 1)
-INSERT INTO tool (company_id, title, tool_type, available) VALUES ('GD 34234', 'VW Caddy Szary','Samochód', 0)
+INSERT INTO tool (company_id, title, tool_type, available) VALUES ('GD 34234', 'VW Caddy Szary','Samochód', 1)
 INSERT INTO tool (company_id, title, tool_type, available) VALUES ('abc007', 'Lustro 2,5" Leica','Lustro', 1)
 INSERT INTO tool (company_id, title, tool_type, available) VALUES ('abc008', 'Lustro 2,5" Leica','Lustro', 1)

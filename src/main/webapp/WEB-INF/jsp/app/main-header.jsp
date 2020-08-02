@@ -21,7 +21,7 @@
         <ul class="icon-nav">
 
             <li style="width: 300px">
-                <h4 class="pull-left" style=" color: white">Sprzęcior Nordgeo CMS</h4>
+                <h4 class="pull-left" style=" color: white">Sprzęcior Nordgeo</h4>
             </li>
 
             <li class="auth-timer" style="color: white; margin-top: 1px;">

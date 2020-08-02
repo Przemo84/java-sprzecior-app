@@ -16,7 +16,7 @@ public class DashboardControllerApp extends AppAbstractController {
 
     @ModelAttribute("moduleBaseUrl")
     public String moduleBaseUrl() {
-        return "/dashboard";
+        return "/app/dashboard";
     }
 
     @ModelAttribute("title")

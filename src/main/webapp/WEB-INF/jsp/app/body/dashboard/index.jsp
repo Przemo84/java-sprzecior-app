@@ -27,8 +27,7 @@
 <br>
 <div class="row-fluid">
 
-    <div class="alert alert-info">
-        <h2>To jest panel pracownika</h2>
+    <div class="alert alert-info">Witaj w panelu zarządzania sprzętem
         <button data-dismiss="alert" class="close" type="button">×</button>
     </div>
 </div>

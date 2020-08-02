@@ -11,6 +11,4 @@ public interface RoleRepository extends PagingAndSortingRepository<Role, Integer
 
     @Override
     Iterable<Role> findAll();
-
-    Role findTopByName(String name);
 }

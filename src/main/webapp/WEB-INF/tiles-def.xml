@@ -13,67 +13,83 @@
         <put-attribute name="body" value="/WEB-INF/jsp/login.jsp"/>
     </definition>
 
-    <definition name="defCommon" template="/WEB-INF/jsp/admin/layouts/main-layout.jsp">
+    <definition name="defAdmin" template="/WEB-INF/jsp/admin/layouts/main-layout.jsp">
         <put-attribute name="header" value="/WEB-INF/jsp/admin/main-header.jsp"/>
         <put-attribute name="menu" value="/WEB-INF/jsp/admin/main-menu.jsp"/>
         <put-attribute name="body" value=""/>
         <put-attribute name="footer" value="/WEB-INF/jsp/admin/main-footer.jsp"/>
     </definition>
 
-    <definition name="users.admins.index" extends="defCommon">
+    <definition name="users.admins.index" extends="defAdmin">
         <put-attribute name="body" value="/WEB-INF/jsp/admin/body/user/admin/index.jsp"/>
     </definition>
 
-    <definition name="users.admins.form" extends="defCommon">
+    <definition name="users.admins.form" extends="defAdmin">
         <put-attribute name="body" value="/WEB-INF/jsp/admin/body/user/admin/form.jsp"/>
     </definition>
 
-    <definition name="user.change.password.form" extends="defCommon">
+    <definition name="user.change.password.form" extends="defAdmin">
         <put-attribute name="body" value="/WEB-INF/jsp/admin/body/user/change-password/form.jsp"/>
     </definition>
 
-    <definition name="users.employees.index" extends="defCommon">
+    <definition name="users.employees.index" extends="defAdmin">
         <put-attribute name="body" value="/WEB-INF/jsp/admin/body/user/employee/index.jsp"/>
     </definition>
 
-    <definition name="user.employees.form" extends="defCommon">
+    <definition name="user.employees.form" extends="defAdmin">
         <put-attribute name="body" value="/WEB-INF/jsp/admin/body/user/employee/form.jsp"/>
     </definition>
 
-    <definition name="locked.users.index" extends="defCommon">
+    <definition name="locked.users.index" extends="defAdmin">
         <put-attribute name="body" value="/WEB-INF/jsp/admin/body/user/locked/index.jsp"/>
     </definition>
 
-    <definition name="roles.index" extends="defCommon">
+    <definition name="roles.index" extends="defAdmin">
         <put-attribute name="body" value="/WEB-INF/jsp/admin/body/role/index.jsp"/>
     </definition>
 
-    <definition name="role.form" extends="defCommon">
+    <definition name="role.form" extends="defAdmin">
         <put-attribute name="body" value="/WEB-INF/jsp/admin/body/role/form.jsp"/>
     </definition>
 
-    <definition name="history.index" extends="defCommon">
+    <definition name="history.index" extends="defAdmin">
         <put-attribute name="body" value="/WEB-INF/jsp/admin/body/history/index.jsp"/>
     </definition>
 
-    <definition name="dashboard.index" extends="defCommon">
+    <definition name="dashboard.index" extends="defAdmin">
         <put-attribute name="body" value="/WEB-INF/jsp/admin/body/dashboard/index.jsp"/>
     </definition>
 
-    <definition name="tools.index" extends="defCommon">
+    <definition name="tools.index" extends="defAdmin">
         <put-attribute name="body" value="/WEB-INF/jsp/admin/body/tool/index.jsp"/>
     </definition>
 
-    <definition name="tools.form" extends="defCommon">
+    <definition name="tools.form" extends="defAdmin">
         <put-attribute name="body" value="/WEB-INF/jsp/admin/body/tool/form.jsp"/>
     </definition>
 
-    <definition name="app.dashboard.index" extends="defCommon">
+
+    <definition name="defApp" template="/WEB-INF/jsp/app/layouts/main-layout.jsp">
+        <put-attribute name="header" value="/WEB-INF/jsp/app/main-header.jsp"/>
+        <put-attribute name="menu" value="/WEB-INF/jsp/app/main-menu.jsp"/>
+        <put-attribute name="body" value=""/>
+        <put-attribute name="footer" value="/WEB-INF/jsp/app/main-footer.jsp"/>
+    </definition>
+
+    <definition name="app.dashboard.index" extends="defApp">
         <put-attribute name="body" value="/WEB-INF/jsp/app/body/dashboard/index.jsp"/>
     </definition>
 
-    <definition name="app.tools.index" extends="defCommon">
+    <definition name="app.tools.index" extends="defApp">
         <put-attribute name="body" value="/WEB-INF/jsp/app/body/tool/index.jsp"/>
+    </definition>
+
+    <definition name="app.tools.unavailable.index" extends="defApp">
+        <put-attribute name="body" value="/WEB-INF/jsp/app/body/tool/index-unavailable.jsp"/>
+    </definition>
+
+    <definition name="app.tools.my.index" extends="defApp">
+        <put-attribute name="body" value="/WEB-INF/jsp/app/body/tool/index-user.jsp"/>
     </definition>
 
 

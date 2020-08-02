@@ -20,7 +20,7 @@
     <meta content="" name="description"/>
     <meta content="" name="author"/>
 
-    <title>Sprzęcior - Panel Administratora</title>
+    <title>Sprzęcior - Panel</title>
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
@@ -214,7 +214,7 @@
     }, time * 1000);
 
     $('#session-regenerate').click(function () {
-        $.get('<c:url value="/admin"/>').done(function () {
+        $.get('<c:url value="/app"/>').done(function () {
             timeCounter = time
             $('.auth-timer > span').text(time)
         })

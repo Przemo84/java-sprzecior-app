@@ -1,6 +1,7 @@
 package com.nordgeo.entity;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -56,5 +57,5 @@ public class Tool {
 
     public Boolean getAvailable() { return available; }
 
-    public void setAvailable(Boolean available) { available = available; }
+    public void setAvailable(Boolean available) { this.available = available; }
 }

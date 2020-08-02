@@ -19,7 +19,7 @@
             <i class="icon-angle-right"></i>
         </li>
         <li>
-            <a href="<c:url value="${moduleBaseUrl}"/>"><fmt:message key="menu.action.tools"/></a>
+            <a href="<c:url value="${moduleBaseUrl}"/>"><fmt:message key="menu.action.tools.unavailable"/></a>
         </li>
     </ul>
     <div class="close-bread">
@@ -136,39 +136,11 @@
                                     </td>
                                     <td style="text-align: center;">${item.user.fullName}</td>
 
-                                    <td style="width: 32px; text-align: center;">
-                                        <a href="<c:url value="${moduleBaseUrl}/form/${item.id}"/>" rel="tooltip"
-                                           title="Edytuj" class="btn">
-                                            <i class="icon-pencil"></i>
-                                        </a>
-                                    </td>
-                                    <td style="width: 32px; text-align: center;">
-                                        <a href="javascript:void(0);"
-                                           onclick="javascript:confirm_action('<c:url
-                                                   value="${moduleBaseUrl}/delete/${item.id}"/>');"
-                                           rel="tooltip" title="Zablokuj" class="btn btn-danger">
-                                            <i class="icon-minus-sign"></i>
-                                        </a>
-                                    </td>
                                 </tr>
                             </c:forEach>
                             </tbody>
 
                             <tfoot>
-                            <tr>
-                                <th colspan="9">
-                                    <img src="/resources/img/arrow_ltr.png">&nbsp;
-                                    <select name="action" class="form-control">
-                                        <option value=""><fmt:message key="select.list.select"/></option>
-                                        <option value="lock"><fmt:message key="select.list.lock"/></option>
-                                    </select>&nbsp;
-                                    <button onclick="confirm_mass_action('<c:url
-                                            value="${moduleBaseUrl}/checkbox"/>');"
-                                            class="btn btn-primary" id="executeBtn" type="button">
-                                        <fmt:message key="select.list.execute"/>
-                                    </button>
-                                </th>
-                            </tr>
                             </tfoot>
                         </table>
                     </form>
