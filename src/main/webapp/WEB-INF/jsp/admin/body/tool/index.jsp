@@ -71,6 +71,11 @@
                             <fmt:message key="action.add"/>
                         </a>
                     </div>
+                    <div class="container-fluid">
+                        <div class="form-group col-md-4" style="margin: 5px 5px 5px 5px">
+                            <input class="form-control" id="myInput" type="text" placeholder="Szukaj..">
+                        </div>
+                    </div>
                     <form autocomplete="off" action="<c:url value="${moduleBaseUrl}"/>/checkbox"
                           method="post" id="executable-users-list-form">
                         <table class="table table-hover table-nomargin table-striped table-bordered"
@@ -116,7 +121,7 @@
                             </tr>
                             </thead>
 
-                            <tbody>
+                            <tbody id="myTable">
                             <c:forEach var="item" items="${page.iterator()}">
                                 <tr>
                                     <td style="width: 32px; text-align: center;">
@@ -191,5 +196,14 @@
     checkboxAll.change(function () {
         $('#executeBtn').prop("disabled", !this.checked);
     }).change();
+
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
 
 </script>
