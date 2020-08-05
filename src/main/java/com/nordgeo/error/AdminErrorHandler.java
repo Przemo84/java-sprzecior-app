@@ -10,7 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 
 //@Controller
-//@ControllerAdvice(basePackages = "com.escl.citi.controller.admin")
 public class AdminErrorHandler implements ErrorController
 {
 

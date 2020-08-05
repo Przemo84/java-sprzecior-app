@@ -3,13 +3,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.escl</groupId>
-    <artifactId>citi</artifactId>
+    <groupId>com.</groupId>
+    <artifactId>nordgeo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>citi</name>
-    <description>Citi GSG</description>
+    <name>nordgeo</name>
+    <description>nordgeo</description>
 
 
     <repositories>
@@ -39,7 +39,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <apachetiles.version>3.7.0</apachetiles.version>
-        <docker.image.prefix>citi_gsg</docker.image.prefix>
+        <docker.image.prefix>nordgeo</docker.image.prefix>
 <!--        <tomcat.version>9.0.5</tomcat.version>-->
     </properties>
 
