@@ -68,6 +68,10 @@
         <put-attribute name="body" value="/WEB-INF/jsp/admin/body/tool/form.jsp"/>
     </definition>
 
+    <definition name="tool.status.index" extends="defAdmin">
+        <put-attribute name="body" value="/WEB-INF/jsp/admin/body/tool-status/index.jsp"/>
+    </definition>
+
 
     <definition name="defApp" template="/WEB-INF/jsp/app/layouts/main-layout.jsp">
         <put-attribute name="header" value="/WEB-INF/jsp/app/main-header.jsp"/>

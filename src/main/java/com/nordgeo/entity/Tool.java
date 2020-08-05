@@ -1,10 +1,13 @@
 package com.nordgeo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Entity
 public class Tool {
@@ -30,6 +33,11 @@ public class Tool {
 
     @OneToOne
     private User user;
+
+    @JsonIgnore
+    @CreationTimestamp
+    @Column(updatable = false)
+    private Date createDate;
 
     public Integer getId() { return id; }
 
@@ -58,4 +66,8 @@ public class Tool {
     public Boolean getAvailable() { return available; }
 
     public void setAvailable(Boolean available) { this.available = available; }
+
+    public Date getCreateDate() { return createDate; }
+
+    public void setCreateDate(Date createDate) { this.createDate = createDate; }
 }
