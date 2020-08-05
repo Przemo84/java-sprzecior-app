@@ -1,4 +1,4 @@
-package com.nordgeo.controller.admin.history;
+package com.nordgeo.controller.admin;
 
 
 import com.nordgeo.controller.AdminAbstractController;
