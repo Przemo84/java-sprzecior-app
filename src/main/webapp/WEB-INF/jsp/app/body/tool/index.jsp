@@ -19,7 +19,7 @@
             <i class="icon-angle-right"></i>
         </li>
         <li>
-            <a href="<c:url value="${moduleBaseUrl}"/>"><fmt:message key="menu.action.tools.available"/></a>
+            <a href="<c:url value="${moduleBaseUrl}/available"/>"><fmt:message key="menu.action.tools.available"/></a>
         </li>
     </ul>
     <div class="close-bread">
@@ -37,27 +37,27 @@
                         <label>
                             <div class="btn-group" style="float: left;">
                                 <a href="#" data-toggle="dropdown" class="btn dropdown-toggle">
-                                    ${(not empty param.size) ? param.size : 10}<span class="caret"></span>
+                                    ${(not empty param.size) ? param.size : 200}<span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <c:if test="${param.size != 10}">
                                         <li>
-                                            <a href="<c:url value="${moduleBaseUrl}?size=10&sort=${param.sort}&order=${param.order}&page=${param.page}"/> ">10</a>
+                                            <a href="<c:url value="${moduleBaseUrl}/available?size=10&sort=${param.sort}&order=${param.order}&page=${param.page}"/> ">10</a>
                                         </li>
                                     </c:if>
                                     <c:if test="${param.size != 25}">
                                         <li>
-                                            <a href="<c:url value="${moduleBaseUrl}?size=25&sort=${param.sort}&order=${param.order}&page=${param.page}"/> ">25</a>
+                                            <a href="<c:url value="${moduleBaseUrl}/available?size=25&sort=${param.sort}&order=${param.order}&page=${param.page}"/> ">25</a>
                                         </li>
                                     </c:if>
                                     <c:if test="${param.size != 50}">
                                         <li>
-                                            <a href="<c:url value="${moduleBaseUrl}?size=50&sort=${param.sort}&order=${param.order}&page=${param.page}"/> ">50</a>
+                                            <a href="<c:url value="${moduleBaseUrl}/available?size=50&sort=${param.sort}&order=${param.order}&page=${param.page}"/> ">50</a>
                                         </li>
                                     </c:if>
                                     <c:if test="${param.size != 100}">
                                         <li>
-                                            <a href="<c:url value="${moduleBaseUrl}?size=100&sort=${param.sort}&order=${param.order}&page=${param.page}"/> ">100</a>
+                                            <a href="<c:url value="${moduleBaseUrl}/available?size=100&sort=${param.sort}&order=${param.order}&page=${param.page}"/> ">100</a>
                                         </li>
                                     </c:if>
                                 </ul>

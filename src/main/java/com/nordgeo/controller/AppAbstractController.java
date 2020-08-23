@@ -22,7 +22,7 @@ public abstract class AppAbstractController {
 
     @ModelAttribute("baseUrl")
     public String baseUrl() {
-        return "/dashboard";
+        return "/app/dashboard";
     }
 
     @Autowired
