@@ -1,7 +1,7 @@
-package com.nordgeo.controller.admin.user;
+package com.nordgeo.controller.app;
 
 
-import com.nordgeo.controller.AdminAbstractController;
+import com.nordgeo.controller.AppAbstractController;
 import com.nordgeo.data.UserPasswordDto;
 import com.nordgeo.exception.UserLastSixPasswordException;
 import com.nordgeo.service.user.UserService;
@@ -21,13 +21,13 @@ import javax.validation.Valid;
 
 
 @Controller
-@RequestMapping(value = "/admin/account/")
-public class UserAccountControllerAdmin extends AdminAbstractController {
+@RequestMapping(value = "/app/account/")
+public class UserAccountControllerApp extends AppAbstractController {
 
 
     @ModelAttribute("moduleBaseUrl")
     public String baseUrl() {
-        return "/admin/account";
+        return "/app/account";
     }
 
     @ModelAttribute("title")
@@ -52,7 +52,7 @@ public class UserAccountControllerAdmin extends AdminAbstractController {
         }
 
         model.addAttribute("user", new UserPasswordDto());
-        return "admin.user.change.password.form";
+        return "user.change.password.form";
     }
 
     @PostMapping(value = "/save")
@@ -63,17 +63,17 @@ public class UserAccountControllerAdmin extends AdminAbstractController {
         userPasswordValidator.validate(userPasswordDto, result);
 
         if (result.hasErrors())
-            return "admin.user.change.password.form";
+            return "user.change.password.form";
 
         try {
             userService.changePassword(userPasswordDto);
         } catch (UserLastSixPasswordException e) {
             Flash.error(redirectAttributes, "Akcja zakończona niepowodzeniem.");
-            return "redirect:/admin/account/password";
+            return "redirect:/app/account/password";
         }
 
         Flash.success(redirectAttributes);
-        return "redirect:/admin/dashboard";
+        return "redirect:/app/dashboard";
     }
 
 

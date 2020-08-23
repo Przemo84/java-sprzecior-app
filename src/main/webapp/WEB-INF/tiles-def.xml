@@ -28,7 +28,7 @@
         <put-attribute name="body" value="/WEB-INF/jsp/admin/body/user/admin/form.jsp"/>
     </definition>
 
-    <definition name="user.change.password.form" extends="defAdmin">
+    <definition name="admin.user.change.password.form" extends="defAdmin">
         <put-attribute name="body" value="/WEB-INF/jsp/admin/body/user/change-password/form.jsp"/>
     </definition>
 
@@ -94,6 +94,10 @@
 
     <definition name="app.tools.my.index" extends="defApp">
         <put-attribute name="body" value="/WEB-INF/jsp/app/body/tool/index-user.jsp"/>
+    </definition>
+
+    <definition name="user.change.password.form" extends="defApp">
+        <put-attribute name="body" value="/WEB-INF/jsp/app/body/change-password/form.jsp"/>
     </definition>
 
 

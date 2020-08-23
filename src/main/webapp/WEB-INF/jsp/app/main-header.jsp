@@ -43,7 +43,7 @@
             </a>
             <ul class="dropdown-menu pull-right">
                 <li>
-                    <a href="<c:url value="/admin/account/password"/>">
+                    <a href="<c:url value="/app/account/password"/>">
                         <fmt:message key="password.change"/> </a>
                 </li>
                 <li>

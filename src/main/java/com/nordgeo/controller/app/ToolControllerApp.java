@@ -1,4 +1,4 @@
-package com.nordgeo.controller.app.tool;
+package com.nordgeo.controller.app;
 
 
 import com.nordgeo.controller.AppAbstractController;
