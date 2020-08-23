@@ -1,11 +1,14 @@
 package com.nordgeo.service.tool;
 
 import com.nordgeo.entity.Tool;
+import com.nordgeo.entity.ToolStatus;
 import com.nordgeo.entity.User;
 import com.nordgeo.exception.AdminOperationNotAllowedException;
 import com.nordgeo.exception.ToolAlreadyTakenException;
 import com.nordgeo.persistence.repository.ToolRepository;
 import com.nordgeo.security.AuthManager;
+import com.nordgeo.service.toolStatus.ToolStatusService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -16,6 +19,9 @@ public class ToolServiceImpl implements ToolService {
     private ToolRepository toolRepository;
 
     private AuthManager authManager;
+
+    @Autowired
+    private ToolStatusService toolStatusService;
 
     public ToolServiceImpl(ToolRepository toolrepository, AuthManager authManager) {
         this.toolRepository = toolrepository;
@@ -80,8 +86,11 @@ public class ToolServiceImpl implements ToolService {
     public Page<Tool> findAllUserTools(PageRequest page) { return toolRepository.findToolsByUser(authManager.user(),page); }
 
     @Override
-    public void returnTool(int id) {
-        Tool tool = toolRepository.findOne(id);
+    public void returnTool(ToolStatus toolStatus) {
+        Tool tool = toolRepository.findOne(toolStatus.getTool().getId());
+
+        toolStatusService.save(toolStatus, tool);
+
         tool.setAvailable(true);
         tool.setUser(null);
         toolRepository.save(tool);

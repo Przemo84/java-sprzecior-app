@@ -1,6 +1,7 @@
 package com.nordgeo.service.tool;
 
 import com.nordgeo.entity.Tool;
+import com.nordgeo.entity.ToolStatus;
 import com.nordgeo.exception.AdminOperationNotAllowedException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -25,5 +26,5 @@ public interface ToolService {
 
     Page<Tool> findAllUserTools(PageRequest page);
 
-    void returnTool(int id);
+    void returnTool(ToolStatus toolStatus);
 }

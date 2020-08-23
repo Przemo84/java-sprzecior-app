@@ -65,12 +65,7 @@
                             <span><fmt:message key="elements.per.page"/> </span>
                         </label>
                     </div>
-                    <div style="float: right; margin: 10px 10px 5px 5px">
-                        <a href="<c:url value="${moduleBaseUrl}/form"/>" class="btn">
-                            <i class="icon-plus"></i>
-                            <fmt:message key="action.add"/>
-                        </a>
-                    </div>
+
                     <div class="container-fluid">
                         <div class="form-group col-md-4" style="margin: 5px 5px 5px 5px">
                             <input class="form-control" id="myInput" type="text" placeholder="Szukaj..">
@@ -121,7 +116,7 @@
                             </tr>
                             </thead>
 
-                            <tbody id="myTable">
+                            <tbody id="toolTable">
                             <c:forEach var="item" items="${page.iterator()}">
                                 <tr>
                                     <td style="width: 32px; text-align: center;">
@@ -172,7 +167,7 @@
     $(document).ready(function () {
         $("#myInput").on("keyup", function () {
             var value = $(this).val().toLowerCase();
-            $("#myTable tr").filter(function () {
+            $("#toolTable tr").filter(function () {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
         });

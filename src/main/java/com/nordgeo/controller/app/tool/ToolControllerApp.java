@@ -3,6 +3,7 @@ package com.nordgeo.controller.app.tool;
 
 import com.nordgeo.controller.AppAbstractController;
 import com.nordgeo.entity.Tool;
+import com.nordgeo.entity.ToolStatus;
 import com.nordgeo.exception.AdminNotAllowedToDeleteHimselfException;
 import com.nordgeo.exception.AdminOperationNotAllowedException;
 import com.nordgeo.exception.ToolAlreadyTakenException;
@@ -13,12 +14,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 
 @Controller
@@ -57,6 +61,7 @@ public class ToolControllerApp extends AppAbstractController {
     @RequestMapping("/user")
     public String indexUser(PageSort pageSort, Model model) {
         Page<Tool> toolPage = toolService.findAllUserTools(pageSort.getPage(model));
+        model.addAttribute("toolStatus", new ToolStatus());
         model.addAttribute("page", toolPage);
 
         return "app.tools.my.index";
@@ -76,11 +81,12 @@ public class ToolControllerApp extends AppAbstractController {
         return "redirect:/app/tools/available";
     }
 
-    @RequestMapping(value = "/return/{id}")
-    public String returnOne(@PathVariable("id") int id, final RedirectAttributes redirectAttributes) {
+    @PostMapping(value = "/return")
+    public String returnOne(@Valid @ModelAttribute("toolStatus") ToolStatus toolStatus,
+                            BindingResult result, final RedirectAttributes redirectAttributes) {
 
         try {
-            toolService.returnTool(id);
+            toolService.returnTool(toolStatus);
         } catch (ToolAlreadyTakenException e) {
             Flash.error(redirectAttributes, "Sprzęt już wcześniej pobrany");
             return "redirect:/app/tools/user";

@@ -65,12 +65,7 @@
                             <span><fmt:message key="elements.per.page"/> </span>
                         </label>
                     </div>
-                    <div style="float: right; margin: 10px 10px 5px 5px">
-                        <a href="<c:url value="${moduleBaseUrl}/form"/>" class="btn">
-                            <i class="icon-plus"></i>
-                            <fmt:message key="action.add"/>
-                        </a>
-                    </div>
+
                     <div class="container-fluid">
                         <div class="form-group col-md-4" style="margin: 5px 5px 5px 5px">
                             <input class="form-control" id="myInput" type="text" placeholder="Szukaj..">
@@ -121,7 +116,7 @@
                             </tr>
                             </thead>
 
-                            <tbody id="myTable">
+                            <tbody id="toolTable">
                             <c:forEach var="item" items="${page.iterator()}">
                                 <tr>
                                     <td style="width: 32px; text-align: center;">
@@ -143,9 +138,9 @@
 
                                     <td style="width: 32px; text-align: center;">
                                         <a href="javascript:void(0);"
-                                           onclick="javascript:confirm_action('<c:url
-                                                   value="${moduleBaseUrl}/return/${item.id}"/>');"
-                                           rel="tooltip" title="Zwróć" class="btn btn-danger">
+                                           rel="tooltip" title="Zwróć" class="btn btn-danger" data-toggle="modal"
+                                            <%--                                           TODO - tool.id musi być posłany do modala!--%>
+                                           data-target="#myModal" data-tool-id="${item.id}" id="toolModal">
                                             <i class="icon-remove"></i>
                                         </a>
                                     </td>
@@ -179,6 +174,67 @@
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <%--        TODO - posłać do url id Toola--%>
+            <spring:url value="${moduleBaseUrl}/return" var="action"/>
+            <form:form method="post" class="form-vertical form-bordered" enctype="multipart/form-data"
+                       modelAttribute="toolStatus"
+                       action="${action}">
+            <div class="modal-header">
+                <h4 class="modal-title">Oceń oddawany Sprzęt</h4>
+            </div>
+            <form:hidden path="id"/>
+
+                <form:hidden path="tool" id="toolId"/>
+
+
+            <spring:bind path="description">
+                <div class="control-group">
+                    <div class="form-group-mx-3 ${status.error ? 'has-error' : ''}">
+                        <label class="control-label" for="description"><fmt:message
+                                key="tool-status.description"/></label>
+                        <form:input path="description" type="text" class="form-control" />
+                        <span style="color: red"><form:errors path="description" class="control-label"/></span>
+                    </div>
+                </div>
+            </spring:bind>
+
+            <spring:bind path="shape">
+                <div class="control-group">
+                    <div class="form-group-mx-3 ${status.error ? 'has-error' : ''}">
+                        <label class="control-label"><fmt:message key="tool-status.shape"/></label>
+                        <form:radiobuttons path="shape" element="div"/>
+                        <span style="color: red"><form:errors path="shape" class="control-label"/></span>
+                    </div>
+                </div>
+            </spring:bind>
+
+            <spring:bind path="needRepair">
+                <div class="control-group">
+                    <div class="form-group-mx-3 ${status.error ? 'has-error' : ''}">
+                        <label class="control-label"><fmt:message key="tool-status.need.repair"/></label>
+                        <form:radiobutton path="needRepair" element="div" value="true" label="Tak"/>
+                        <form:radiobutton path="needRepair" element="div" value="false" label="Nie"/>
+                        <span style="color: red"><form:errors needRepair="needRepair" class="control-label"/></span>
+                    </div>
+                </div>
+            </spring:bind>
+
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="submit"><fmt:message key="action.save"/></button>
+                <button class="btn" type="reset"><fmt:message key="action.cancel"/></button>
+            </div>
+        </div>
+        </form:form>
+
+    </div>
+</div>
+
 <script>
     var checkboxes = $('#executable-users-list-form td input[type="checkbox"]');
     var checkboxAll = $('#executable-users-list-form  th input[type="checkbox"]');
@@ -194,10 +250,20 @@
     $(document).ready(function () {
         $("#myInput").on("keyup", function () {
             var value = $(this).val().toLowerCase();
-            $("#myTable tr").filter(function () {
+            $("#toolTable tr").filter(function () {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
         });
+    });
+
+    $('#myModal').on('show.bs.modal', function (e) {
+        var dupa = $(this).find('.modal-body').html('Fired By: ' + e.relatedTarget.id);
+        console.log(dupa);
+    })
+
+    $(document).on("click", "#toolModal", function () {
+        var toolId = $(this).data('tool-id');
+        $(".modal-content #toolId").val(toolId);
     });
 
 </script>
