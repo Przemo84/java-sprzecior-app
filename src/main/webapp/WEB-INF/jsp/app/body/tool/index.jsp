@@ -78,10 +78,6 @@
                             <thead>
                             <tr>
                                 <th style="text-align: center;">
-                                    <input type="checkbox" value="check_none"
-                                           onclick="javascript:check_all_box(this.form)">
-                                </th>
-                                <th style="text-align: center;">
                                     <tag:th param="id">
                                         <fmt:message key="tool.id"/>
                                     </tag:th>
@@ -106,16 +102,13 @@
                                         <fmt:message key="tool.is.available"/>
                                     </tag:th>
                                 </th>
-                                <th style="text-align: center;" colspan="3"><fmt:message key="options"/></th>
+                                <th style="text-align: center;" colspan="1"><fmt:message key="options"/></th>
                             </tr>
                             </thead>
 
                             <tbody id="toolTable">
                             <c:forEach var="item" items="${page.iterator()}">
                                 <tr>
-                                    <td style="width: 32px; text-align: center;">
-                                        <input type="checkbox" name="ids" value="${item.id}"/>
-                                    </td>
                                     <td style="text-align: center;">${item.id}</td>
                                     <td style="text-align: center;">${item.companyId}</td>
                                     <td style="text-align: center;">${item.title}</td>
@@ -128,7 +121,7 @@
                                             <i class="icon-minus" style="color: red"></i>
                                         </c:if>
                                     </td>
-                                    <td style="width: 32px; text-align: center;">
+                                    <td style="text-align: center" colspan="1">
                                         <a href="javascript:void(0);"
                                            onclick="javascript:confirm_action('<c:url
                                                    value="${moduleBaseUrl}/append/${item.id}"/>');"
@@ -140,6 +133,9 @@
                             </tbody>
 
                             <tfoot>
+                            <tr>
+                                <th colspan="9"></th>
+                            </tr>
                             </tfoot>
                         </table>
                     </form>

@@ -78,10 +78,6 @@
                             <thead>
                             <tr>
                                 <th style="text-align: center;">
-                                    <input type="checkbox" value="check_none"
-                                           onclick="javascript:check_all_box(this.form)">
-                                </th>
-                                <th style="text-align: center;">
                                     <tag:th param="id">
                                         <fmt:message key="tool.id"/>
                                     </tag:th>
@@ -112,16 +108,13 @@
                                         <fmt:message key="tool.user"/>
                                     </tag:th>
                                 </th>
-                                <th style="text-align: center;" colspan="3"><fmt:message key="options"/></th>
+                                <th style="text-align: center;" colspan="1"><fmt:message key="options"/></th>
                             </tr>
                             </thead>
 
                             <tbody id="toolTable">
                             <c:forEach var="item" items="${page.iterator()}">
                                 <tr>
-                                    <td style="width: 32px; text-align: center;">
-                                        <input type="checkbox" name="ids" value="${item.id}"/>
-                                    </td>
                                     <td style="text-align: center;">${item.id}</td>
                                     <td style="text-align: center;">${item.companyId}</td>
                                     <td style="text-align: center;">${item.title}</td>
@@ -136,7 +129,7 @@
                                     </td>
                                     <td style="text-align: center;">${item.user.fullName}</td>
 
-                                    <td style="width: 32px; text-align: center;">
+                                    <td style="text-align: center" colspan="1">
                                         <a href="javascript:void(0);"
                                            rel="tooltip" title="Zwróć" class="btn btn-danger" data-toggle="modal"
                                             <%--                                           TODO - tool.id musi być posłany do modala!--%>
@@ -150,18 +143,7 @@
 
                             <tfoot>
                             <tr>
-                                <th colspan="9">
-                                    <img src="/resources/img/arrow_ltr.png">&nbsp;
-                                    <select name="action" class="form-control">
-                                        <option value=""><fmt:message key="select.list.select"/></option>
-                                        <option value="lock"><fmt:message key="select.list.lock"/></option>
-                                    </select>&nbsp;
-                                    <button onclick="confirm_mass_action('<c:url
-                                            value="${moduleBaseUrl}/checkbox"/>');"
-                                            class="btn btn-primary" id="executeBtn" type="button">
-                                        <fmt:message key="select.list.execute"/>
-                                    </button>
-                                </th>
+                                <th colspan="9"></th>
                             </tr>
                             </tfoot>
                         </table>
@@ -180,18 +162,15 @@
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
-            <%--        TODO - posłać do url id Toola--%>
             <spring:url value="${moduleBaseUrl}/return" var="action"/>
             <form:form method="post" class="form-vertical form-bordered" enctype="multipart/form-data"
-                       modelAttribute="toolStatus"
-                       action="${action}">
+                       modelAttribute="toolStatus" action="${action}">
             <div class="modal-header">
                 <h4 class="modal-title">Oceń oddawany Sprzęt</h4>
             </div>
             <form:hidden path="id"/>
 
-                <form:hidden path="tool" id="toolId"/>
-
+            <form:hidden path="tool" id="toolId"/>
 
             <spring:bind path="description">
                 <div class="control-group">
