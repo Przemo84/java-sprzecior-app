@@ -132,7 +132,6 @@
                                     <td style="text-align: center" colspan="1">
                                         <a href="javascript:void(0);"
                                            rel="tooltip" title="Zwróć" class="btn btn-danger" data-toggle="modal"
-                                            <%--                                           TODO - tool.id musi być posłany do modala!--%>
                                            data-target="#myModal" data-tool-id="${item.id}" id="toolModal">
                                             <i class="icon-remove"></i>
                                         </a>
@@ -206,7 +205,7 @@
 
             <div class="modal-footer">
                 <button class="btn btn-primary" type="submit"><fmt:message key="action.save"/></button>
-                <button class="btn" type="reset"><fmt:message key="action.cancel"/></button>
+                <button class="btn" data-dismiss="modal"><fmt:message key="action.cancel"/></button>
             </div>
         </div>
         </form:form>
