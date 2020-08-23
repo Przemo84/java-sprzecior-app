@@ -68,7 +68,7 @@
 
                     <div class="container-fluid">
                         <div class="form-group col-md-4" style="margin: 5px 5px 5px 5px">
-                            <input class="form-control" id="myInput" type="text" placeholder="Szukaj..">
+                            <input class="form-control" id="filterInput" type="text" placeholder="Szukaj..">
                         </div>
                     </div>
                     <form autocomplete="off" action="<c:url value="${moduleBaseUrl}"/>/checkbox"
@@ -215,19 +215,8 @@
 </div>
 
 <script>
-    var checkboxes = $('#executable-users-list-form td input[type="checkbox"]');
-    var checkboxAll = $('#executable-users-list-form  th input[type="checkbox"]');
-
-    checkboxes.change(function () {
-        $('#executeBtn').prop("disabled", !this.checked);
-    }).change();
-
-    checkboxAll.change(function () {
-        $('#executeBtn').prop("disabled", !this.checked);
-    }).change();
-
     $(document).ready(function () {
-        $("#myInput").on("keyup", function () {
+        $("#filterInput").on("keyup", function () {
             var value = $(this).val().toLowerCase();
             $("#toolTable tr").filter(function () {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
@@ -235,14 +224,8 @@
         });
     });
 
-    $('#myModal').on('show.bs.modal', function (e) {
-        var dupa = $(this).find('.modal-body').html('Fired By: ' + e.relatedTarget.id);
-        console.log(dupa);
-    })
-
     $(document).on("click", "#toolModal", function () {
         var toolId = $(this).data('tool-id');
         $(".modal-content #toolId").val(toolId);
     });
-
 </script>
