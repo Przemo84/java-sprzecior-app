@@ -17,7 +17,7 @@ public class PageSort {
     private static final String ORDER_ASC = "asc";
 
     private static final int DEFAULT_PAGE = 0;
-    private static final int DEFAULT_SIZE = 10;
+    private static final int DEFAULT_SIZE = 200;
     private static final String DEFAULT_SORT = "id";
 
 
@@ -63,7 +63,6 @@ public class PageSort {
         }
     }
 
-    // TODO do not allow limit > 100
     private int getSize(HttpServletRequest request) {
         try {
             return Integer.parseInt(request.getParameter("size"));
