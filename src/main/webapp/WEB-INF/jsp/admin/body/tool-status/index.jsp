@@ -85,10 +85,12 @@
                                 <tr>
                                     <td style="text-align: center;">
                                         <c:if test="${item.action eq 'TAKE_IN'}">
-                                            <i style="color: red" class="fas fa-cloud-download-alt"></i><fmt:message key="${item.action}"/>
+                                            <i style="color: red" class="fas fa-cloud-download-alt"></i><fmt:message
+                                                key="${item.action}"/>
                                         </c:if>
                                         <c:if test="${item.action eq 'TAKE_OUT'}">
-                                            <i style="color: green" class="fas fa-cloud-upload-alt"></i><fmt:message key="${item.action}"/>
+                                            <i style="color: green" class="fas fa-cloud-upload-alt"></i><fmt:message
+                                                key="${item.action}"/>
                                         </c:if>
                                     </td>
                                     <td style="text-align: center;" colspan="2">
@@ -104,13 +106,42 @@
                                             <i style="color: red" class="fas fa-exclamation-circle"></i>
                                         </c:if>
                                     </td>
-                                    <td style="text-align: center;">
-                                        ${item.shape}
+
+                                    <c:if test="${item.shape eq 'VERY_GOOD'}">
+                                        <td style="text-align: center; background-color: green">
+                                            <strong><fmt:message key="${item.shape}"/></strong>
+                                        </td>
+                                    </c:if>
+
+                                    <c:if test="${item.shape eq 'GOOD'}">
+                                        <td style="text-align: center; background-color: yellowgreen">
+                                            <strong><fmt:message key="${item.shape}"/></strong>
+                                        </td>
+                                    </c:if>
+                                    <c:if test="${item.shape eq 'AVERAGE'}">
+                                        <td style="text-align: center; background-color: yellow">
+                                            <strong><fmt:message key="${item.shape}"/></strong>
+                                        </td>
+                                    </c:if>
+                                    <c:if test="${item.shape eq 'BAD'}">
+                                        <td style="text-align: center; background-color: orangered">
+                                            <strong><fmt:message key="${item.shape}"/></strong>
+                                        </td>
+                                    </c:if>
+                                    <c:if test="${item.shape eq 'VERY_BAD'}">
+                                        <td style="text-align: center; background-color: red">
+                                            <strong><fmt:message key="${item.shape}"/></strong>
+                                        </td>
+                                    </c:if>
+
                                     </td>
                                 </tr>
                             </c:forEach>
                             </tbody>
                             <tfoot>
+                            <tr>
+                                <th colspan="8" style="height:40px;"></th>
+                            </tr>
                             </tfoot>
                         </table>
                     </form>
