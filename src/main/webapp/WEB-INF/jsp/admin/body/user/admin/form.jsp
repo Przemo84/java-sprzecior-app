@@ -96,7 +96,7 @@
                     <spring:bind path="password">
                         <div class="control-group">
                             <div class="form-group-mx-3 ${status.error ? 'has-error' : ''}">
-                                <label class="control-label" for="password"><fmt:message key="password.description"/></label>
+                                <label class="control-label" for="password"><fmt:message key="password"/></label>
                                 <form:input path="password" type="password" class="form-control"/>
                                 <span style="color: red"><form:errors path="password" class="control-label"/></span>
                             </div>

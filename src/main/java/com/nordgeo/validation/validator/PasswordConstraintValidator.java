@@ -12,9 +12,8 @@ public class PasswordConstraintValidator implements ConstraintValidator<ValidPas
 
     public boolean isValid(String password, ConstraintValidatorContext context) {
         PasswordValidator validator = new PasswordValidator(Arrays.asList(
-                new LengthRule(8, 30),
-                new DigitCharacterRule(1))
-        );
+                new LengthRule(6, 30)
+        ));
 
         RuleResult result = validator.validate(new PasswordData(password));
 
@@ -22,7 +21,7 @@ public class PasswordConstraintValidator implements ConstraintValidator<ValidPas
             return true;
         }
 
-        String messageTemplate = "Hasło musi składać się z 8-30 znaków oraz musi zawierać przynajmniej jedną cyfrę";
+        String messageTemplate = "Hasło musi składać się z 6-30 znaków.";
         context.buildConstraintViolationWithTemplate(messageTemplate)
                 .addConstraintViolation()
                 .disableDefaultConstraintViolation();
