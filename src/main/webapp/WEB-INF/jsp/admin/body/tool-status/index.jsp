@@ -8,7 +8,10 @@
 
 <div class="page-header">
     <div class="pull-left">
-        <h1><fmt:message key="menu.action.tools.history"/>: <i style="color:#942a25">${tool.title} , ID: ${tool.id} </i></h1>
+        <h1><fmt:message key="menu.action.tools.history"/>:
+            <br><br>
+            <i style="color:#942a25; margin-top: 20px ">Nodegeo ID: ${tool.companyId} , nazwa: ${tool.title}</i>
+        </h1>
     </div>
 </div>
 
@@ -34,42 +37,8 @@
             <div class="box-content nopadding">
                 <div class="dataTables_wrapper">
                     <div class="dataTables_length">
-                        <label>
-                            <div class="btn-group" style="float: left;">
-                                <a href="#" data-toggle="dropdown" class="btn dropdown-toggle">
-                                    ${(not empty param.size) ? param.size : 10}<span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <c:if test="${param.size != 10}">
-                                        <li>
-                                            <a href="<c:url value="${moduleBaseUrl}?size=10&sort=${param.sort}&order=${param.order}&page=${param.page}"/> ">10</a>
-                                        </li>
-                                    </c:if>
-                                    <c:if test="${param.size != 25}">
-                                        <li>
-                                            <a href="<c:url value="${moduleBaseUrl}?size=25&sort=${param.sort}&order=${param.order}&page=${param.page}"/> ">25</a>
-                                        </li>
-                                    </c:if>
-                                    <c:if test="${param.size != 50}">
-                                        <li>
-                                            <a href="<c:url value="${moduleBaseUrl}?size=50&sort=${param.sort}&order=${param.order}&page=${param.page}"/> ">50</a>
-                                        </li>
-                                    </c:if>
-                                    <c:if test="${param.size != 100}">
-                                        <li>
-                                            <a href="<c:url value="${moduleBaseUrl}?size=100&sort=${param.sort}&order=${param.order}&page=${param.page}"/> ">100</a>
-                                        </li>
-                                    </c:if>
-                                </ul>
-                            </div>
-                            <span><fmt:message key="elements.per.page"/> </span>
-                        </label>
                     </div>
-                    <div class="container-fluid">
-                        <div class="form-group col-md-4" style="margin: 5px 5px 5px 5px">
-                            <input class="form-control" id="myInput" type="text" placeholder="Szukaj..">
-                        </div>
-                    </div>
+
                     <form autocomplete="off" action="<c:url value="${moduleBaseUrl}"/>/checkbox"
                           method="post" id="executable-users-list-form">
                         <table class="table table-hover table-nomargin table-striped table-bordered"
@@ -77,29 +46,35 @@
                             <thead>
                             <tr>
                                 <th style="text-align: center;">
-                                    <tag:th param="companyId">
-                                        <fmt:message key="tool.company.id"/>
+                                    <tag:th param="action">
+                                        <fmt:message key="tool-status.action"/>
+                                    </tag:th>
+                                </th>
+                                <th style="text-align: center;" colspan="2">
+                                    <tag:th param="createDate">
+                                        <fmt:message key="tool-status.action.date"/>
                                     </tag:th>
                                 </th>
                                 <th style="text-align: center;">
-                                    <tag:th param="title">
-                                        <fmt:message key="tool.title"/>
+                                    <tag:th param="user">
+                                        <fmt:message key="tool-status.author"/>
                                     </tag:th>
                                 </th>
                                 <th style="text-align: center;">
-                                    <tag:th param="toolType">
-                                        <fmt:message key="tool.type"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;">
-                                    <tag:th param="available">
-                                        <fmt:message key="tool.is.available"/>
+                                    <tag:th param="description">
+                                        <fmt:message key="tool-status.description"/>
                                     </tag:th>
                                 </th>
 
                                 <th style="text-align: center;">
-                                    <tag:th param="user">
-                                        <fmt:message key="tool.user"/>
+                                    <tag:th param="needRepair">
+                                        <fmt:message key="tool-status.need.repair"/>
+                                    </tag:th>
+                                </th>
+
+                                <th style="text-align: center;">
+                                    <tag:th param="shape">
+                                        <fmt:message key="tool-status.shape"/>
                                     </tag:th>
                                 </th>
                             </tr>
@@ -108,12 +83,30 @@
                             <tbody id="myTable">
                             <c:forEach var="item" items="${page.iterator()}">
                                 <tr>
-                                    <td style="text-align: center;">${item.action}</td>
-                                    <td style="text-align: center;">${item.createDate}</td>
+                                    <td style="text-align: center;">
+                                        <c:if test="${item.action eq 'TAKE_IN'}">
+                                            <i style="color: red" class="fas fa-cloud-download-alt"></i><fmt:message key="${item.action}"/>
+                                        </c:if>
+                                        <c:if test="${item.action eq 'TAKE_OUT'}">
+                                            <i style="color: green" class="fas fa-cloud-upload-alt"></i><fmt:message key="${item.action}"/>
+                                        </c:if>
+                                    </td>
+                                    <td style="text-align: center;" colspan="2">
+                                        <fmt:formatDate value="${item.createDate}" type="date" pattern="dd-MM-yyyy"/>
+                                    </td>
                                     <td style="text-align: center;">${item.user.fullName}</td>
                                     <td style="text-align: center;">${item.description}</td>
-                                    <td style="text-align: center;">${item.needRepair}</td>
-                                    <td style="text-align: center;">${item.shape}</td>
+                                    <td style="text-align: center;">
+                                        <c:if test="${item.needRepair eq false}">
+                                            <i style="color: green" class="fas fa-thumbs-up"></i>
+                                        </c:if>
+                                        <c:if test="${item.needRepair eq true}">
+                                            <i style="color: red" class="fas fa-exclamation-circle"></i>
+                                        </c:if>
+                                    </td>
+                                    <td style="text-align: center;">
+                                        ${item.shape}
+                                    </td>
                                 </tr>
                             </c:forEach>
                             </tbody>
