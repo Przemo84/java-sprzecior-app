@@ -6,7 +6,7 @@
 
 <div class="wrapper">
     <div class="login-body">
-        <h2>LOGOWANIE</h2>
+        <h2>LOGOWANIE - Sprzęcior</h2>
         <form autocomplete="new-password" action='<spring:url value="/signin"/>' method="post" class="form-signin" autocomplete="off">
             <div class="email">
                 <input type="text" autocomplete="off" name='userid' placeholder="Login" class='input-block-level'>
@@ -22,7 +22,7 @@
         </form>
         <div class="forget">
             <a href="#lost-password" data-toggle="modal">
-                <span>Zapomniałeś hasła?</span>
+                <span></span>
             </a>
         </div>
     </div>
