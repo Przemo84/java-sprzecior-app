@@ -64,9 +64,17 @@
                             <span><fmt:message key="elements.per.page"/> </span>
                         </label>
                     </div>
+
+                    <div class="container-fluid">
+                        <div class="form-group col-md-4" style="margin: 5px 5px 5px 5px">
+                            <input class="form-control" id="filterInput" type="text" placeholder="Szukaj..">
+                        </div>
+                    </div>
+
                     <form autocomplete="off" action="<c:url value="${moduleBaseUrl}"/>/checkbox"
                           method="post" id="executable-users-list-form">
-                        <table class="table table-hover table-nomargin table-striped table-bordered" style="clear: both;">
+                        <table class="table table-hover table-nomargin table-striped table-bordered"
+                               style="clear: both;">
                             <thead>
                             <tr>
                                 <th style="text-align: center;">
@@ -97,7 +105,7 @@
                             </tr>
                             </thead>
 
-                            <tbody>
+                            <tbody id="usersTable">
                             <c:forEach var="item" items="${page.iterator()}">
                                 <tr>
 
@@ -134,3 +142,13 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $("#filterInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#usersTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>

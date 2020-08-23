@@ -65,12 +65,20 @@
                             <span><fmt:message key="elements.per.page"/> </span>
                         </label>
                     </div>
+
                     <div style="float: right; margin: 10px 10px 5px 5px">
-                        <a href="<c:url value="${moduleBaseUrl}/form"/>" class="btn">
+                        <a href="<c:url value="${moduleBaseUrl}/form"/>" class="btn btn-green">
                             <i class="icon-plus"></i>
                             <fmt:message key="action.add"/>
                         </a>
                     </div>
+
+                    <div class="container-fluid">
+                        <div class="form-group col-md-4" style="margin: 5px 5px 5px 5px">
+                            <input class="form-control" id="filterInput" type="text" placeholder="Szukaj..">
+                        </div>
+                    </div>
+
                     <form autocomplete="off" action="<c:url value="${moduleBaseUrl}"/>/checkbox"
                           method="post" id="executable-users-list-form">
                         <table class="table table-hover table-nomargin table-striped table-bordered"
@@ -78,8 +86,9 @@
                             <thead>
                             <tr>
                                 <th style="text-align: center;">
-                                    <input type="checkbox" value="check_none"
-                                           onclick="javascript:check_all_box(this.form)">
+                                    <tag:th param="id">
+                                        <fmt:message key="user.id"/>
+                                    </tag:th>
                                 </th>
                                 <th style="text-align: center;">
                                     <tag:th param="firstName">
@@ -110,12 +119,10 @@
                             </tr>
                             </thead>
 
-                            <tbody>
+                            <tbody id="adminsTable">
                             <c:forEach var="item" items="${page.iterator()}">
                                 <tr>
-                                    <td style="width: 32px; text-align: center;">
-                                        <input type="checkbox" name="ids" value="${item.id}"/>
-                                    </td>
+                                    <td style="text-align: center;">${item.id}</td>
                                     <td style="text-align: center;">${item.firstName}</td>
                                     <td style="text-align: center;">${item.lastName}</td>
                                     <td style="text-align: center;">${item.email}</td>
@@ -144,18 +151,7 @@
 
                             <tfoot>
                             <tr>
-                                <th colspan="9">
-                                    <img src="/resources/img/arrow_ltr.png">&nbsp;
-                                    <select name="action" class="form-control">
-                                        <option value=""><fmt:message key="select.list.select"/></option>
-                                        <option value="lock"><fmt:message key="select.list.lock"/></option>
-                                    </select>&nbsp;
-                                    <button onclick="confirm_mass_action('<c:url
-                                            value="${moduleBaseUrl}/checkbox"/>');"
-                                            class="btn btn-primary" id="executeBtn" type="button">
-                                        <fmt:message key="select.list.execute"/>
-                                    </button>
-                                </th>
+                                <th colspan="8" style="height:40px;"></th>
                             </tr>
                             </tfoot>
                         </table>
@@ -169,15 +165,12 @@
     </div>
 </div>
 <script>
-    var checkboxes = $('#executable-users-list-form td input[type="checkbox"]');
-    var checkboxAll = $('#executable-users-list-form  th input[type="checkbox"]');
-
-    checkboxes.change(function () {
-        $('#executeBtn').prop("disabled", !this.checked);
-    }).change();
-
-    checkboxAll.change(function () {
-        $('#executeBtn').prop("disabled", !this.checked);
-    }).change();
-
+    $(document).ready(function () {
+        $("#filterInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#adminsTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
 </script>

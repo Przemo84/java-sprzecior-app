@@ -66,14 +66,14 @@
                         </label>
                     </div>
                     <div style="float: right; margin: 10px 10px 5px 5px">
-                        <a href="<c:url value="${moduleBaseUrl}/form"/>" class="btn">
+                        <a href="<c:url value="${moduleBaseUrl}/form"/>" class="btn btn-green">
                             <i class="icon-plus"></i>
                             <fmt:message key="action.add"/>
                         </a>
                     </div>
                     <div class="container-fluid">
                         <div class="form-group col-md-4" style="margin: 5px 5px 5px 5px">
-                            <input class="form-control" id="myInput" type="text" placeholder="Szukaj..">
+                            <input class="form-control" id="filterInput" type="text" placeholder="Szukaj..">
                         </div>
                     </div>
                     <form autocomplete="off" action="<c:url value="${moduleBaseUrl}"/>/checkbox"
@@ -213,9 +213,9 @@
     }).change();
 
     $(document).ready(function () {
-        $("#myInput").on("keyup", function () {
+        $("#filterInput").on("keyup", function () {
             var value = $(this).val().toLowerCase();
-            $("#myTable tr").filter(function () {
+            $("#toolsTable tr").filter(function () {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
         });
