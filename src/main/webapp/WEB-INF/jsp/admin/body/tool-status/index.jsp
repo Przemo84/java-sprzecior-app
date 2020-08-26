@@ -10,7 +10,7 @@
     <div class="pull-left">
         <h1><fmt:message key="menu.action.tools.history"/>:
             <br><br>
-            <i style="color:#942a25; margin-top: 20px ">Nodegeo ID: ${tool.companyId} , nazwa: ${tool.title}</i>
+            <i style="color:#942a25; margin-top: 20px ">Nordgeo ID: ${tool.companyId} , nazwa: ${tool.title}</i>
         </h1>
     </div>
 </div>
@@ -38,9 +38,6 @@
                 <div class="dataTables_wrapper">
                     <div class="dataTables_length">
                     </div>
-
-                    <form autocomplete="off" action="<c:url value="${moduleBaseUrl}"/>/checkbox"
-                          method="post" id="executable-users-list-form">
                         <table class="table table-hover table-nomargin table-striped table-bordered"
                                style="clear: both;">
                             <thead>
@@ -94,7 +91,7 @@
                                         </c:if>
                                     </td>
                                     <td style="text-align: center;" colspan="2">
-                                        <fmt:formatDate value="${item.createDate}" type="date" pattern="dd-MM-yyyy"/>
+                                        <fmt:formatDate value="${item.createDate}" type="date" pattern="dd-MM-yyyy HH:MM:ss"/>
                                     </td>
                                     <td style="text-align: center;">${item.user.fullName}</td>
                                     <td style="text-align: center;">${item.description}</td>
@@ -144,7 +141,6 @@
                             </tr>
                             </tfoot>
                         </table>
-                    </form>
                 </div>
             </div>
         </div>

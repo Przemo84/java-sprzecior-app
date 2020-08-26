@@ -122,9 +122,6 @@
                         <tbody id="toolsTable">
                         <c:forEach var="item" items="${page.iterator()}">
                             <tr>
-                                <td style="width: 32px; text-align: center;">
-                                    <input type="checkbox" name="ids" value="${item.id}"/>
-                                </td>
                                 <td style="text-align: center;">
                                     <a href="<c:url value="${moduleBaseUrl}/status/${item.id}"/>"
                                        rel="tooltip" title="Zobacz historię sprzetu">
