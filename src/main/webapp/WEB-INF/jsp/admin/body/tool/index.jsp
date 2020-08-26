@@ -37,7 +37,7 @@
                         <label>
                             <div class="btn-group" style="float: left;">
                                 <a href="#" data-toggle="dropdown" class="btn dropdown-toggle">
-                                    ${(not empty param.size) ? param.size : 200}<span class="caret"></span>
+                                    ${(not empty param.size) ? param.size : 250}<span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <c:if test="${param.size != 10}">
@@ -76,122 +76,119 @@
                             <input class="form-control" id="filterInput" type="text" placeholder="Szukaj..">
                         </div>
                     </div>
-                    <form autocomplete="off" action="<c:url value="${moduleBaseUrl}"/>/checkbox"
-                          method="post" id="executable-users-list-form">
-                        <table class="table table-hover table-nomargin table-striped table-bordered"
-                               style="clear: both;">
-                            <thead>
+                    <table class="table table-hover table-nomargin table-striped table-bordered"
+                           style="clear: both;">
+                        <thead>
+                        <tr>
+                            <th style="text-align: center;">
+                                <input type="checkbox" value="check_none"
+                                       onclick="javascript:check_all_box(this.form)">
+                            </th>
+                            <th style="text-align: center;">
+                                <tag:th param="id">
+                                    <fmt:message key="tool.id"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;">
+                                <tag:th param="companyId">
+                                    <fmt:message key="tool.company.id"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;">
+                                <tag:th param="title">
+                                    <fmt:message key="tool.title"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;">
+                                <tag:th param="toolType">
+                                    <fmt:message key="tool.type"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;">
+                                <tag:th param="available">
+                                    <fmt:message key="tool.is.available"/>
+                                </tag:th>
+                            </th>
+
+                            <th style="text-align: center;">
+                                <tag:th param="user">
+                                    <fmt:message key="tool.user"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;" colspan="3"><fmt:message key="options"/></th>
+                        </tr>
+                        </thead>
+
+                        <tbody id="toolsTable">
+                        <c:forEach var="item" items="${page.iterator()}">
                             <tr>
-                                <th style="text-align: center;">
-                                    <input type="checkbox" value="check_none"
-                                           onclick="javascript:check_all_box(this.form)">
-                                </th>
-                                <th style="text-align: center;">
-                                    <tag:th param="id">
-                                        <fmt:message key="tool.id"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;">
-                                    <tag:th param="companyId">
-                                        <fmt:message key="tool.company.id"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;">
-                                    <tag:th param="title">
-                                        <fmt:message key="tool.title"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;">
-                                    <tag:th param="toolType">
-                                        <fmt:message key="tool.type"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;">
-                                    <tag:th param="available">
-                                        <fmt:message key="tool.is.available"/>
-                                    </tag:th>
-                                </th>
+                                <td style="width: 32px; text-align: center;">
+                                    <input type="checkbox" name="ids" value="${item.id}"/>
+                                </td>
+                                <td style="text-align: center;">
+                                    <a href="<c:url value="${moduleBaseUrl}/status/${item.id}"/>"
+                                       rel="tooltip" title="Zobacz historię sprzetu">
+                                            ${item.id}
+                                    </a>
+                                </td>
+                                <td style="text-align: center;">
+                                    <a href="<c:url value="${moduleBaseUrl}/status/${item.id}"/>"
+                                       rel="tooltip" title="Zobacz historię sprzetu">
+                                            ${item.companyId}
+                                    </a>
+                                </td>
+                                <td style="text-align: center;">
+                                    <a href="<c:url value="${moduleBaseUrl}/status/${item.id}"/>"
+                                       rel="tooltip" title="Zobacz historię sprzetu">
+                                            ${item.title}
+                                    </a>
+                                </td>
+                                <td style="text-align: center;">${item.toolType}</td>
+                                <td style="text-align: center;">
+                                    <c:if test="${item.available}">
+                                        <i class="icon-ok" style="color: green"></i>
+                                    </c:if>
+                                    <c:if test="${item.available eq false}">
+                                        <i class="icon-minus" style="color: red"></i>
+                                    </c:if>
+                                </td>
+                                <td style="text-align: center;">${item.user.fullName}</td>
 
-                                <th style="text-align: center;">
-                                    <tag:th param="user">
-                                        <fmt:message key="tool.user"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;" colspan="3"><fmt:message key="options"/></th>
+                                <td style="width: 32px; text-align: center;">
+                                    <a href="<c:url value="${moduleBaseUrl}/form/${item.id}"/>" rel="tooltip"
+                                       title="Edytuj" class="btn">
+                                        <i class="icon-pencil"></i>
+                                    </a>
+                                </td>
+                                <td style="width: 32px; text-align: center;">
+                                    <a href="javascript:void(0);"
+                                       onclick="javascript:confirm_action('<c:url
+                                               value="${moduleBaseUrl}/delete/${item.id}"/>');"
+                                       rel="tooltip" title="Zablokuj" class="btn btn-danger">
+                                        <i class="icon-minus-sign"></i>
+                                    </a>
+                                </td>
                             </tr>
-                            </thead>
+                        </c:forEach>
+                        </tbody>
 
-                            <tbody id="myTable">
-                            <c:forEach var="item" items="${page.iterator()}">
-                                <tr>
-                                    <td style="width: 32px; text-align: center;">
-                                        <input type="checkbox" name="ids" value="${item.id}"/>
-                                    </td>
-                                    <td style="text-align: center;">
-                                        <a href="<c:url value="${moduleBaseUrl}/status/${item.id}"/>"
-                                           rel="tooltip" title="Zobacz historię sprzetu">
-                                                ${item.id}
-                                        </a>
-                                    </td>
-                                    <td style="text-align: center;">
-                                        <a href="<c:url value="${moduleBaseUrl}/status/${item.id}"/>"
-                                           rel="tooltip" title="Zobacz historię sprzetu">
-                                                ${item.companyId}
-                                        </a>
-                                    </td>
-                                    <td style="text-align: center;">
-                                        <a href="<c:url value="${moduleBaseUrl}/status/${item.id}"/>"
-                                           rel="tooltip" title="Zobacz historię sprzetu">
-                                                ${item.title}
-                                        </a>
-                                    </td>
-                                    <td style="text-align: center;">${item.toolType}</td>
-                                    <td style="text-align: center;">
-                                        <c:if test="${item.available}">
-                                            <i class="icon-ok" style="color: green"></i>
-                                        </c:if>
-                                        <c:if test="${item.available eq false}">
-                                            <i class="icon-minus" style="color: red"></i>
-                                        </c:if>
-                                    </td>
-                                    <td style="text-align: center;">${item.user.fullName}</td>
-
-                                    <td style="width: 32px; text-align: center;">
-                                        <a href="<c:url value="${moduleBaseUrl}/form/${item.id}"/>" rel="tooltip"
-                                           title="Edytuj" class="btn">
-                                            <i class="icon-pencil"></i>
-                                        </a>
-                                    </td>
-                                    <td style="width: 32px; text-align: center;">
-                                        <a href="javascript:void(0);"
-                                           onclick="javascript:confirm_action('<c:url
-                                                   value="${moduleBaseUrl}/delete/${item.id}"/>');"
-                                           rel="tooltip" title="Zablokuj" class="btn btn-danger">
-                                            <i class="icon-minus-sign"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                            </tbody>
-
-                            <tfoot>
-                            <tr>
-                                <th colspan="9">
-                                    <img src="/resources/img/arrow_ltr.png">&nbsp;
-                                    <select name="action" class="form-control">
-                                        <option value=""><fmt:message key="select.list.select"/></option>
-                                        <option value="lock"><fmt:message key="select.list.lock"/></option>
-                                    </select>&nbsp;
-                                    <button onclick="confirm_mass_action('<c:url
-                                            value="${moduleBaseUrl}/checkbox"/>');"
-                                            class="btn btn-primary" id="executeBtn" type="button">
-                                        <fmt:message key="select.list.execute"/>
-                                    </button>
-                                </th>
-                            </tr>
-                            </tfoot>
-                        </table>
-                    </form>
+                        <tfoot>
+                        <tr>
+                            <th colspan="9">
+                                <img src="/resources/img/arrow_ltr.png">&nbsp;
+                                <select name="action" class="form-control">
+                                    <option value=""><fmt:message key="select.list.select"/></option>
+                                    <option value="lock"><fmt:message key="select.list.lock"/></option>
+                                </select>&nbsp;
+                                <button onclick="confirm_mass_action('<c:url
+                                        value="${moduleBaseUrl}/checkbox"/>');"
+                                        class="btn btn-primary" id="executeBtn" type="button">
+                                    <fmt:message key="select.list.execute"/>
+                                </button>
+                            </th>
+                        </tr>
+                        </tfoot>
+                    </table>
                 </div>
             </div>
         </div>
