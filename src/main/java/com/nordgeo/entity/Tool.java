@@ -3,7 +3,7 @@ package com.nordgeo.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -22,7 +22,18 @@ public class Tool {
 
     @NotEmpty
     @NotNull
-    private String title;
+    private String model;
+
+    private String serialNo;
+
+    @DateTimeFormat
+    private Date productionDate;
+
+    @DateTimeFormat
+    private Date calibrationDate;
+
+    @DateTimeFormat
+    private Date takenDate;
 
     @NotNull
     private String toolType;
@@ -47,9 +58,9 @@ public class Tool {
 
     public void setCompanyId(String companyId) { this.companyId = companyId; }
 
-    public String getTitle() { return title; }
+    public String getModel() { return model; }
 
-    public void setTitle(String title) { this.title = title; }
+    public void setModel(String model) { this.model = model; }
 
     public String getImage() { return image; }
 
@@ -70,4 +81,20 @@ public class Tool {
     public Date getCreateDate() { return createDate; }
 
     public void setCreateDate(Date createDate) { this.createDate = createDate; }
+
+    public String getSerialNo() { return serialNo; }
+
+    public void setSerialNo(String serialNo) { this.serialNo = serialNo; }
+
+    public Date getProductionDate() { return productionDate; }
+
+    public void setProductionDate(Date productionDate) { this.productionDate = productionDate; }
+
+    public Date getCalibrationDate() { return calibrationDate; }
+
+    public void setCalibrationDate(Date calibrationDate) { this.calibrationDate = calibrationDate; }
+
+    public Date getTakenDate() { return takenDate; }
+
+    public void setTakenDate(Date takenDate) { this.takenDate = takenDate; }
 }

@@ -86,8 +86,8 @@
                                 </tag:th>
                             </th>
                             <th style="text-align: center;">
-                                <tag:th param="title">
-                                    <fmt:message key="tool.title"/>
+                                <tag:th param="model">
+                                    <fmt:message key="tool.model"/>
                                 </tag:th>
                             </th>
                             <th style="text-align: center;">
@@ -115,7 +115,7 @@
                             <tr>
                                 <td style="text-align: center;">${item.id}</td>
                                 <td style="text-align: center;">${item.companyId}</td>
-                                <td style="text-align: center;">${item.title}</td>
+                                <td style="text-align: center;">${item.model}</td>
                                 <td style="text-align: center;">${item.toolType}</td>
                                 <td style="text-align: center;">
                                     <c:if test="${item.available}">

@@ -63,12 +63,12 @@
                         </div>
                     </spring:bind>
 
-                    <spring:bind path="title">
+                    <spring:bind path="model">
                         <div class="control-group">
                             <div class="form-group-mx-3 ${status.error ? 'has-error' : ''}">
-                                <label class="control-label" for="title"><fmt:message key="tool.title"/></label>
-                                <form:input path="title" type="text" class="form-control"/>
-                                <span style="color: red"><form:errors path="title" class="control-label"/></span>
+                                <label class="control-label" for="model"><fmt:message key="tool.model"/></label>
+                                <form:input path="model" type="text" class="form-control"/>
+                                <span style="color: red"><form:errors path="model" class="control-label"/></span>
                             </div>
                         </div>
                     </spring:bind>

@@ -13,6 +13,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 @Service
 public class ToolServiceImpl implements ToolService {
 
@@ -69,6 +71,7 @@ public class ToolServiceImpl implements ToolService {
 
         tool.setAvailable(false);
         tool.setUser(authManager.user());
+        tool.setTakenDate(new Date());
         toolRepository.save(tool);
     }
 
@@ -93,6 +96,7 @@ public class ToolServiceImpl implements ToolService {
 
         tool.setAvailable(true);
         tool.setUser(null);
+        tool.setTakenDate(null);
         toolRepository.save(tool);
     }
 

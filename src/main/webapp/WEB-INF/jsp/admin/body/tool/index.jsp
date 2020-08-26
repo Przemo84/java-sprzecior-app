@@ -81,10 +81,6 @@
                         <thead>
                         <tr>
                             <th style="text-align: center;">
-                                <input type="checkbox" value="check_none"
-                                       onclick="javascript:check_all_box(this.form)">
-                            </th>
-                            <th style="text-align: center;">
                                 <tag:th param="id">
                                     <fmt:message key="tool.id"/>
                                 </tag:th>
@@ -95,8 +91,8 @@
                                 </tag:th>
                             </th>
                             <th style="text-align: center;">
-                                <tag:th param="title">
-                                    <fmt:message key="tool.title"/>
+                                <tag:th param="model">
+                                    <fmt:message key="tool.model"/>
                                 </tag:th>
                             </th>
                             <th style="text-align: center;">
@@ -137,7 +133,7 @@
                                 <td style="text-align: center;">
                                     <a href="<c:url value="${moduleBaseUrl}/status/${item.id}"/>"
                                        rel="tooltip" title="Zobacz historię sprzetu">
-                                            ${item.title}
+                                            ${item.model}
                                     </a>
                                 </td>
                                 <td style="text-align: center;">${item.toolType}</td>
@@ -171,18 +167,7 @@
 
                         <tfoot>
                         <tr>
-                            <th colspan="9">
-                                <img src="/resources/img/arrow_ltr.png">&nbsp;
-                                <select name="action" class="form-control">
-                                    <option value=""><fmt:message key="select.list.select"/></option>
-                                    <option value="lock"><fmt:message key="select.list.lock"/></option>
-                                </select>&nbsp;
-                                <button onclick="confirm_mass_action('<c:url
-                                        value="${moduleBaseUrl}/checkbox"/>');"
-                                        class="btn btn-primary" id="executeBtn" type="button">
-                                    <fmt:message key="select.list.execute"/>
-                                </button>
-                            </th>
+                            <th colspan="8" style="height:40px;"></th>
                         </tr>
                         </tfoot>
                     </table>
