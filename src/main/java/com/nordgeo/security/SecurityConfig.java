@@ -3,6 +3,7 @@ package com.nordgeo.security;
 import com.nordgeo.persistence.repository.UserRepository;
 import com.nordgeo.security.provider.AdminAuthenticationProvider;
 import com.nordgeo.security.userdetails.UserDetailsService;
+import com.nordgeo.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -54,9 +55,12 @@ public class SecurityConfig {
         @Autowired
         private UserRepository userRepository;
 
+        @Autowired
+        private UserService userService;
+
         @Override
         protected void configure(AuthenticationManagerBuilder auth) {
-            auth.authenticationProvider(new AdminAuthenticationProvider(userDetailsService, passwordEncoder, userRepository));
+            auth.authenticationProvider(new AdminAuthenticationProvider(userDetailsService, passwordEncoder, userRepository, userService));
         }
 
         @Override

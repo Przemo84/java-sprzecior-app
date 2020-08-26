@@ -182,6 +182,11 @@ public class UserServiceImpl implements UserService {
         saveUserActionHistory(user, "Edycja");
     }
 
+    @Override
+    public void setLastLoginDate(User user) {
+        user.setLastLoginDate(new Date());
+        repository.save(user);
+    }
 
 
     private void saveUserActionHistory(User user, String action) {

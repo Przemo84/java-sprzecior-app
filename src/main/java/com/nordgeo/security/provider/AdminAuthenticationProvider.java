@@ -1,7 +1,9 @@
 package com.nordgeo.security.provider;
 
+import com.nordgeo.entity.User;
 import com.nordgeo.persistence.repository.UserRepository;
 import com.nordgeo.security.userdetails.UserDetailsService;
+import com.nordgeo.service.user.UserService;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,11 +13,15 @@ public class AdminAuthenticationProvider extends AbstractAuthenticationProvider 
 
     private UserDetailsService userdetailsService;
 
+    private UserService userService;
+
     public AdminAuthenticationProvider(UserDetailsService userdetailsService,
                                        PasswordEncoder passwordEncoder ,
-                                       UserRepository userRepository) {
+                                       UserRepository userRepository,
+                                       UserService userService) {
         super(passwordEncoder, userRepository);
         this.userdetailsService = userdetailsService;
+        this.userService = userService;
     }
 
     @Override
@@ -29,6 +35,9 @@ public class AdminAuthenticationProvider extends AbstractAuthenticationProvider 
         UserDetails user = userdetailsService.loadUserByUsername(name);
 
         authenticate(user, password);
+
+        User realUser = userService.findByUsername(user.getUsername());
+        userService.setLastLoginDate(realUser);
 
         return new UsernamePasswordAuthenticationToken(
                 name, password, user.getAuthorities());
