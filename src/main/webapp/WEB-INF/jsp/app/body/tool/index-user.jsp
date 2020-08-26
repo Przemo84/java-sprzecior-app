@@ -183,7 +183,16 @@
                 <div class="control-group">
                     <div class="form-group-mx-3 ${status.error ? 'has-error' : ''}">
                         <label class="control-label"><fmt:message key="tool-status.shape"/></label>
-                        <form:radiobuttons path="shape" element="div"/>
+                        <br>
+                        <form:radiobutton path="shape" value="VERY_GOOD" label="Bardzo dobry"/>
+                        <br>
+                        <form:radiobutton path="shape" value="GOOD" label="Dobry" element="div"/>
+                        <br>
+                        <form:radiobutton path="shape" value="AVERAGE" label="Średni" element="div"/>
+                        <br>
+                        <form:radiobutton path="shape" value="BAD" label="Zły" element="div"/>
+                        <br>
+                        <form:radiobutton path="shape" value="VERY_BAD" label="Bardzo zły" element="div"/>
                         <span style="color: red"><form:errors path="shape" class="control-label"/></span>
                     </div>
                 </div>
