@@ -114,28 +114,28 @@
 
                             <tbody id="usersTable">
                             <c:forEach var="item" items="${page.iterator()}">
-                                    <td style="text-align: center;">${item.firstName}</td>
-                                    <td style="text-align: center;">${item.lastName}</td>
-                                    <td style="text-align: center;">${item.email}</td>
-                                    <td style="text-align: center;">${item.username}</td>
-                                    <td style="text-align: center;">
-                                        <fmt:formatDate value="${item.lastLoginDate}" pattern="dd.MM.yyyy"/>
-                                    </td>
+                                <td style="text-align: center;">${item.firstName}</td>
+                                <td style="text-align: center;">${item.lastName}</td>
+                                <td style="text-align: center;">${item.email}</td>
+                                <td style="text-align: center;">${item.username}</td>
+                                <td style="text-align: center;">
+                                    <fmt:formatDate value="${item.lastLoginDate}" pattern="dd.MM.yyyy HH:MM:ss"/>
+                                </td>
 
-                                    <td style="width: 32px; text-align: center;">
-                                        <a href="<c:url value="${moduleBaseUrl}/form/${item.id}"/>" rel="tooltip"
-                                           title="Edytuj" class="btn">
-                                            <i class="icon-pencil"></i>
-                                        </a>
-                                    </td>
-                                    <td style="width: 32px; text-align: center;">
-                                        <a href="javascript:void(0);"
-                                           onclick="javascript:confirm_action('<c:url
-                                                   value="${moduleBaseUrl}/lock/${item.id}"/>');"
-                                           rel="tooltip" title="Zablokuj" class="btn btn-danger">
-                                            <i class="icon-minus-sign"></i>
-                                        </a>
-                                    </td>
+                                <td style="width: 32px; text-align: center;">
+                                    <a href="<c:url value="${moduleBaseUrl}/form/${item.id}"/>" rel="tooltip"
+                                       title="Edytuj" class="btn">
+                                        <i class="icon-pencil"></i>
+                                    </a>
+                                </td>
+                                <td style="width: 32px; text-align: center;">
+                                    <a href="javascript:void(0);"
+                                       onclick="javascript:confirm_action('<c:url
+                                               value="${moduleBaseUrl}/lock/${item.id}"/>');"
+                                       rel="tooltip" title="Zablokuj" class="btn btn-danger">
+                                        <i class="icon-minus-sign"></i>
+                                    </a>
+                                </td>
                                 </tr>
                             </c:forEach>
                             </tbody>
