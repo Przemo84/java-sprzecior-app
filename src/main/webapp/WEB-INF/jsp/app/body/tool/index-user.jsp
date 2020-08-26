@@ -71,82 +71,79 @@
                             <input class="form-control" id="filterInput" type="text" placeholder="Szukaj..">
                         </div>
                     </div>
-                    <form autocomplete="off" action="<c:url value="${moduleBaseUrl}"/>/checkbox"
-                          method="post" id="executable-users-list-form">
-                        <table class="table table-hover table-nomargin table-striped table-bordered"
-                               style="clear: both;">
-                            <thead>
+                    <table class="table table-hover table-nomargin table-striped table-bordered"
+                           style="clear: both;">
+                        <thead>
+                        <tr>
+                            <th style="text-align: center;">
+                                <tag:th param="id">
+                                    <fmt:message key="tool.id"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;">
+                                <tag:th param="companyId">
+                                    <fmt:message key="tool.company.id"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;">
+                                <tag:th param="title">
+                                    <fmt:message key="tool.title"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;">
+                                <tag:th param="toolType">
+                                    <fmt:message key="tool.type"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;">
+                                <tag:th param="available">
+                                    <fmt:message key="tool.is.available"/>
+                                </tag:th>
+                            </th>
+
+                            <th style="text-align: center;">
+                                <tag:th param="user">
+                                    <fmt:message key="tool.user"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;" colspan="1"><fmt:message key="options"/></th>
+                        </tr>
+                        </thead>
+
+                        <tbody id="toolTable">
+                        <c:forEach var="item" items="${page.iterator()}">
                             <tr>
-                                <th style="text-align: center;">
-                                    <tag:th param="id">
-                                        <fmt:message key="tool.id"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;">
-                                    <tag:th param="companyId">
-                                        <fmt:message key="tool.company.id"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;">
-                                    <tag:th param="title">
-                                        <fmt:message key="tool.title"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;">
-                                    <tag:th param="toolType">
-                                        <fmt:message key="tool.type"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;">
-                                    <tag:th param="available">
-                                        <fmt:message key="tool.is.available"/>
-                                    </tag:th>
-                                </th>
+                                <td style="text-align: center;">${item.id}</td>
+                                <td style="text-align: center;">${item.companyId}</td>
+                                <td style="text-align: center;">${item.title}</td>
+                                <td style="text-align: center;">${item.toolType}</td>
+                                <td style="text-align: center;">
+                                    <c:if test="${item.available}">
+                                        <i class="icon-ok" style="color: green"></i>
+                                    </c:if>
+                                    <c:if test="${item.available eq false}">
+                                        <i class="icon-minus" style="color: red"></i>
+                                    </c:if>
+                                </td>
+                                <td style="text-align: center;">${item.user.fullName}</td>
 
-                                <th style="text-align: center;">
-                                    <tag:th param="user">
-                                        <fmt:message key="tool.user"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;" colspan="1"><fmt:message key="options"/></th>
+                                <td style="text-align: center" colspan="1">
+                                    <a href="javascript:void(0);"
+                                       rel="tooltip" title="Zwróć" class="btn btn-danger" data-toggle="modal"
+                                       data-target="#myModal" data-tool-id="${item.id}" id="toolModal">
+                                        <i class="icon-remove"></i>
+                                    </a>
+                                </td>
                             </tr>
-                            </thead>
+                        </c:forEach>
+                        </tbody>
 
-                            <tbody id="toolTable">
-                            <c:forEach var="item" items="${page.iterator()}">
-                                <tr>
-                                    <td style="text-align: center;">${item.id}</td>
-                                    <td style="text-align: center;">${item.companyId}</td>
-                                    <td style="text-align: center;">${item.title}</td>
-                                    <td style="text-align: center;">${item.toolType}</td>
-                                    <td style="text-align: center;">
-                                        <c:if test="${item.available}">
-                                            <i class="icon-ok" style="color: green"></i>
-                                        </c:if>
-                                        <c:if test="${item.available eq false}">
-                                            <i class="icon-minus" style="color: red"></i>
-                                        </c:if>
-                                    </td>
-                                    <td style="text-align: center;">${item.user.fullName}</td>
-
-                                    <td style="text-align: center" colspan="1">
-                                        <a href="javascript:void(0);"
-                                           rel="tooltip" title="Zwróć" class="btn btn-danger" data-toggle="modal"
-                                           data-target="#myModal" data-tool-id="${item.id}" id="toolModal">
-                                            <i class="icon-remove"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                            </tbody>
-
-                            <tfoot>
-                            <tr>
-                                <th colspan="9"></th>
-                            </tr>
-                            </tfoot>
-                        </table>
-                    </form>
+                        <tfoot>
+                        <tr>
+                            <th colspan="9"></th>
+                        </tr>
+                        </tfoot>
+                    </table>
                 </div>
             </div>
         </div>
@@ -163,7 +160,7 @@
         <div class="modal-content">
             <spring:url value="${moduleBaseUrl}/return" var="action"/>
             <form:form method="post" class="form-vertical form-bordered" enctype="multipart/form-data"
-                       modelAttribute="toolStatus" action="${action}">
+                       modelAttribute="toolStatus" action="${action}" id="newModalForm">
             <div class="modal-header">
                 <h4 class="modal-title">Oceń oddawany Sprzęt</h4>
             </div>
@@ -176,7 +173,7 @@
                     <div class="form-group-mx-3 ${status.error ? 'has-error' : ''}">
                         <label class="control-label" for="description"><fmt:message
                                 key="tool-status.description"/></label>
-                        <form:input path="description" type="text" class="form-control" />
+                        <form:input path="description" type="text" class="form-control"/>
                         <span style="color: red"><form:errors path="description" class="control-label"/></span>
                     </div>
                 </div>
@@ -196,6 +193,7 @@
                 <div class="control-group">
                     <div class="form-group-mx-3 ${status.error ? 'has-error' : ''}">
                         <label class="control-label"><fmt:message key="tool-status.need.repair"/></label>
+                        <br>
                         <form:radiobutton path="needRepair" element="div" value="true" label="Tak"/>
                         <form:radiobutton path="needRepair" element="div" value="false" label="Nie"/>
                         <span style="color: red"><form:errors needRepair="needRepair" class="control-label"/></span>
@@ -227,4 +225,37 @@
         var toolId = $(this).data('tool-id');
         $(".modal-content #toolId").val(toolId);
     });
+
+    $(function () {
+        $("#newModalForm").validate({
+            rules: {
+                description: {
+                    required: true,
+                    minlength: 2,
+                    maxlength: 250
+                },
+                action: "required"
+            },
+
+            messages: {
+                description: {
+                    required: "Pole nie może być puste. Wprowadź krótki komentarz oddawanego sprzętu",
+                    minlength: "Minimalna długość znaków: 2",
+                    maxlength: "Maksymalna długość znaków: 250"
+                },
+                action: "Proszę wprowadzić krótki komentarz oddawanego sprzętu"
+            },
+            highlight: function (element) {
+                $(element).parent().addClass('error')
+            },
+            unhighlight: function (element) {
+                $(element).parent().removeClass('error')
+            }
+        });
+    });
 </script>
+<style>
+    #newModalForm .error {
+        color: red;
+    }
+</style>
