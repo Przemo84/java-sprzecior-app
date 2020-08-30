@@ -32,6 +32,10 @@
         <put-attribute name="body" value="/WEB-INF/jsp/admin/body/user/change-password/form.jsp"/>
     </definition>
 
+    <definition name="editors.index" extends="defAdmin">
+        <put-attribute name="body" value="/WEB-INF/jsp/admin/body/user/editor/index.jsp"/>
+    </definition>
+
     <definition name="users.employees.index" extends="defAdmin">
         <put-attribute name="body" value="/WEB-INF/jsp/admin/body/user/employee/index.jsp"/>
     </definition>
