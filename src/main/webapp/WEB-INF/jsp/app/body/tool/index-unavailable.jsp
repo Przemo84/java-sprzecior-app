@@ -89,16 +89,6 @@
                                     </tag:th>
                                 </th>
                                 <th style="text-align: center;">
-                                    <tag:th param="model">
-                                        <fmt:message key="tool.model"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;">
-                                    <tag:th param="toolType">
-                                        <fmt:message key="tool.type"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;">
                                     <tag:th param="available">
                                         <fmt:message key="tool.is.available"/>
                                     </tag:th>
@@ -115,16 +105,51 @@
                                         <fmt:message key="tool.taken.date"/>
                                     </tag:th>
                                 </th>
+                                <th style="text-align: center;">
+                                    <tag:th param="model">
+                                        <fmt:message key="tool.model"/>
+                                    </tag:th>
+                                </th>
+                                <th style="text-align: center;">
+                                    <tag:th param="toolType">
+                                        <fmt:message key="tool.type"/>
+                                    </tag:th>
+                                </th>
+                                <th style="text-align: center;">
+                                    <tag:th param="serialNo">
+                                        <fmt:message key="tool.serial.number"/>
+                                    </tag:th>
+                                </th>
+                                <th style="text-align: center;">
+                                    <tag:th param="productionDate">
+                                        <fmt:message key="tool.production.date"/>
+                                    </tag:th>
+                                </th>
+                                <th style="text-align: center;">
+                                    <tag:th param="calibrationDate">
+                                        <fmt:message key="tool.calibration.date"/>
+                                    </tag:th>
+                                </th>
                             </tr>
                             </thead>
 
                             <tbody id="toolTable">
                             <c:forEach var="item" items="${page.iterator()}">
                                 <tr>
-                                    <td style="text-align: center;">${item.id}</td>
-                                    <td style="text-align: center;">${item.companyId}</td>
-                                    <td style="text-align: center;">${item.model}</td>
-                                    <td style="text-align: center;">${item.toolType}</td>
+                                <tr>
+                                    <td style="text-align: center;">
+                                        <a href="<c:url value="${moduleBaseUrl}/status/${item.id}"/>"
+                                           rel="tooltip" title="Zobacz historię sprzetu">
+                                                ${item.id}
+                                        </a>
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <a href="<c:url value="${moduleBaseUrl}/status/${item.id}"/>"
+                                           rel="tooltip" title="Zobacz historię sprzetu">
+                                                ${item.companyId}
+                                        </a>
+                                    </td>
+
                                     <td style="text-align: center;">
                                         <c:if test="${item.available}">
                                             <i class="icon-ok" style="color: green"></i>
@@ -135,8 +160,19 @@
                                     </td>
                                     <td style="text-align: center;">${item.user.fullName}</td>
                                     <td style="text-align: center;">
-                                        <fmt:formatDate value="${item.takenDate}" pattern="YYYY-MM-dd HH:MM:ss"/>
+                                        <fmt:formatDate value="${item.takenDate}" pattern="YYYY-MM-D HH:MM:ss"/>
                                     </td>
+
+                                    <td style="text-align: center;">
+                                        <a href="<c:url value="${moduleBaseUrl}/status/${item.id}"/>"
+                                           rel="tooltip" title="Zobacz historię sprzetu">
+                                                ${item.model}
+                                        </a>
+                                    </td>
+                                    <td style="text-align: center;">${item.toolType}</td>
+                                    <td style="text-align: center;">${item.serialNo}</td>
+                                    <td style="text-align: center;">${item.productionDate}</td>
+                                    <td style="text-align: center;">${item.calibrationDate}</td>
 
                                 </tr>
                             </c:forEach>
@@ -144,7 +180,7 @@
 
                             <tfoot>
                             <tr>
-                                <th colspan="9"></th>
+                                <th colspan="11"></th>
                             </tr>
                             </tfoot>
                         </table>
