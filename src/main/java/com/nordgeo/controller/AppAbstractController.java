@@ -16,7 +16,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@PreAuthorize("hasAuthority('Administrator') or hasAnyAuthority('Pracownik')")
+@PreAuthorize("hasAuthority('Admin') or hasAnyAuthority('Employee', 'Editor')")
 public abstract class AppAbstractController {
 
 
@@ -40,7 +40,6 @@ public abstract class AppAbstractController {
     public User populateAuthUser() {
         return authManager.user();
     }
-
 
 
     @InitBinder

@@ -111,6 +111,12 @@
                                     <fmt:message key="tool.user"/>
                                 </tag:th>
                             </th>
+
+                            <th style="text-align: center;">
+                                <tag:th param="takenDate">
+                                    <fmt:message key="tool.taken.date"/>
+                                </tag:th>
+                            </th>
                             <th style="text-align: center;" colspan="3"><fmt:message key="options"/></th>
                         </tr>
                         </thead>
@@ -146,6 +152,9 @@
                                     </c:if>
                                 </td>
                                 <td style="text-align: center;">${item.user.fullName}</td>
+                                <td style="text-align: center;">
+                                    <fmt:formatDate value="${item.takenDate}" pattern="YYYY-MM-D HH:MM:ss"/>
+                                </td>
 
                                 <td style="width: 32px; text-align: center;">
                                     <a href="<c:url value="${moduleBaseUrl}/form/${item.id}"/>" rel="tooltip"

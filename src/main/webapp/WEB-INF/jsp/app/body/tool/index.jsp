@@ -5,11 +5,20 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="tag" uri="/WEB-INF/taglibs/customTags.tld" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <div class="page-header">
     <div class="pull-left">
         <h1><fmt:message key="menu.action.tools.available"/></h1>
     </div>
+    <sec:authorize access="hasAnyAuthority('Editor')">
+        <div style="float: right; margin: 10px 10px 5px 5px">
+            <a href="<c:url value="${moduleBaseUrl}/form"/>" class="btn btn-large btn-green">
+                <i class="icon-plus"></i>
+                <fmt:message key="action.add.tool"/>
+            </a>
+        </div>
+    </sec:authorize>
 </div>
 
 <div class="breadcrumbs">
@@ -71,74 +80,72 @@
                             <input class="form-control" id="filterInput" type="text" placeholder="Szukaj..">
                         </div>
                     </div>
-                    <form autocomplete="off" action="<c:url value="${moduleBaseUrl}"/>/checkbox"
-                          method="post" id="executable-users-list-form">
-                        <table class="table table-hover table-nomargin table-striped table-bordered"
-                               style="clear: both;">
-                            <thead>
-                            <tr>
-                                <th style="text-align: center;">
-                                    <tag:th param="id">
-                                        <fmt:message key="tool.id"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;">
-                                    <tag:th param="companyId">
-                                        <fmt:message key="tool.company.id"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;">
-                                    <tag:th param="model">
-                                        <fmt:message key="tool.model"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;">
-                                    <tag:th param="toolType">
-                                        <fmt:message key="tool.type"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;">
-                                    <tag:th param="available">
-                                        <fmt:message key="tool.is.available"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;" colspan="1"><fmt:message key="options"/></th>
-                            </tr>
-                            </thead>
 
-                            <tbody id="toolTable">
-                            <c:forEach var="item" items="${page.iterator()}">
-                                <tr>
-                                    <td style="text-align: center;">${item.id}</td>
-                                    <td style="text-align: center;">${item.companyId}</td>
-                                    <td style="text-align: center;">${item.model}</td>
-                                    <td style="text-align: center;">${item.toolType}</td>
-                                    <td style="text-align: center;">
-                                        <c:if test="${item.available}">
-                                            <i class="icon-ok" style="color: green"></i>
-                                        </c:if>
-                                        <c:if test="${item.available eq false}">
-                                            <i class="icon-minus" style="color: red"></i>
-                                        </c:if>
-                                    </td>
-                                    <td style="text-align: center" colspan="1">
-                                        <a href="javascript:void(0);"
-                                           onclick="javascript:confirm_action('<c:url
-                                                   value="${moduleBaseUrl}/append/${item.id}"/>');"
-                                           rel="tooltip" title="Pobierz" class="icon-plus" style="color: green">
-                                        </a>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                            </tbody>
+                    <table class="table table-hover table-nomargin table-striped table-bordered"
+                           style="clear: both;">
+                        <thead>
+                        <tr>
+                            <th style="text-align: center;">
+                                <tag:th param="id">
+                                    <fmt:message key="tool.id"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;">
+                                <tag:th param="companyId">
+                                    <fmt:message key="tool.company.id"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;">
+                                <tag:th param="model">
+                                    <fmt:message key="tool.model"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;">
+                                <tag:th param="toolType">
+                                    <fmt:message key="tool.type"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;">
+                                <tag:th param="available">
+                                    <fmt:message key="tool.is.available"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;" colspan="1"><fmt:message key="options"/></th>
+                        </tr>
+                        </thead>
 
-                            <tfoot>
+                        <tbody id="toolTable">
+                        <c:forEach var="item" items="${page.iterator()}">
                             <tr>
-                                <th colspan="9"></th>
+                                <td style="text-align: center;">${item.id}</td>
+                                <td style="text-align: center;">${item.companyId}</td>
+                                <td style="text-align: center;">${item.model}</td>
+                                <td style="text-align: center;">${item.toolType}</td>
+                                <td style="text-align: center;">
+                                    <c:if test="${item.available}">
+                                        <i class="icon-ok" style="color: green"></i>
+                                    </c:if>
+                                    <c:if test="${item.available eq false}">
+                                        <i class="icon-minus" style="color: red"></i>
+                                    </c:if>
+                                </td>
+                                <td style="text-align: center" colspan="1">
+                                    <a href="javascript:void(0);"
+                                       onclick="javascript:confirm_action('<c:url
+                                               value="${moduleBaseUrl}/append/${item.id}"/>');"
+                                       rel="tooltip" title="Pobierz" class="icon-plus" style="color: green">
+                                    </a>
+                                </td>
                             </tr>
-                            </tfoot>
-                        </table>
-                    </form>
+                        </c:forEach>
+                        </tbody>
+
+                        <tfoot>
+                        <tr>
+                            <th colspan="9"></th>
+                        </tr>
+                        </tfoot>
+                    </table>
                 </div>
             </div>
         </div>

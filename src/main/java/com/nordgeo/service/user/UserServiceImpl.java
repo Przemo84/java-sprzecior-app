@@ -85,7 +85,7 @@ public class UserServiceImpl implements UserService {
     public void lock(Integer id) throws AdminOperationNotAllowedException, AdminNotAllowedToDeleteHimselfException {
         String authUserRole = authManager.user().getRole().getName();
 
-        if (!authUserRole.equals("Administrator"))
+        if (!authUserRole.equals("Admin"))
             throw new AdminOperationNotAllowedException(null);
         if (authManager.user().getId().equals(id))
             throw new AdminNotAllowedToDeleteHimselfException();
@@ -103,7 +103,7 @@ public class UserServiceImpl implements UserService {
     public void unlock(int id) throws AdminOperationNotAllowedException, AdminNotAllowedToDeleteHimselfException {
         String authUserRole = authManager.user().getRole().getName();
 
-        if (!authUserRole.equals("Administrator"))
+        if (!authUserRole.equals("Admin"))
             throw new AdminOperationNotAllowedException(null);
         if (authManager.user().getId().equals(id))
             throw new AdminNotAllowedToDeleteHimselfException();
@@ -192,13 +192,19 @@ public class UserServiceImpl implements UserService {
     private void saveUserActionHistory(User user, String action) {
 
         switch (user.getRole().getName()) {
-            case "Administrator": {
+            case "Admin": {
                 userActivitiesService.saveActivity(action + " Administratora ID: <a href=\"/admin/admins/form/"
                         + user.getId() + "\">" + user.getId() + "</a>");
                 break;
             }
 
-            case "Pracownik": {
+            case "Employee": {
+                userActivitiesService.saveActivity(action + " Pracownika ID: <a href=\"/admin/employees/form/"
+                        + user.getId() + "\">" + user.getId() + "</a>");
+                break;
+            }
+
+            case "Editor": {
                 userActivitiesService.saveActivity(action + " Pracownika ID: <a href=\"/admin/employees/form/"
                         + user.getId() + "\">" + user.getId() + "</a>");
                 break;

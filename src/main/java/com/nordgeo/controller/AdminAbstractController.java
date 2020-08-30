@@ -16,7 +16,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@PreAuthorize("hasAuthority('Administrator')")
+@PreAuthorize("hasAuthority('Admin')")
 public abstract class AdminAbstractController {
 
 

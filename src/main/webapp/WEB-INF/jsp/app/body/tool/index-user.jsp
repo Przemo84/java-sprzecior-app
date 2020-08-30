@@ -5,6 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="tag" uri="/WEB-INF/taglibs/customTags.tld" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <div class="page-header">
     <div class="pull-left">
@@ -26,7 +27,6 @@
         <a href="#"><i class="icon-remove"></i></a>
     </div>
 </div>
-
 
 <div class="row-fluid">
     <div class="span12">
@@ -106,7 +106,13 @@
                                     <fmt:message key="tool.user"/>
                                 </tag:th>
                             </th>
-                            <th style="text-align: center;" colspan="1"><fmt:message key="options"/></th>
+
+                            <th style="text-align: center;">
+                                <tag:th param="takenDate">
+                                    <fmt:message key="tool.taken.date"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;" colspan="1"><fmt:message key="action.return"/></th>
                         </tr>
                         </thead>
 
@@ -126,6 +132,9 @@
                                     </c:if>
                                 </td>
                                 <td style="text-align: center;">${item.user.fullName}</td>
+                                <td style="text-align: center;">
+                                    <fmt:formatDate value="${item.takenDate}" pattern="YYYY-MM-dd HH:MM:ss"/>
+                                </td>
 
                                 <td style="text-align: center" colspan="1">
                                     <a href="javascript:void(0);"
@@ -253,6 +262,26 @@
                     maxlength: "Maksymalna długość znaków: 250"
                 },
                 action: "Proszę wprowadzić krótki komentarz oddawanego sprzętu"
+            },
+            highlight: function (element) {
+                $(element).parent().addClass('error')
+            },
+            unhighlight: function (element) {
+                $(element).parent().removeClass('error')
+            }
+        },{
+            rules: {
+                shape: {
+                    required: true,
+                },
+                action: "required"
+            },
+
+            messages: {
+                shape: {
+                    required: "Pole nie może być puste. Proszę ocenić sprzęt.",
+                },
+                action: "Proszę ocenić sprzęt."
             },
             highlight: function (element) {
                 $(element).parent().addClass('error')

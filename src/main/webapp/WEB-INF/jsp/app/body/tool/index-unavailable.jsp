@@ -19,7 +19,8 @@
             <i class="icon-angle-right"></i>
         </li>
         <li>
-            <a href="<c:url value="${moduleBaseUrl}/unavailable"/>"><fmt:message key="menu.action.tools.unavailable"/></a>
+            <a href="<c:url value="${moduleBaseUrl}/unavailable"/>"><fmt:message
+                    key="menu.action.tools.unavailable"/></a>
         </li>
     </ul>
     <div class="close-bread">
@@ -108,6 +109,12 @@
                                         <fmt:message key="tool.user"/>
                                     </tag:th>
                                 </th>
+
+                                <th style="text-align: center;">
+                                    <tag:th param="takenDate">
+                                        <fmt:message key="tool.taken.date"/>
+                                    </tag:th>
+                                </th>
                             </tr>
                             </thead>
 
@@ -127,6 +134,9 @@
                                         </c:if>
                                     </td>
                                     <td style="text-align: center;">${item.user.fullName}</td>
+                                    <td style="text-align: center;">
+                                        <fmt:formatDate value="${item.takenDate}" pattern="YYYY-MM-dd HH:MM:ss"/>
+                                    </td>
 
                                 </tr>
                             </c:forEach>

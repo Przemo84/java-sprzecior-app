@@ -46,7 +46,7 @@ public class RoleServiceImpl implements RoleService {
     public void delete(int id) {
         User authUser = authManager.user();
 
-        if (!authUser.getRole().getName().matches("Administrator"))
+        if (!authUser.getRole().getName().matches("Admin"))
             throw new AdminOperationNotAllowedException(null);
         else {
             roleRepository.delete(id);

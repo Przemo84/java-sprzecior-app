@@ -70,7 +70,7 @@ public class SecurityConfig {
 
             http.authorizeRequests()
                     .antMatchers("/admin/**")
-                    .hasAuthority("Administrator")
+                    .hasAuthority("Admin")
                     .and()
                     .formLogin()
                     .loginPage(LOGIN_PAGE)
