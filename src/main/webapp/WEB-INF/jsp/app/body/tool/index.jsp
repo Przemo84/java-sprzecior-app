@@ -137,26 +137,15 @@
                                     <fmt:message key="tool.calibration.date"/>
                                 </tag:th>
                             </th>
-                            <th style="text-align: center;" colspan="1"><fmt:message key="options"/></th>
+                            <th style="text-align: center;" colspan="2"><fmt:message key="options"/></th>
                         </tr>
                         </thead>
 
                         <tbody id="toolTable">
                         <c:forEach var="item" items="${page.iterator()}">
                             <tr>
-                                <td style="text-align: center;">
-                                    <a href="<c:url value="${moduleBaseUrl}/status/${item.id}"/>"
-                                       rel="tooltip" title="Zobacz historię sprzetu">
-                                            ${item.id}
-                                    </a>
-                                </td>
-                                <td style="text-align: center;">
-                                    <a href="<c:url value="${moduleBaseUrl}/status/${item.id}"/>"
-                                       rel="tooltip" title="Zobacz historię sprzetu">
-                                            ${item.companyId}
-                                    </a>
-                                </td>
-
+                                <td style="text-align: center;">${item.id}</td>
+                                <td style="text-align: center;">${item.companyId}</td>
                                 <td style="text-align: center;">
                                     <c:if test="${item.available}">
                                         <i class="icon-ok" style="color: green"></i>
@@ -170,12 +159,7 @@
                                     <fmt:formatDate value="${item.takenDate}" pattern="YYYY-MM-D HH:MM:ss"/>
                                 </td>
 
-                                <td style="text-align: center;">
-                                    <a href="<c:url value="${moduleBaseUrl}/status/${item.id}"/>"
-                                       rel="tooltip" title="Zobacz historię sprzetu">
-                                            ${item.model}
-                                    </a>
-                                </td>
+                                <td style="text-align: center;">${item.model}</td>
                                 <td style="text-align: center;">${item.toolType}</td>
                                 <td style="text-align: center;">${item.serialNo}</td>
                                 <td style="text-align: center;">
@@ -184,6 +168,18 @@
                                 <td style="text-align: center;">
                                     <fmt:formatDate value="${item.calibrationDate}" pattern="YYYY-MM"/>
                                 </td>
+
+                                <sec:authorize access="hasAnyAuthority('Editor')">
+                                    <td style="width: 32px; text-align: center;">
+                                        <a href="javascript:void(0);"
+                                           onclick="javascript:confirm_action('<c:url
+                                                   value="${moduleBaseUrl}/form/${item.id}"/>');"
+                                           rel="tooltip" title="Edytuj" class="btn ">
+                                            <i class="icon-pencil"></i>
+                                        </a>
+                                    </td>
+                                </sec:authorize>
+
                                 <td style="text-align: center" colspan="1">
                                     <a href="javascript:void(0);"
                                        onclick="javascript:confirm_action('<c:url
@@ -198,7 +194,7 @@
 
                         <tfoot>
                         <tr>
-                            <th colspan="11"></th>
+                            <th colspan="12"></th>
                         </tr>
                         </tfoot>
                     </table>

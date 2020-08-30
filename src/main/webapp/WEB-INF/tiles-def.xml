@@ -92,6 +92,10 @@
         <put-attribute name="body" value="/WEB-INF/jsp/app/body/tool/index.jsp"/>
     </definition>
 
+    <definition name="app.tools.form" extends="defApp">
+        <put-attribute name="body" value="/WEB-INF/jsp/app/body/tool/form.jsp"/>
+    </definition>
+
     <definition name="app.tools.unavailable.index" extends="defApp">
         <put-attribute name="body" value="/WEB-INF/jsp/app/body/tool/index-unavailable.jsp"/>
     </definition>

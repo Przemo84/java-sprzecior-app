@@ -134,19 +134,8 @@
                         <tbody id="toolTable">
                         <c:forEach var="item" items="${page.iterator()}">
                             <tr>
-                            <tr>
-                                <td style="text-align: center;">
-                                    <a href="<c:url value="${moduleBaseUrl}/status/${item.id}"/>"
-                                       rel="tooltip" title="Zobacz historię sprzetu">
-                                            ${item.id}
-                                    </a>
-                                </td>
-                                <td style="text-align: center;">
-                                    <a href="<c:url value="${moduleBaseUrl}/status/${item.id}"/>"
-                                       rel="tooltip" title="Zobacz historię sprzetu">
-                                            ${item.companyId}
-                                    </a>
-                                </td>
+                                <td style="text-align: center;">${item.id}</td>
+                                <td style="text-align: center;">${item.companyId}</td>
 
                                 <td style="text-align: center;">
                                     <c:if test="${item.available}">
@@ -161,12 +150,7 @@
                                     <fmt:formatDate value="${item.takenDate}" pattern="YYYY-MM-D HH:MM:ss"/>
                                 </td>
 
-                                <td style="text-align: center;">
-                                    <a href="<c:url value="${moduleBaseUrl}/status/${item.id}"/>"
-                                       rel="tooltip" title="Zobacz historię sprzetu">
-                                            ${item.model}
-                                    </a>
-                                </td>
+                                <td style="text-align: center;">${item.model}</td>
                                 <td style="text-align: center;">${item.toolType}</td>
                                 <td style="text-align: center;">${item.serialNo}</td>
                                 <td style="text-align: center;">
