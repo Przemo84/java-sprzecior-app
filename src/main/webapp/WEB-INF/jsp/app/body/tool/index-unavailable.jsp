@@ -136,7 +136,6 @@
                             <tbody id="toolTable">
                             <c:forEach var="item" items="${page.iterator()}">
                                 <tr>
-                                    <td style="text-align: center;">
                                     <td style="text-align: center;">${item.id}</td>
                                     <td style="text-align: center;">${item.companyId}</td>
 
