@@ -5,25 +5,13 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
 public class ToolStatus {
-
-    public enum Shape {
-        VERY_GOOD(5),
-        GOOD(4),
-        AVERAGE(3),
-        BAD(2),
-        VERY_BAD(1);
-
-        private final int value;
-
-        Shape(final int value) { this.value = value; }
-
-        public int getValue() { return value; }
-    }
 
     public enum Action {
         TAKE_IN(1),
@@ -31,9 +19,13 @@ public class ToolStatus {
 
         private final int value;
 
-        Action(final int value) { this.value = value; }
+        Action(final int value) {
+            this.value = value;
+        }
 
-        public int getValue() { return value; }
+        public int getValue() {
+            return value;
+        }
     }
 
     @Id
@@ -50,8 +42,9 @@ public class ToolStatus {
     @OneToOne
     private Tool tool;
 
-    @Enumerated(EnumType.STRING)
-    private Shape shape;
+    @Min(1)
+    @Max(5)
+    private int rating = 5;
 
     @Enumerated(EnumType.STRING)
     private Action action;
@@ -63,35 +56,63 @@ public class ToolStatus {
     @Column(updatable = false)
     private Date createDate;
 
-    public Integer getId() { return id; }
+    public Integer getId() {
+        return id;
+    }
 
-    public void setId(Integer id) { this.id = id; }
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-    public String getDescription() { return description; }
+    public String getDescription() {
+        return description;
+    }
 
-    public void setDescription(String description) { this.description = description; }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-    public User getUser() { return user; }
+    public User getUser() {
+        return user;
+    }
 
-    public void setUser(User user) { this.user = user; }
+    public void setUser(User user) {
+        this.user = user;
+    }
 
-    public Tool getTool() { return tool; }
+    public Tool getTool() {
+        return tool;
+    }
 
-    public void setTool(Tool tool) { this.tool = tool; }
+    public void setTool(Tool tool) {
+        this.tool = tool;
+    }
 
-    public Shape getShape() { return shape; }
+    public int getRating() { return rating; }
 
-    public void setShape(Shape shape) { this.shape = shape; }
+    public void setRating(int rating) { this.rating = rating; }
 
-    public Action getAction() { return action; }
+    public Action getAction() {
+        return action;
+    }
 
-    public void setAction(Action action) { this.action = action; }
+    public void setAction(Action action) {
+        this.action = action;
+    }
 
-    public Boolean getNeedRepair() { return needRepair; }
+    public Boolean getNeedRepair() {
+        return needRepair;
+    }
 
-    public void setNeedRepair(Boolean needRepair) { this.needRepair = needRepair; }
+    public void setNeedRepair(Boolean needRepair) {
+        this.needRepair = needRepair;
+    }
 
-    public Date getCreateDate() { return createDate; }
+    public Date getCreateDate() {
+        return createDate;
+    }
 
-    public void setCreateDate(Date createDate) { this.createDate = createDate; }
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
 }

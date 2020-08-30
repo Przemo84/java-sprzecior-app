@@ -8,10 +8,9 @@
 
 <div class="page-header">
     <div class="pull-left">
-        <h1><fmt:message key="menu.action.tools.history"/>:
-            <br><br>
-            <i style="color:#942a25; margin-top: 20px; background-color: #7ab5d3 ">Nordgeo ID: ${tool.companyId} , nazwa: ${tool.model}</i>
+        <h1><fmt:message key="menu.action.tools.history"/>
         </h1>
+        <div class="rating" data-rate-value=6></div>
     </div>
 </div>
 
@@ -29,7 +28,26 @@
         <a href="#"><i class="icon-remove"></i></a>
     </div>
 </div>
-
+<h3>
+    <div class="container-fluid" style="text-align: center">
+        <div class="col-md-12" style="text-align: center; padding-bottom: 20px">
+            <i style="color:#942a25; margin-top: 20px; background-color: #ccffff">Nordgeo ID: ${tool.companyId}</i>
+        </div>
+        <div class="col-md-12" style="text-align: center; padding-bottom: 20px">
+            <i style="color:#942a25; margin-top: 20px; background-color: #ccffff">Model: ${tool.model}
+            </i>
+        </div>
+        <div class="col-md-12" style="text-align: center; padding-bottom: 20px">
+            <i style="color:#942a25; margin-top: 20px; background-color: #ccffff">Serial No: ${tool.serialNo}
+            </i>
+        </div>
+        <div class="col-md-12" style="text-align: center">
+            <b style="color:#942a25; margin-top: 20px; background-color: #ccffff">Średnia ocen:
+                <fmt:formatNumber type="number" maxFractionDigits="2" value="${ratings}"/>
+            </b>
+        </div>
+    </div>
+</h3>
 
 <div class="row-fluid">
     <div class="span12">
@@ -38,109 +56,112 @@
                 <div class="dataTables_wrapper">
                     <div class="dataTables_length">
                     </div>
-                        <table class="table table-hover table-nomargin table-striped table-bordered"
-                               style="clear: both;">
-                            <thead>
+                    <table class="table table-hover table-nomargin table-striped table-bordered"
+                           style="clear: both;">
+                        <thead>
+                        <tr>
+                            <th style="text-align: center;">
+                                <tag:th param="action">
+                                    <fmt:message key="tool-status.action"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;" colspan="2">
+                                <tag:th param="createDate">
+                                    <fmt:message key="tool-status.action.date"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;">
+                                <tag:th param="user">
+                                    <fmt:message key="tool-status.author"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;">
+                                <tag:th param="description">
+                                    <fmt:message key="tool-status.description"/>
+                                </tag:th>
+                            </th>
+
+                            <th style="text-align: center;">
+                                <tag:th param="needRepair">
+                                    <fmt:message key="tool-status.need.repair"/>
+                                </tag:th>
+                            </th>
+
+                            <th style="text-align: center;">
+                                <tag:th param="rating">
+                                    <fmt:message key="tool-status.rating"/>
+                                </tag:th>
+                            </th>
+                        </tr>
+                        </thead>
+
+                        <tbody id="myTable">
+                        <c:forEach var="item" items="${page.iterator()}">
                             <tr>
-                                <th style="text-align: center;">
-                                    <tag:th param="action">
-                                        <fmt:message key="tool-status.action"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;" colspan="2">
-                                    <tag:th param="createDate">
-                                        <fmt:message key="tool-status.action.date"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;">
-                                    <tag:th param="user">
-                                        <fmt:message key="tool-status.author"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;">
-                                    <tag:th param="description">
-                                        <fmt:message key="tool-status.description"/>
-                                    </tag:th>
-                                </th>
+                                <td style="text-align: center;">
+                                    <c:if test="${item.action eq 'TAKE_IN'}">
+                                        <i style="color: red" class="fas fa-cloud-download-alt"></i><fmt:message
+                                            key="${item.action}"/>
+                                    </c:if>
+                                    <c:if test="${item.action eq 'TAKE_OUT'}">
+                                        <i style="color: green" class="fas fa-cloud-upload-alt"></i><fmt:message
+                                            key="${item.action}"/>
+                                    </c:if>
+                                </td>
+                                <td style="text-align: center;" colspan="2">
+                                    <fmt:formatDate value="${item.createDate}" type="date"
+                                                    pattern="dd-MM-yyyy HH:MM:ss"/>
+                                </td>
+                                <td style="text-align: center;">${item.user.fullName}</td>
+                                <td style="text-align: center;">${item.description}</td>
+                                <td style="text-align: center;">
+                                    <c:if test="${item.needRepair eq false}">
+                                        <i style="color: green" class="fas fa-thumbs-up"></i>
+                                    </c:if>
+                                    <c:if test="${item.needRepair eq true}">
+                                        <i style="color: red" class="fas fa-exclamation-circle"></i>
+                                    </c:if>
+                                </td>
 
-                                <th style="text-align: center;">
-                                    <tag:th param="needRepair">
-                                        <fmt:message key="tool-status.need.repair"/>
-                                    </tag:th>
-                                </th>
+                                <c:if test="${item.rating == 5}">
+                                    <td style="text-align: center; background-color: green">
+                                        <strong><fmt:message key="tool-status.rating.very.good"/></strong>
+                                    </td>
+                                </c:if>
 
-                                <th style="text-align: center;">
-                                    <tag:th param="shape">
-                                        <fmt:message key="tool-status.shape"/>
-                                    </tag:th>
-                                </th>
+                                <c:if test="${item.rating == 4}">
+                                    <td style="text-align: center; background-color: yellowgreen">
+                                        <strong><fmt:message key="tool-status.rating.good"/></strong>
+                                    </td>
+                                </c:if>
+
+                                <c:if test="${item.rating eq 3}">
+                                    <td style="text-align: center; background-color: yellow">
+                                        <strong><fmt:message key="tool-status.rating.average"/></strong>
+                                    </td>
+                                </c:if>
+
+                                <c:if test="${item.rating eq 2}">
+                                    <td style="text-align: center; background-color: orangered">
+                                        <strong><fmt:message key="tool-status.rating.bad"/></strong>
+                                    </td>
+                                </c:if>
+
+                                <c:if test="${item.rating eq 1}">
+                                    <td style="text-align: center; background-color: red">
+                                        <strong><fmt:message key="tool-status.rating.very.bad"/></strong>
+                                    </td>
+                                </c:if>
+
                             </tr>
-                            </thead>
-
-                            <tbody id="myTable">
-                            <c:forEach var="item" items="${page.iterator()}">
-                                <tr>
-                                    <td style="text-align: center;">
-                                        <c:if test="${item.action eq 'TAKE_IN'}">
-                                            <i style="color: red" class="fas fa-cloud-download-alt"></i><fmt:message
-                                                key="${item.action}"/>
-                                        </c:if>
-                                        <c:if test="${item.action eq 'TAKE_OUT'}">
-                                            <i style="color: green" class="fas fa-cloud-upload-alt"></i><fmt:message
-                                                key="${item.action}"/>
-                                        </c:if>
-                                    </td>
-                                    <td style="text-align: center;" colspan="2">
-                                        <fmt:formatDate value="${item.createDate}" type="date" pattern="dd-MM-yyyy HH:MM:ss"/>
-                                    </td>
-                                    <td style="text-align: center;">${item.user.fullName}</td>
-                                    <td style="text-align: center;">${item.description}</td>
-                                    <td style="text-align: center;">
-                                        <c:if test="${item.needRepair eq false}">
-                                            <i style="color: green" class="fas fa-thumbs-up"></i>
-                                        </c:if>
-                                        <c:if test="${item.needRepair eq true}">
-                                            <i style="color: red" class="fas fa-exclamation-circle"></i>
-                                        </c:if>
-                                    </td>
-
-                                    <c:if test="${item.shape eq 'VERY_GOOD'}">
-                                        <td style="text-align: center; background-color: green">
-                                            <strong><fmt:message key="${item.shape}"/></strong>
-                                        </td>
-                                    </c:if>
-
-                                    <c:if test="${item.shape eq 'GOOD'}">
-                                        <td style="text-align: center; background-color: yellowgreen">
-                                            <strong><fmt:message key="${item.shape}"/></strong>
-                                        </td>
-                                    </c:if>
-                                    <c:if test="${item.shape eq 'AVERAGE'}">
-                                        <td style="text-align: center; background-color: yellow">
-                                            <strong><fmt:message key="${item.shape}"/></strong>
-                                        </td>
-                                    </c:if>
-                                    <c:if test="${item.shape eq 'BAD'}">
-                                        <td style="text-align: center; background-color: orangered">
-                                            <strong><fmt:message key="${item.shape}"/></strong>
-                                        </td>
-                                    </c:if>
-                                    <c:if test="${item.shape eq 'VERY_BAD'}">
-                                        <td style="text-align: center; background-color: red">
-                                            <strong><fmt:message key="${item.shape}"/></strong>
-                                        </td>
-                                    </c:if>
-
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                            </tbody>
-                            <tfoot>
-                            <tr>
-                                <th colspan="8" style="height:40px;"></th>
-                            </tr>
-                            </tfoot>
-                        </table>
+                        </c:forEach>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th colspan="8" style="height:40px;"></th>
+                        </tr>
+                        </tfoot>
+                    </table>
                 </div>
             </div>
         </div>

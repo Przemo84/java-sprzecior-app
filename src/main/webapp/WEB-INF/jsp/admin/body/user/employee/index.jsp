@@ -145,11 +145,14 @@
                                 </c:if>
 
                                 <td style="width: 32px; text-align: center;">
-                                    <a href="<c:url value="${moduleBaseUrl}/form/${item.id}"/>" rel="tooltip"
-                                       title="Edytuj" class="btn">
+                                    <a href="javascript:void(0);"
+                                       onclick="javascript:confirm_action('<c:url
+                                               value="${moduleBaseUrl}/form/${item.id}"/>');"
+                                       rel="tooltip" title="Edytuj" class="btn ">
                                         <i class="icon-pencil"></i>
                                     </a>
                                 </td>
+
                                 <td style="width: 32px; text-align: center;">
                                     <a href="javascript:void(0);"
                                        onclick="javascript:confirm_action('<c:url

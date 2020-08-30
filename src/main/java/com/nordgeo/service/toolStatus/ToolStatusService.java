@@ -12,4 +12,5 @@ public interface ToolStatusService {
 
     void save(ToolStatus toolStatus, Tool tool);
 
+    Double getToolAverageOfRatings(int id);
 }

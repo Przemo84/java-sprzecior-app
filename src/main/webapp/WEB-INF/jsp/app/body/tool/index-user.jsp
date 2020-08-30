@@ -212,21 +212,21 @@
                 </div>
             </spring:bind>
 
-            <spring:bind path="shape">
+            <spring:bind path="rating">
                 <div class="control-group">
                     <div class="form-group-mx-3 ${status.error ? 'has-error' : ''}">
-                        <label class="control-label"><fmt:message key="tool-status.shape"/></label>
+                        <label class="control-label"><fmt:message key="tool-status.rating"/></label>
                         <br>
-                        <form:radiobutton path="shape" value="VERY_GOOD" label="Bardzo dobry"/>
+                        <form:radiobutton path="rating" value="5" label="Bardzo dobry"/>
                         <br>
-                        <form:radiobutton path="shape" value="GOOD" label="Dobry" element="div"/>
+                        <form:radiobutton path="rating" value="4" label="Dobry" element="div"/>
                         <br>
-                        <form:radiobutton path="shape" value="AVERAGE" label="Średni" element="div"/>
+                        <form:radiobutton path="rating" value="3" label="Średni" element="div"/>
                         <br>
-                        <form:radiobutton path="shape" value="BAD" label="Zły" element="div"/>
+                        <form:radiobutton path="rating" value="2" label="Zły" element="div"/>
                         <br>
-                        <form:radiobutton path="shape" value="VERY_BAD" label="Bardzo zły" element="div"/>
-                        <span style="color: red"><form:errors path="shape" class="control-label"/></span>
+                        <form:radiobutton path="rating" value="1" label="Bardzo zły" element="div"/>
+                        <span style="color: red"><form:errors path="rating" class="control-label"/></span>
                     </div>
                 </div>
             </spring:bind>
@@ -295,14 +295,14 @@
             }
         }, {
             rules: {
-                shape: {
+                rating: {
                     required: true,
                 },
                 action: "required"
             },
 
             messages: {
-                shape: {
+                rating: {
                     required: "Pole nie może być puste. Proszę ocenić sprzęt.",
                 },
                 action: "Proszę ocenić sprzęt."

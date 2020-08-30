@@ -13,4 +13,11 @@ public interface ToolStatusRepository extends PagingAndSortingRepository<ToolSta
 
     @Query(value = "select ts FROM ToolStatus ts WHERE ts.tool.id = :toolId order by ts.createDate desc")
     Page<ToolStatus> findAllToolStatuses(Pageable pageable, @Param("toolId") Integer toolId);
+
+//    @Query(value = "select ts, avg(ts.rating) as averageOfRating FROM tool_status ts WHERE ts.tool_id = :toolId order by ts.create_date desc", nativeQuery = true)
+//    Page<ToolStatus> findAllToolStatuses(Pageable pageable, @Param("toolId") Integer toolId);
+
+
+    @Query(value = "select avg(ts.rating) FROM ToolStatus ts WHERE ts.tool.id = :toolId")
+    Double findAverageOfRatings(@Param("toolId") Integer toolId);
 }

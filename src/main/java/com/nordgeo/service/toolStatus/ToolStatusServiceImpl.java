@@ -36,4 +36,10 @@ public class ToolStatusServiceImpl implements ToolStatusService {
 
         toolStatusRepository.save(toolStatus);
     }
+
+    @Override
+    public Double getToolAverageOfRatings(int id) {
+
+        return toolStatusRepository.findAverageOfRatings(id);
+    }
 }
