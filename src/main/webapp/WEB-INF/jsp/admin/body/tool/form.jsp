@@ -103,7 +103,7 @@
                                         ${toolProductionDate}
                                 </label>
                                 <div style="position:relative">
-                                    <form:input path="productionDate" type="text" class="form-control datepicker"
+                                    <form:input path="productionDate" type="text" class="form-control date_only_picker"
                                                 placeholder="${toolProductionDate}"/>
                                 </div>
                                 <form:errors path="productionDate" class="control-label"/>
@@ -119,7 +119,7 @@
                                         ${toolCalibrationDate}
                                 </label>
                                 <div style="position:relative">
-                                    <form:input path="calibrationDate" type="text" class="form-control datepicker"
+                                    <form:input path="calibrationDate" type="text" class="form-control date_only_picker"
                                                 placeholder="${toolCalibrationDate}"/>
                                 </div>
                                 <form:errors path="calibrationDate" class="control-label"/>
