@@ -38,4 +38,8 @@ public interface UserService {
     void updateWithOldPassword(User user);
 
     void setLastLoginDate(User user);
+
+    Page<User> findAllEditors(PageRequest page);
+
+    void changeRole(int id, User.RoleName roleName);
 }

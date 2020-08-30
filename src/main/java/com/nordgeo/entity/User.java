@@ -21,7 +21,8 @@ public class User {
 
     public enum RoleName {
         ADMIN_ROLE(1),
-        EMPLOYEE_ROLE(2);
+        EDITOR_ROLE(2),
+        EMPLOYEE_ROLE(3);
 
         private final int value;
 

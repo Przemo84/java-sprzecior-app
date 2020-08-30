@@ -142,7 +142,7 @@
                                            onclick="javascript:confirm_action('<c:url
                                                    value="${moduleBaseUrl}/lock/${item.id}"/>');"
                                            rel="tooltip" title="Zablokuj" class="btn btn-danger">
-                                            <i class="icon-minus-sign"></i>
+                                            <i class="fas fa-power-off"></i>
                                         </a>
                                     </td>
                                 </tr>

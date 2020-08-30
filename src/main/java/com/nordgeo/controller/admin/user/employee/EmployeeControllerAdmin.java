@@ -144,5 +144,18 @@ public class EmployeeControllerAdmin extends AdminAbstractController {
         return "redirect:/admin/employees";
     }
 
+    @RequestMapping(value = "/make-editor/{id}")
+    public String upgradeToEditor(@PathVariable("id") int id, final RedirectAttributes redirectAttributes) {
+
+        try {
+            userService.changeRole(id, User.RoleName.EDITOR_ROLE);
+        } catch (AdminOperationNotAllowedException e) {
+            Flash.error(redirectAttributes, "Operacja dozwolona tylko dla Administratora");
+            return "redirect:/admin/employees";
+        }
+
+        return "redirect:/admin/employees";
+    }
+
 
 }

@@ -10,7 +10,7 @@
     <div class="pull-left">
         <h1><fmt:message key="menu.action.tools.history"/>:
             <br><br>
-            <i style="color:#942a25; margin-top: 20px ">Nordgeo ID: ${tool.companyId} , nazwa: ${tool.model}</i>
+            <i style="color:#942a25; margin-top: 20px; background-color: #7ab5d3 ">Nordgeo ID: ${tool.companyId} , nazwa: ${tool.model}</i>
         </h1>
     </div>
 </div>

@@ -133,7 +133,8 @@
                                     <a href="javascript:void(0);"
                                        onclick="javascript:confirm_action('<c:url
                                                value="${moduleBaseUrl}/append/${item.id}"/>');"
-                                       rel="tooltip" title="Pobierz" class="icon-plus" style="color: green">
+                                       rel="tooltip" title="Pobierz" style="color: green">
+                                        <i class="fas fa-cart-plus"></i>
                                     </a>
                                 </td>
                             </tr>

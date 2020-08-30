@@ -24,11 +24,13 @@ public interface UserRepository extends PagingAndSortingRepository<User, Integer
 
     Page<User> findAllByLockDateIsNotNull(Pageable pageable);
 
-
     Page<User> findUsersByRoleAndLockDateIsNull(Role role, Pageable page);
 
     List<User> findUsersByRoleAndLockDateIsNull(Role role);
 
     Page<User> findUsersByRoleIsNotIn(List<Role> roles, Pageable page);
+
+    Page<User> findUsersByRoleIsNotInAndLockDateIsNull(List<Role> roles, Pageable page);
+
 
 }

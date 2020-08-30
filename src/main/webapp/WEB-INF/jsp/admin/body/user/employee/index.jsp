@@ -5,6 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="tag" uri="/WEB-INF/taglibs/customTags.tld" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <div class="page-header">
     <div class="pull-left">
@@ -84,6 +85,11 @@
                             <thead>
                             <tr>
                                 <th style="text-align: center;">
+                                    <tag:th param="id">
+                                        <fmt:message key="user.id"/>
+                                    </tag:th>
+                                </th>
+                                <th style="text-align: center;">
                                     <tag:th param="firstName">
                                         <fmt:message key="user.firstName"/>
                                     </tag:th>
@@ -114,6 +120,7 @@
 
                             <tbody id="usersTable">
                             <c:forEach var="item" items="${page.iterator()}">
+                                <td style="text-align: center;">${item.id}</td>
                                 <td style="text-align: center;">${item.firstName}</td>
                                 <td style="text-align: center;">${item.lastName}</td>
                                 <td style="text-align: center;">${item.email}</td>
@@ -121,6 +128,21 @@
                                 <td style="text-align: center;">
                                     <fmt:formatDate value="${item.lastLoginDate}" pattern="dd.MM.yyyy HH:MM:ss"/>
                                 </td>
+
+                                <c:if test="${item.role.name eq 'Employee'}">
+                                    <td style="width: 32px; text-align: center;">
+                                        <a href="javascript:void(0);"
+                                           onclick="javascript:confirm_action('<c:url
+                                                   value="${moduleBaseUrl}/make-editor/${item.id}"/>');"
+                                           rel="tooltip" title="Mianuj Edytora" class="btn btn-blue">
+                                            <i class="far fa-eye"></i>
+                                        </a>
+                                    </td>
+                                </c:if>
+                                <c:if test="${item.role.name ne 'Employee'}">
+                                    <td style="width: 32px; text-align: center;">
+                                    </td>
+                                </c:if>
 
                                 <td style="width: 32px; text-align: center;">
                                     <a href="<c:url value="${moduleBaseUrl}/form/${item.id}"/>" rel="tooltip"
@@ -133,7 +155,7 @@
                                        onclick="javascript:confirm_action('<c:url
                                                value="${moduleBaseUrl}/lock/${item.id}"/>');"
                                        rel="tooltip" title="Zablokuj" class="btn btn-danger">
-                                        <i class="icon-minus-sign"></i>
+                                        <i class="fas fa-power-off"></i>
                                     </a>
                                 </td>
                                 </tr>

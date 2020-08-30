@@ -120,7 +120,7 @@
                                            onclick="javascript:confirm_action('<c:url
                                                    value="${moduleBaseUrl}/unlock/${item.id}?sort=${param.sort}&order=${param.order}&page=${param.page}&size=${param.size}"/>');"
                                            rel="tooltip" title="Odblokuj" class="btn btn-success">
-                                            <i class="icon-plus-sign"></i>
+                                            <i class="fas fa-user-check"></i>
                                         </a>
                                     </td>
                                 </tr>

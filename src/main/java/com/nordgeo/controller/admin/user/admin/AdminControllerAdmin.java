@@ -26,7 +26,7 @@ import javax.websocket.server.PathParam;
 
 @Controller
 @RequestMapping(value = "/admin/admins")
-public class UserAdminControllerAdmin extends AdminAbstractController {
+public class AdminControllerAdmin extends AdminAbstractController {
 
     @ModelAttribute("moduleBaseUrl")
     public String moduleBaseUrl() {

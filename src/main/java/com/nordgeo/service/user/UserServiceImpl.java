@@ -18,7 +18,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -33,8 +35,11 @@ public class UserServiceImpl implements UserService {
 
     private UserActivitiesService userActivitiesService;
 
+    private RoleRepository roleRepository;
+
 
     private static Role admin;
+    private static Role editor;
     private static Role employee;
 
     public UserServiceImpl(UserRepository repository, @Lazy PasswordEncoder passwordEncoder, AuthManager authManager,
@@ -45,8 +50,10 @@ public class UserServiceImpl implements UserService {
         this.authManager = authManager;
         this.storageService = storageService;
         this.userActivitiesService = userActivitiesService;
+        this.roleRepository = roleRepository;
 
         admin = roleRepository.findOne(User.RoleName.ADMIN_ROLE.getValue());
+        editor = roleRepository.findOne(User.RoleName.EDITOR_ROLE.getValue());
         employee = roleRepository.findOne(User.RoleName.EMPLOYEE_ROLE.getValue());
     }
 
@@ -166,8 +173,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Page<User> findAllEditors(PageRequest page) {
+        return repository.findUsersByRoleAndLockDateIsNull(editor, page);
+    }
+
+
+    @Override
     public Page<User> findAllEmployees(PageRequest page) {
-        return repository.findUsersByRoleAndLockDateIsNull(employee, page);
+        List<Role> roles = new ArrayList<Role>() {{
+            add(roleRepository.findOne(User.RoleName.ADMIN_ROLE.getValue()));
+        }};
+
+        return repository.findUsersByRoleIsNotInAndLockDateIsNull(roles, page);
     }
 
     @Override
@@ -187,7 +204,6 @@ public class UserServiceImpl implements UserService {
         user.setLastLoginDate(new Date());
         repository.save(user);
     }
-
 
     private void saveUserActionHistory(User user, String action) {
 
@@ -210,7 +226,14 @@ public class UserServiceImpl implements UserService {
                 break;
             }
         }
+    }
 
+    @Override
+    public void changeRole(int id, User.RoleName roleName) {
+        User user = repository.findById(id);
+        Role role = roleRepository.findOne(roleName.getValue());
+        user.setRole(role);
+        repository.save(user);
     }
 
     private User sanitizeUser(User user) {
