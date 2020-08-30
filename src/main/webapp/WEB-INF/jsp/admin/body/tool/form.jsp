@@ -42,13 +42,15 @@
             <div class="box-content nopadding">
                 <ul class="tabs tabs-inline tabs-top">
                     <li class="active">
-                        <a href="#" disabled="" data-toggle="tab"><i class="icon-th-list"></i> <fmt:message key="basic.info"/>
+                        <a href="#" disabled="" data-toggle="tab"><i class="icon-th-list"></i> <fmt:message
+                                key="basic.info"/>
                         </a>
                     </li>
                 </ul>
 
                 <spring:url value="${moduleBaseUrl}/save" var="action"/>
-                <form:form method="post" class="form-vertical form-bordered" enctype="multipart/form-data" modelAttribute="tool"
+                <form:form method="post" class="form-vertical form-bordered" enctype="multipart/form-data"
+                           modelAttribute="tool"
                            action="${action}">
                 <div class="tab-content padding tab-content-inline tab-content-bottom">
                     <form:hidden path="id"/>
@@ -83,8 +85,51 @@
                         </div>
                     </spring:bind>
 
+                    <spring:bind path="serialNo">
+                        <div class="control-group">
+                            <div class="form-group-mx-3 ${status.error ? 'has-error' : ''}">
+                                <label class="control-label" for="model"><fmt:message key="tool.serial.number"/></label>
+                                <form:input path="serialNo" type="text" class="form-control"/>
+                                <span style="color: red"><form:errors path="serialNo" class="control-label"/></span>
+                            </div>
+                        </div>
+                    </spring:bind>
+
+                    <spring:bind path="productionDate">
+                        <div class="control-group">
+                            <spring:message code="tool.production.date" var="toolProductionDate"/>
+                            <div class="event-dates form-group-mx-3 ${status.error ? 'has-error' : ''}">
+                                <label class="control-label">
+                                        ${toolProductionDate}
+                                </label>
+                                <div style="position:relative">
+                                    <form:input path="productionDate" type="text" class="form-control datepicker"
+                                                placeholder="${toolProductionDate}"/>
+                                </div>
+                                <form:errors path="productionDate" class="control-label"/>
+                            </div>
+                        </div>
+                    </spring:bind>
+
+                    <spring:bind path="calibrationDate">
+                        <div class="control-group">
+                            <spring:message code="tool.calibration.date" var="toolCalibrationDate"/>
+                            <div class="event-dates form-group-mx-3 ${status.error ? 'has-error' : ''}">
+                                <label class="control-label">
+                                        ${toolCalibrationDate}
+                                </label>
+                                <div style="position:relative">
+                                    <form:input path="calibrationDate" type="text" class="form-control datepicker"
+                                                placeholder="${toolCalibrationDate}"/>
+                                </div>
+                                <form:errors path="calibrationDate" class="control-label"/>
+                            </div>
+                        </div>
+                    </spring:bind>
+
                     <div class="form-actions" style="margin:1.5em">
-                        <button class="btn btn-primary" type="submit" id="executeBtn"><fmt:message key="action.save"/></button>
+                        <button class="btn btn-primary" type="submit" id="executeBtn"><fmt:message
+                                key="action.save"/></button>
                         <button class="btn" type="reset"><fmt:message key="action.cancel"/></button>
                     </div>
                     </form:form>

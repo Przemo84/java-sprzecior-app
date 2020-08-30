@@ -174,8 +174,12 @@
                                 </td>
                                 <td style="text-align: center;">${item.toolType}</td>
                                 <td style="text-align: center;">${item.serialNo}</td>
-                                <td style="text-align: center;">${item.productionDate}</td>
-                                <td style="text-align: center;">${item.calibrationDate}</td>
+                                <td style="text-align: center;">
+                                    <fmt:formatDate value="${item.productionDate}" pattern="YYYY-MM"/>
+                                </td>
+                                <td style="text-align: center;">
+                                    <fmt:formatDate value="${item.calibrationDate}" pattern="YYYY-MM"/>
+                                </td>
 
                                 <td style="width: 32px; text-align: center;">
                                     <a href="<c:url value="${moduleBaseUrl}/form/${item.id}"/>" rel="tooltip"
