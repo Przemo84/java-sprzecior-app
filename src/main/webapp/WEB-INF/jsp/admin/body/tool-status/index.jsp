@@ -171,17 +171,6 @@
     </div>
 </div>
 <script>
-    var checkboxes = $('#executable-users-list-form td input[type="checkbox"]');
-    var checkboxAll = $('#executable-users-list-form  th input[type="checkbox"]');
-
-    checkboxes.change(function () {
-        $('#executeBtn').prop("disabled", !this.checked);
-    }).change();
-
-    checkboxAll.change(function () {
-        $('#executeBtn').prop("disabled", !this.checked);
-    }).change();
-
     $(document).ready(function () {
         $("#myInput").on("keyup", function () {
             var value = $(this).val().toLowerCase();
