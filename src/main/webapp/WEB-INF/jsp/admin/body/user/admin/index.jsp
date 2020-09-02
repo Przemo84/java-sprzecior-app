@@ -79,83 +79,80 @@
                         </div>
                     </div>
 
-                    <form autocomplete="off" action="<c:url value="${moduleBaseUrl}"/>/checkbox"
-                          method="post" id="executable-users-list-form">
-                        <table class="table table-hover table-nomargin table-striped table-bordered"
-                               style="clear: both;">
-                            <thead>
+                    <table class="table table-hover table-nomargin table-striped table-bordered"
+                           style="clear: both;">
+                        <thead>
+                        <tr>
+                            <th style="text-align: center;">
+                                <tag:th param="id">
+                                    <fmt:message key="user.id"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;">
+                                <tag:th param="firstName">
+                                    <fmt:message key="user.firstName"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;">
+                                <tag:th param="lastName">
+                                    <fmt:message key="user.lastName"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;">
+                                <tag:th param="email">
+                                    <fmt:message key="user.email"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;">
+                                <tag:th param="username">
+                                    <fmt:message key="username"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;">
+                                <tag:th param="lastLoginDate">
+                                    <fmt:message key="user.lastLogin"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;" colspan="3"><fmt:message key="options"/></th>
+                        </tr>
+                        </thead>
+
+                        <tbody id="adminsTable">
+                        <c:forEach var="item" items="${page.iterator()}">
                             <tr>
-                                <th style="text-align: center;">
-                                    <tag:th param="id">
-                                        <fmt:message key="user.id"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;">
-                                    <tag:th param="firstName">
-                                        <fmt:message key="user.firstName"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;">
-                                    <tag:th param="lastName">
-                                        <fmt:message key="user.lastName"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;">
-                                    <tag:th param="email">
-                                        <fmt:message key="user.email"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;">
-                                    <tag:th param="username">
-                                        <fmt:message key="username"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;">
-                                    <tag:th param="lastLoginDate">
-                                        <fmt:message key="user.lastLogin"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;" colspan="3"><fmt:message key="options"/></th>
+                                <td style="text-align: center;">${item.id}</td>
+                                <td style="text-align: center;">${item.firstName}</td>
+                                <td style="text-align: center;">${item.lastName}</td>
+                                <td style="text-align: center;">${item.email}</td>
+                                <td style="text-align: center;">${item.username}</td>
+                                <td style="text-align: center;">
+                                    <fmt:formatDate value="${item.lastLoginDate}" pattern="dd.MM.yyyy"/>
+                                </td>
+
+                                <td style="width: 32px; text-align: center;">
+                                    <a href="<c:url value="${moduleBaseUrl}/form/${item.id}"/>" rel="tooltip"
+                                       title="Edytuj" class="btn">
+                                        <i class="icon-pencil"></i>
+                                    </a>
+                                </td>
+                                <td style="width: 32px; text-align: center;">
+                                    <a href="javascript:void(0);"
+                                       onclick="javascript:confirm_action('<c:url
+                                               value="${moduleBaseUrl}/lock/${item.id}"/>');"
+                                       rel="tooltip" title="Zablokuj" class="btn btn-danger">
+                                        <i class="fas fa-power-off"></i>
+                                    </a>
+                                </td>
                             </tr>
-                            </thead>
+                        </c:forEach>
+                        </tbody>
 
-                            <tbody id="adminsTable">
-                            <c:forEach var="item" items="${page.iterator()}">
-                                <tr>
-                                    <td style="text-align: center;">${item.id}</td>
-                                    <td style="text-align: center;">${item.firstName}</td>
-                                    <td style="text-align: center;">${item.lastName}</td>
-                                    <td style="text-align: center;">${item.email}</td>
-                                    <td style="text-align: center;">${item.username}</td>
-                                    <td style="text-align: center;">
-                                        <fmt:formatDate value="${item.lastLoginDate}" pattern="dd.MM.yyyy"/>
-                                    </td>
-
-                                    <td style="width: 32px; text-align: center;">
-                                        <a href="<c:url value="${moduleBaseUrl}/form/${item.id}"/>" rel="tooltip"
-                                           title="Edytuj" class="btn">
-                                            <i class="icon-pencil"></i>
-                                        </a>
-                                    </td>
-                                    <td style="width: 32px; text-align: center;">
-                                        <a href="javascript:void(0);"
-                                           onclick="javascript:confirm_action('<c:url
-                                                   value="${moduleBaseUrl}/lock/${item.id}"/>');"
-                                           rel="tooltip" title="Zablokuj" class="btn btn-danger">
-                                            <i class="fas fa-power-off"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                            </tbody>
-
-                            <tfoot>
-                            <tr>
-                                <th colspan="8" style="height:40px;"></th>
-                            </tr>
-                            </tfoot>
-                        </table>
-                    </form>
+                        <tfoot>
+                        <tr>
+                            <th colspan="8" style="height:40px;"></th>
+                        </tr>
+                        </tfoot>
+                    </table>
                 </div>
             </div>
         </div>

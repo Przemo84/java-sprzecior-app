@@ -71,69 +71,66 @@
                         </div>
                     </div>
 
-                    <form autocomplete="off" action="<c:url value="${moduleBaseUrl}"/>/checkbox"
-                          method="post" id="executable-users-list-form">
-                        <table class="table table-hover table-nomargin table-striped table-bordered"
-                               style="clear: both;">
-                            <thead>
+                    <table class="table table-hover table-nomargin table-striped table-bordered"
+                           style="clear: both;">
+                        <thead>
+                        <tr>
+                            <th style="text-align: center;">
+                                <tag:th param="firstName">
+                                    <fmt:message key="user.firstName"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;">
+                                <tag:th param="lastName">
+                                    <fmt:message key="user.lastName"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;">
+                                <tag:th param="email">
+                                    <fmt:message key="user.email"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;">
+                                <tag:th param="username">
+                                    <fmt:message key="username"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;">
+                                <tag:th param="lastLoginDate">
+                                    <fmt:message key="user.lastLogin"/>
+                                </tag:th></th>
+                            <th style="text-align: center;" colspan="2"><fmt:message key="options"/></th>
+                        </tr>
+                        </thead>
+
+                        <tbody id="usersTable">
+                        <c:forEach var="item" items="${page.iterator()}">
                             <tr>
-                                <th style="text-align: center;">
-                                    <tag:th param="firstName">
-                                        <fmt:message key="user.firstName"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;">
-                                    <tag:th param="lastName">
-                                        <fmt:message key="user.lastName"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;">
-                                    <tag:th param="email">
-                                        <fmt:message key="user.email"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;">
-                                    <tag:th param="username">
-                                        <fmt:message key="username"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;">
-                                    <tag:th param="lastLoginDate">
-                                        <fmt:message key="user.lastLogin"/>
-                                    </tag:th></th>
-                                <th style="text-align: center;" colspan="2"><fmt:message key="options"/></th>
+
+                                <td style="text-align: center;">${item.firstName}</td>
+                                <td style="text-align: center;">${item.lastName}</td>
+                                <td style="text-align: center;">${item.email}</td>
+                                <td style="text-align: center;">${item.username}</td>
+                                <td style="text-align: center;">
+                                    <fmt:formatDate value="${item.lastLoginDate}" pattern="dd.MM.yyyy"/></td>
+                                <td style="width: 32px; text-align: center;">
+                                    <a href="javascript:void(0);"
+                                       onclick="javascript:confirm_action('<c:url
+                                               value="${moduleBaseUrl}/unlock/${item.id}?sort=${param.sort}&order=${param.order}&page=${param.page}&size=${param.size}"/>');"
+                                       rel="tooltip" title="Odblokuj" class="btn btn-success">
+                                        <i class="fas fa-user-check"></i>
+                                    </a>
+                                </td>
                             </tr>
-                            </thead>
+                        </c:forEach>
+                        </tbody>
 
-                            <tbody id="usersTable">
-                            <c:forEach var="item" items="${page.iterator()}">
-                                <tr>
-
-                                    <td style="text-align: center;">${item.firstName}</td>
-                                    <td style="text-align: center;">${item.lastName}</td>
-                                    <td style="text-align: center;">${item.email}</td>
-                                    <td style="text-align: center;">${item.username}</td>
-                                    <td style="text-align: center;">
-                                        <fmt:formatDate value="${item.lastLoginDate}" pattern="dd.MM.yyyy"/></td>
-                                    <td style="width: 32px; text-align: center;">
-                                        <a href="javascript:void(0);"
-                                           onclick="javascript:confirm_action('<c:url
-                                                   value="${moduleBaseUrl}/unlock/${item.id}?sort=${param.sort}&order=${param.order}&page=${param.page}&size=${param.size}"/>');"
-                                           rel="tooltip" title="Odblokuj" class="btn btn-success">
-                                            <i class="fas fa-user-check"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                            </tbody>
-
-                            <tfoot>
-                            <tr>
-                                <th colspan="8" style="height:40px;"></th>
-                            </tr>
-                            </tfoot>
-                        </table>
-                    </form>
+                        <tfoot>
+                        <tr>
+                            <th colspan="8" style="height:40px;"></th>
+                        </tr>
+                        </tfoot>
+                    </table>
                 </div>
             </div>
         </div>

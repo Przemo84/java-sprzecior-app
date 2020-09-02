@@ -128,22 +128,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void massAction(Integer[] ids, String action) {
-        switch (action) {
-            case "lock": {
-                for (Integer id : ids) {
-                    lock(id);
-                }
-                break;
-            }
-            case "": {
-                break;
-            }
-
-        }
-    }
-
-    @Override
     public void changePassword(UserPasswordDto userPasswordDto) throws UserLastSixPasswordException {
         User user = authManager.user();
         String password = passwordEncoder.encode(userPasswordDto.getNewPassword());

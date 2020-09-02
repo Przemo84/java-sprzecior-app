@@ -72,107 +72,104 @@
                             <input class="form-control" id="filterInput" type="text" placeholder="Szukaj..">
                         </div>
                     </div>
-                    <form autocomplete="off" action="<c:url value="${moduleBaseUrl}"/>/checkbox"
-                          method="post" id="executable-users-list-form">
-                        <table class="table table-hover table-nomargin table-striped table-bordered"
-                               style="clear: both;">
-                            <thead>
+                    <table class="table table-hover table-nomargin table-striped table-bordered"
+                           style="clear: both;">
+                        <thead>
+                        <tr>
+                            <th style="text-align: center;">
+                                <tag:th param="id">
+                                    <fmt:message key="tool.id"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;">
+                                <tag:th param="companyId">
+                                    <fmt:message key="tool.company.id"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;">
+                                <tag:th param="available">
+                                    <fmt:message key="tool.is.available"/>
+                                </tag:th>
+                            </th>
+
+                            <th style="text-align: center;">
+                                <tag:th param="user">
+                                    <fmt:message key="tool.user"/>
+                                </tag:th>
+                            </th>
+
+                            <th style="text-align: center;">
+                                <tag:th param="takenDate">
+                                    <fmt:message key="tool.taken.date"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;">
+                                <tag:th param="model">
+                                    <fmt:message key="tool.model"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;">
+                                <tag:th param="toolType">
+                                    <fmt:message key="tool.type"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;">
+                                <tag:th param="serialNo">
+                                    <fmt:message key="tool.serial.number"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;">
+                                <tag:th param="productionDate">
+                                    <fmt:message key="tool.production.date"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;">
+                                <tag:th param="calibrationDate">
+                                    <fmt:message key="tool.calibration.date"/>
+                                </tag:th>
+                            </th>
+                        </tr>
+                        </thead>
+
+                        <tbody id="toolTable">
+                        <c:forEach var="item" items="${page.iterator()}">
                             <tr>
-                                <th style="text-align: center;">
-                                    <tag:th param="id">
-                                        <fmt:message key="tool.id"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;">
-                                    <tag:th param="companyId">
-                                        <fmt:message key="tool.company.id"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;">
-                                    <tag:th param="available">
-                                        <fmt:message key="tool.is.available"/>
-                                    </tag:th>
-                                </th>
+                                <td style="text-align: center;">${item.id}</td>
+                                <td style="text-align: center;">${item.companyId}</td>
 
-                                <th style="text-align: center;">
-                                    <tag:th param="user">
-                                        <fmt:message key="tool.user"/>
-                                    </tag:th>
-                                </th>
+                                <td style="text-align: center;">
+                                    <c:if test="${item.available}">
+                                        <i class="icon-ok" style="color: green"></i>
+                                    </c:if>
+                                    <c:if test="${item.available eq false}">
+                                        <i class="icon-minus" style="color: red"></i>
+                                    </c:if>
+                                </td>
+                                <td style="text-align: center;">${item.user.fullName}</td>
+                                <td style="text-align: center;">
+                                    <fmt:formatDate value="${item.takenDate}" pattern="YYYY-MM-D HH:MM:ss"/>
+                                </td>
 
-                                <th style="text-align: center;">
-                                    <tag:th param="takenDate">
-                                        <fmt:message key="tool.taken.date"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;">
-                                    <tag:th param="model">
-                                        <fmt:message key="tool.model"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;">
-                                    <tag:th param="toolType">
-                                        <fmt:message key="tool.type"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;">
-                                    <tag:th param="serialNo">
-                                        <fmt:message key="tool.serial.number"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;">
-                                    <tag:th param="productionDate">
-                                        <fmt:message key="tool.production.date"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;">
-                                    <tag:th param="calibrationDate">
-                                        <fmt:message key="tool.calibration.date"/>
-                                    </tag:th>
-                                </th>
+                                <td style="text-align: center;">${item.model}</td>
+                                <td style="text-align: center;">${item.toolType}</td>
+                                <td style="text-align: center;">${item.serialNo}</td>
+                                <td style="text-align: center;">
+                                    <fmt:formatDate value="${item.productionDate}" pattern="YYYY-MM"/>
+                                </td>
+                                <td style="text-align: center;">
+                                    <fmt:formatDate value="${item.calibrationDate}" pattern="YYYY-MM"/>
+                                </td>
+
                             </tr>
-                            </thead>
+                        </c:forEach>
+                        </tbody>
 
-                            <tbody id="toolTable">
-                            <c:forEach var="item" items="${page.iterator()}">
-                                <tr>
-                                    <td style="text-align: center;">${item.id}</td>
-                                    <td style="text-align: center;">${item.companyId}</td>
-
-                                    <td style="text-align: center;">
-                                        <c:if test="${item.available}">
-                                            <i class="icon-ok" style="color: green"></i>
-                                        </c:if>
-                                        <c:if test="${item.available eq false}">
-                                            <i class="icon-minus" style="color: red"></i>
-                                        </c:if>
-                                    </td>
-                                    <td style="text-align: center;">${item.user.fullName}</td>
-                                    <td style="text-align: center;">
-                                        <fmt:formatDate value="${item.takenDate}" pattern="YYYY-MM-D HH:MM:ss"/>
-                                    </td>
-
-                                    <td style="text-align: center;">${item.model}</td>
-                                    <td style="text-align: center;">${item.toolType}</td>
-                                    <td style="text-align: center;">${item.serialNo}</td>
-                                    <td style="text-align: center;">
-                                        <fmt:formatDate value="${item.productionDate}" pattern="YYYY-MM"/>
-                                    </td>
-                                    <td style="text-align: center;">
-                                        <fmt:formatDate value="${item.calibrationDate}" pattern="YYYY-MM"/>
-                                    </td>
-
-                                </tr>
-                            </c:forEach>
-                            </tbody>
-
-                            <tfoot>
-                            <tr>
-                                <th colspan="11"></th>
-                            </tr>
-                            </tfoot>
-                        </table>
-                    </form>
+                        <tfoot>
+                        <tr>
+                            <th colspan="11"></th>
+                        </tr>
+                        </tfoot>
+                    </table>
                 </div>
             </div>
         </div>

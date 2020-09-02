@@ -119,23 +119,4 @@ public class AdminControllerAdmin extends AdminAbstractController {
     }
 
 
-    @PostMapping(value = "/checkbox")
-    public String massLock(@PathParam("ids") Integer ids[], @PathParam("action") String action,
-                           final RedirectAttributes redirectAttributes) {
-
-        try {
-            userService.massAction(ids, action);
-        } catch (AdminOperationNotAllowedException e) {
-            Flash.error(redirectAttributes, "Operacja dozwolona tylko dla Administratora");
-            return "redirect:/admin/admins";
-        } catch (AdminNotAllowedToDeleteHimselfException e) {
-            Flash.error(redirectAttributes, "Nie możesz zablokować samego siebie");
-            return "redirect:/admin/admins";
-        }
-
-        Flash.success(redirectAttributes);
-        return "redirect:/admin/admins";
-    }
-
-
 }

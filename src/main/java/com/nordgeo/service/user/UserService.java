@@ -27,8 +27,6 @@ public interface UserService {
 
     void unlock(int id);
 
-    void massAction(Integer[] ids, String action);
-
     Page<User> findAllAdmins(PageRequest page);
 
     Page<User> findAllEmployees(PageRequest page);

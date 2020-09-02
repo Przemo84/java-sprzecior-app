@@ -124,26 +124,6 @@ public class EmployeeControllerAdmin extends AdminAbstractController {
     }
 
 
-    @PostMapping(value = "/checkbox")
-    public String massLock(
-            @PathParam("ids") Integer ids[],
-            @PathParam("action") String action,
-            final RedirectAttributes redirectAttributes) {
-
-        try {
-            userService.massAction(ids, action);
-        } catch (AdminOperationNotAllowedException e) {
-            Flash.error(redirectAttributes, "Operacja dozwolona tylko dla Administratora");
-            return "redirect:/admin/employees";
-        } catch (AdminNotAllowedToDeleteHimselfException e) {
-            Flash.error(redirectAttributes, "Nie możesz zablokować samego siebie");
-            return "redirect:/admin/employees";
-        }
-
-        Flash.success(redirectAttributes);
-        return "redirect:/admin/employees";
-    }
-
     @RequestMapping(value = "/make-editor/{id}")
     public String upgradeToEditor(@PathVariable("id") int id, final RedirectAttributes redirectAttributes) {
 

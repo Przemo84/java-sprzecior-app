@@ -70,37 +70,34 @@
                             <fmt:message key="action.add"/>
                         </a>
                     </div>
-                    <form autocomplete="off" action="<c:url value="${moduleBaseUrl}"/>/checkbox"
-                          method="post" id="executable-users-list-form">
-                        <table class="table table-hover table-nomargin table-striped table-bordered"
-                               style="clear: both;">
-                            <thead>
-                            <tr>
-                                <th style="text-align: center;">
-                                    <tag:th param="id">
-                                        <fmt:message key="tool.id"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;">
-                                    <tag:th param="name">
-                                        <fmt:message key="role.name"/>
-                                    </tag:th>
-                                </th>
-                            </tr>
-                            </thead>
+                    <table class="table table-hover table-nomargin table-striped table-bordered"
+                           style="clear: both;">
+                        <thead>
+                        <tr>
+                            <th style="text-align: center;">
+                                <tag:th param="id">
+                                    <fmt:message key="tool.id"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;">
+                                <tag:th param="name">
+                                    <fmt:message key="role.name"/>
+                                </tag:th>
+                            </th>
+                        </tr>
+                        </thead>
 
-                            <tbody>
-                            <c:forEach var="item" items="${page.iterator()}">
-                                <tr>
-                                    <td style="text-align: center;">${item.id}</td>
-                                    <td style="text-align: center;">${item.name}</td>
-                                </tr>
-                            </c:forEach>
-                            </tbody>
-                            <tfoot>
-                            </tfoot>
-                        </table>
-                    </form>
+                        <tbody>
+                        <c:forEach var="item" items="${page.iterator()}">
+                            <tr>
+                                <td style="text-align: center;">${item.id}</td>
+                                <td style="text-align: center;">${item.name}</td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                        <tfoot>
+                        </tfoot>
+                    </table>
                 </div>
             </div>
         </div>

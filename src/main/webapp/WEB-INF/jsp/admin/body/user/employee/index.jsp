@@ -78,100 +78,97 @@
                             <input class="form-control" id="filterInput" type="text" placeholder="Szukaj..">
                         </div>
                     </div>
-                    <form autocomplete="off" action="<c:url value="${moduleBaseUrl}"/>/checkbox"
-                          method="post" id="executable-users-list-form">
-                        <table class="table table-hover table-nomargin table-striped table-bordered"
-                               style="clear: both;">
-                            <thead>
-                            <tr>
-                                <th style="text-align: center;">
-                                    <tag:th param="id">
-                                        <fmt:message key="user.id"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;">
-                                    <tag:th param="firstName">
-                                        <fmt:message key="user.firstName"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;">
-                                    <tag:th param="lastName">
-                                        <fmt:message key="user.lastName"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;">
-                                    <tag:th param="email">
-                                        <fmt:message key="user.email"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;">
-                                    <tag:th param="username">
-                                        <fmt:message key="username"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;">
-                                    <tag:th param="lastLoginDate">
-                                        <fmt:message key="user.lastLogin"/>
-                                    </tag:th>
-                                </th>
-                                <th style="text-align: center;" colspan="3"><fmt:message key="options"/></th>
-                            </tr>
-                            </thead>
+                    <table class="table table-hover table-nomargin table-striped table-bordered"
+                           style="clear: both;">
+                        <thead>
+                        <tr>
+                            <th style="text-align: center;">
+                                <tag:th param="id">
+                                    <fmt:message key="user.id"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;">
+                                <tag:th param="firstName">
+                                    <fmt:message key="user.firstName"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;">
+                                <tag:th param="lastName">
+                                    <fmt:message key="user.lastName"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;">
+                                <tag:th param="email">
+                                    <fmt:message key="user.email"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;">
+                                <tag:th param="username">
+                                    <fmt:message key="username"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;">
+                                <tag:th param="lastLoginDate">
+                                    <fmt:message key="user.lastLogin"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;" colspan="3"><fmt:message key="options"/></th>
+                        </tr>
+                        </thead>
 
-                            <tbody id="usersTable">
-                            <c:forEach var="item" items="${page.iterator()}">
-                                <td style="text-align: center;">${item.id}</td>
-                                <td style="text-align: center;">${item.firstName}</td>
-                                <td style="text-align: center;">${item.lastName}</td>
-                                <td style="text-align: center;">${item.email}</td>
-                                <td style="text-align: center;">${item.username}</td>
-                                <td style="text-align: center;">
-                                    <fmt:formatDate value="${item.lastLoginDate}" pattern="dd.MM.yyyy HH:MM:ss"/>
-                                </td>
+                        <tbody id="usersTable">
+                        <c:forEach var="item" items="${page.iterator()}">
+                            <td style="text-align: center;">${item.id}</td>
+                            <td style="text-align: center;">${item.firstName}</td>
+                            <td style="text-align: center;">${item.lastName}</td>
+                            <td style="text-align: center;">${item.email}</td>
+                            <td style="text-align: center;">${item.username}</td>
+                            <td style="text-align: center;">
+                                <fmt:formatDate value="${item.lastLoginDate}" pattern="dd.MM.yyyy HH:MM:ss"/>
+                            </td>
 
-                                <c:if test="${item.role.name eq 'Employee'}">
-                                    <td style="width: 32px; text-align: center;">
-                                        <a href="javascript:void(0);"
-                                           onclick="javascript:confirm_action('<c:url
-                                                   value="${moduleBaseUrl}/make-editor/${item.id}"/>');"
-                                           rel="tooltip" title="Mianuj Edytora" class="btn btn-blue">
-                                            <i class="far fa-eye"></i>
-                                        </a>
-                                    </td>
-                                </c:if>
-                                <c:if test="${item.role.name ne 'Employee'}">
-                                    <td style="width: 32px; text-align: center;">
-                                    </td>
-                                </c:if>
-
+                            <c:if test="${item.role.name eq 'Employee'}">
                                 <td style="width: 32px; text-align: center;">
                                     <a href="javascript:void(0);"
                                        onclick="javascript:confirm_action('<c:url
-                                               value="${moduleBaseUrl}/form/${item.id}"/>');"
-                                       rel="tooltip" title="Edytuj" class="btn ">
-                                        <i class="icon-pencil"></i>
+                                               value="${moduleBaseUrl}/make-editor/${item.id}"/>');"
+                                       rel="tooltip" title="Mianuj Edytora" class="btn btn-blue">
+                                        <i class="far fa-eye"></i>
                                     </a>
                                 </td>
-
+                            </c:if>
+                            <c:if test="${item.role.name ne 'Employee'}">
                                 <td style="width: 32px; text-align: center;">
-                                    <a href="javascript:void(0);"
-                                       onclick="javascript:confirm_action('<c:url
-                                               value="${moduleBaseUrl}/lock/${item.id}"/>');"
-                                       rel="tooltip" title="Zablokuj" class="btn btn-danger">
-                                        <i class="fas fa-power-off"></i>
-                                    </a>
                                 </td>
-                                </tr>
-                            </c:forEach>
-                            </tbody>
+                            </c:if>
 
-                            <tfoot>
-                            <tr>
-                                <th colspan="8" style="height:40px;"></th>
+                            <td style="width: 32px; text-align: center;">
+                                <a href="javascript:void(0);"
+                                   onclick="javascript:confirm_action('<c:url
+                                           value="${moduleBaseUrl}/form/${item.id}"/>');"
+                                   rel="tooltip" title="Edytuj" class="btn ">
+                                    <i class="icon-pencil"></i>
+                                </a>
+                            </td>
+
+                            <td style="width: 32px; text-align: center;">
+                                <a href="javascript:void(0);"
+                                   onclick="javascript:confirm_action('<c:url
+                                           value="${moduleBaseUrl}/lock/${item.id}"/>');"
+                                   rel="tooltip" title="Zablokuj" class="btn btn-danger">
+                                    <i class="fas fa-power-off"></i>
+                                </a>
+                            </td>
                             </tr>
-                            </tfoot>
-                        </table>
-                    </form>
+                        </c:forEach>
+                        </tbody>
+
+                        <tfoot>
+                        <tr>
+                            <th colspan="8" style="height:40px;"></th>
+                        </tr>
+                        </tfoot>
+                    </table>
                 </div>
             </div>
         </div>
