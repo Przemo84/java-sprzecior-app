@@ -187,6 +187,8 @@ public class UserServiceImpl implements UserService {
     public void setLastLoginDate(User user) {
         user.setLastLoginDate(new Date());
         repository.save(user);
+
+        saveUserActionHistory(user, "Ostatnie logowanie: " + user.getLastLoginDate()  );
     }
 
     private void saveUserActionHistory(User user, String action) {
@@ -218,6 +220,8 @@ public class UserServiceImpl implements UserService {
         Role role = roleRepository.findOne(roleName.getValue());
         user.setRole(role);
         repository.save(user);
+
+        saveUserActionHistory(user, "Zmiana roli na:" + user.getRole().getName() + " dla ");
     }
 
     private User sanitizeUser(User user) {
