@@ -188,26 +188,26 @@ public class UserServiceImpl implements UserService {
         user.setLastLoginDate(new Date());
         repository.save(user);
 
-        saveUserActionHistory(user, "Ostatnie logowanie: " + user.getLastLoginDate()  );
+        saveUserActionHistory(user, "Ostatnie logowanie: ");
     }
 
     private void saveUserActionHistory(User user, String action) {
 
         switch (user.getRole().getName()) {
             case "Admin": {
-                userActivitiesService.saveActivity(action + " Administratora ID: <a href=\"/admin/admins/form/"
+                userActivitiesService.saveActivity(action + " Administratora: " + user.getFullName() +", ID: <a href=\"/admin/admins/form/"
                         + user.getId() + "\">" + user.getId() + "</a>");
                 break;
             }
 
             case "Employee": {
-                userActivitiesService.saveActivity(action + " Pracownika ID: <a href=\"/admin/employees/form/"
+                userActivitiesService.saveActivity(action + " Pracownika: " + user.getFullName() + ", ID: <a href=\"/admin/employees/form/"
                         + user.getId() + "\">" + user.getId() + "</a>");
                 break;
             }
 
             case "Editor": {
-                userActivitiesService.saveActivity(action + " Pracownika ID: <a href=\"/admin/employees/form/"
+                userActivitiesService.saveActivity(action + " Pracownika: " + user.getFullName() + ", ID: <a href=\"/admin/employees/form/"
                         + user.getId() + "\">" + user.getId() + "</a>");
                 break;
             }

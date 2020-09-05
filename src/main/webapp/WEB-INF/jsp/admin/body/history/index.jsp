@@ -55,7 +55,7 @@
                         <label>
                             <div class="btn-group" style="float: left;">
                                 <a href="#" data-toggle="dropdown" class="btn dropdown-toggle">
-                                    ${(not empty param.size) ? param.size : 10}<span class="caret"></span>
+                                    ${(not empty param.size) ? param.size : 100}<span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <c:if test="${param.size != 10}">

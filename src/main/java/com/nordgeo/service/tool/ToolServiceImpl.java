@@ -8,6 +8,7 @@ import com.nordgeo.exception.ToolAlreadyTakenException;
 import com.nordgeo.persistence.repository.ToolRepository;
 import com.nordgeo.security.AuthManager;
 import com.nordgeo.service.toolStatus.ToolStatusService;
+import com.nordgeo.service.user.activity.UserActivitiesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,12 +23,15 @@ public class ToolServiceImpl implements ToolService {
 
     private AuthManager authManager;
 
+    private UserActivitiesService userActivitiesService;
+
     @Autowired
     private ToolStatusService toolStatusService;
 
-    public ToolServiceImpl(ToolRepository toolrepository, AuthManager authManager) {
+    public ToolServiceImpl(ToolRepository toolrepository, AuthManager authManager, UserActivitiesService userActivitiesService) {
         this.toolRepository = toolrepository;
         this.authManager = authManager;
+        this.userActivitiesService = userActivitiesService;
     }
 
     @Override
@@ -49,6 +53,9 @@ public class ToolServiceImpl implements ToolService {
     public void save(Tool tool) {
         tool.setAvailable(true);
         toolRepository.save(tool);
+
+        saveToolActionHistory(tool, "Dodanie nowego sprzętu: ");
+
     }
 
     @Override
@@ -73,6 +80,8 @@ public class ToolServiceImpl implements ToolService {
         tool.setUser(authManager.user());
         tool.setTakenDate(new Date());
         toolRepository.save(tool);
+
+        saveToolActionHistory(tool, "Pobranie: ");
     }
 
     @Override
@@ -86,7 +95,9 @@ public class ToolServiceImpl implements ToolService {
     }
 
     @Override
-    public Page<Tool> findAllUserTools(PageRequest page) { return toolRepository.findToolsByUser(authManager.user(),page); }
+    public Page<Tool> findAllUserTools(PageRequest page) {
+        return toolRepository.findToolsByUser(authManager.user(), page);
+    }
 
     @Override
     public void returnTool(ToolStatus toolStatus) {
@@ -98,6 +109,14 @@ public class ToolServiceImpl implements ToolService {
         tool.setUser(null);
         tool.setTakenDate(null);
         toolRepository.save(tool);
+
+        saveToolActionHistory(tool, "Zwrot: ");
+    }
+
+    private void saveToolActionHistory(Tool tool, String action) {
+
+        userActivitiesService.saveActivity(action + ' ' + tool.getToolType() + " ID: <a href=\"/admin/tools/form/"
+                + tool.getId() + "\">" + tool.getId() + "</a>");
     }
 
 }
