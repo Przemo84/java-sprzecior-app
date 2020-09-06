@@ -185,9 +185,37 @@
                                 <td style="text-align: center;">
                                     <fmt:formatDate value="${item.calibrationDate}" pattern="YYYY-MM"/>
                                 </td>
-                                <td style="text-align: center;">
-                                    <fmt:formatNumber type="number" maxFractionDigits="2" value="${item.averageRating}"/>
-                                </td>
+
+                                <c:if test="${item.averageRating >= 4.0}">
+                                    <td style="text-align: center; background-color: green">
+                                        <strong><fmt:formatNumber type="number" maxFractionDigits="2" value="${item.averageRating}"/></strong>
+                                    </td>
+                                </c:if>
+
+                                <c:if test="${item.averageRating < 4.0 and item.averageRating >= 3.0}">
+                                    <td style="text-align: center; background-color: yellowgreen">
+                                        <strong><fmt:formatNumber type="number" maxFractionDigits="2" value="${item.averageRating}"/></strong>
+                                    </td>
+                                </c:if>
+
+                                <c:if test="${item.averageRating < 3.0 and item.averageRating >= 2.0}">
+                                    <td style="text-align: center; background-color: yellow">
+                                        <strong><fmt:formatNumber type="number" maxFractionDigits="2" value="${item.averageRating}"/></strong>
+                                    </td>
+                                </c:if>
+
+                                <c:if test="${item.averageRating < 2.0}">
+                                    <td style="text-align: center; background-color: red">
+                                        <strong><fmt:formatNumber type="number" maxFractionDigits="2" value="${item.averageRating}"/></strong>
+                                    </td>
+                                </c:if>
+
+                                <c:if test="${item.averageRating eq null}">
+                                    <td style="width: 32px; text-align: center;">
+                                    </td>
+                                </c:if>
+
+
                                 <td style="width: 32px; text-align: center;">
                                     <a href="<c:url value="${moduleBaseUrl}/form/${item.id}"/>" rel="tooltip"
                                        title="Edytuj" class="btn">
