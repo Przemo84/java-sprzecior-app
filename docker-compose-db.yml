@@ -7,7 +7,7 @@ services:
 #          - ./src/main/docker/custom.cnf:/etc/mysql/conf.d/custom.cnf
 #            - ./ci/.data/db:/var/lib/mysql
         environment:
-            - MYSQL_DATABASE=docker
-            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_DATABASE=nordgeo_db
+            - MYSQL_ROOT_PASSWORD=antek2012pola2013
         ports:
           - 3307:3306

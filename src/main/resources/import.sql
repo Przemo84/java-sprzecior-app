@@ -1,4 +1,4 @@
-ALTER DATABASE docker COLLATE 'utf8_general_ci';
+ALTER DATABASE nordgeo_db COLLATE 'utf8_general_ci';
 -- --
 INSERT INTO role (name) VALUES ('Admin');
 INSERT INTO role (name) VALUES ('Editor');
