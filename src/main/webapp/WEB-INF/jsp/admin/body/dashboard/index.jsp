@@ -28,7 +28,7 @@
 <div class="row-fluid">
 
     <div class="alert alert-info">
-        Witaj w systemie zarządzania
+        <fmt:message key="welcome.mesage.for.admin"/>
         <button data-dismiss="alert" class="close" type="button">×</button>
     </div>
 </div>
