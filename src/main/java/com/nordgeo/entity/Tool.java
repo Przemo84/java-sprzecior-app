@@ -7,6 +7,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -93,11 +95,15 @@ public class Tool {
 
     public Date getProductionDate() { return productionDate; }
 
-    public void setProductionDate(Date productionDate) { this.productionDate = productionDate; }
+    public void setProductionDate(String productionDate) throws ParseException {
+        this.productionDate = new SimpleDateFormat("yyyy-MM-dd").parse(productionDate);
+    }
 
     public Date getCalibrationDate() { return calibrationDate; }
 
-    public void setCalibrationDate(Date calibrationDate) { this.calibrationDate = calibrationDate; }
+    public void setCalibrationDate(String calibrationDate) throws ParseException {
+        this.calibrationDate = new SimpleDateFormat("yyyy-MM-dd").parse(calibrationDate);;
+    }
 
     public Date getTakenDate() { return takenDate; }
 

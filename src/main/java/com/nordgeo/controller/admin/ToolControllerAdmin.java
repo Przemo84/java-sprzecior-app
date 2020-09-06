@@ -76,7 +76,7 @@ public class ToolControllerAdmin extends AdminAbstractController {
                          BindingResult result, final RedirectAttributes redirectAttributes) {
 
         if (result.hasErrors())
-            return "tool.form";
+            return "tools.form";
 
         toolService.save(tool);
         Flash.success(redirectAttributes);
