@@ -3,7 +3,6 @@ package com.nordgeo.controller.app;
 
 import com.nordgeo.controller.AppAbstractController;
 import com.nordgeo.data.UserPasswordDto;
-import com.nordgeo.exception.UserLastSixPasswordException;
 import com.nordgeo.service.user.UserService;
 import com.nordgeo.utils.Flash;
 import com.nordgeo.validation.validator.UserPasswordValidator;
@@ -65,12 +64,7 @@ public class UserAccountControllerApp extends AppAbstractController {
         if (result.hasErrors())
             return "user.change.password.form";
 
-        try {
-            userService.changePassword(userPasswordDto);
-        } catch (UserLastSixPasswordException e) {
-            Flash.error(redirectAttributes, "Akcja zakończona niepowodzeniem.");
-            return "redirect:/app/account/password";
-        }
+        userService.changePassword(userPasswordDto);
 
         Flash.success(redirectAttributes);
         return "redirect:/app/dashboard";

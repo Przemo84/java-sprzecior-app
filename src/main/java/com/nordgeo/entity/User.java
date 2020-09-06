@@ -90,9 +90,6 @@ public class User {
     @JoinColumn(foreignKey = @ForeignKey(name = "FK_USER_ROLE"))
     private Role role;
 
-    @ElementCollection
-    private List<String> userPasswords;
-
     @JsonIgnore
     @NotNull
     private Integer loginAttempts = 0;
@@ -221,21 +218,6 @@ public class User {
     public String getMobile() { return mobile; }
 
     public void setMobile(String mobile) { this.mobile = mobile; }
-
-    public List<String> getUserPasswords() {
-        return userPasswords;
-    }
-
-    public void addUserPassword(String userPasswords) {
-        if(this.userPasswords == null){
-            this.userPasswords = new ArrayList<>();
-        }
-
-        if(this.userPasswords.size() == 6)
-            this.userPasswords.remove(0);
-
-        this.userPasswords.add(userPasswords);
-    }
 
     public Integer getLoginAttempts() { return loginAttempts; }
 

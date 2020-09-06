@@ -40,7 +40,7 @@
                     <spring:bind path="newPassword">
                         <div class="control-group">
                             <div class="form-group ${status.error ? 'has-error' : ''}">
-                                <label class="control-label"><fmt:message key="password"/></label>
+                                <label class="control-label"><fmt:message key="password.new"/></label>
                                 <form:input path="newPassword" type="password" class="form-control"
                                             autocomplete="false"/>
                                 <span style="color: red"><form:errors path="newPassword" class="control-label"/></span>

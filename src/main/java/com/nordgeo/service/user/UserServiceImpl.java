@@ -138,18 +138,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void changePassword(UserPasswordDto userPasswordDto) throws UserLastSixPasswordException {
+    public void changePassword(UserPasswordDto userPasswordDto) {
         User user = authManager.user();
         String password = passwordEncoder.encode(userPasswordDto.getNewPassword());
 
-        for (String userPastPassword : user.getUserPasswords()) {
-            if (passwordEncoder.matches(userPasswordDto.getNewPassword(), userPastPassword))
-                throw new UserLastSixPasswordException();
-        }
-
-
         user.setPassword(password);
-        user.addUserPassword(password);
         user.setMustChangePassword(false);
 
         repository.save(user);

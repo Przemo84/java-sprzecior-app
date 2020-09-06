@@ -2,7 +2,6 @@ package com.nordgeo.service.user;
 
 import com.nordgeo.data.UserPasswordDto;
 import com.nordgeo.entity.User;
-import com.nordgeo.exception.UserLastSixPasswordException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
@@ -21,7 +20,7 @@ public interface UserService {
 
     void lock(Integer id);
 
-    void changePassword(UserPasswordDto userPasswordDto) throws UserLastSixPasswordException;
+    void changePassword(UserPasswordDto userPasswordDto);
 
     Page<User> findAllLocked(PageRequest pageRequest);
 

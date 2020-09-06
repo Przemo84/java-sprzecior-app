@@ -3,7 +3,6 @@ package com.nordgeo.controller.admin.user;
 
 import com.nordgeo.controller.AdminAbstractController;
 import com.nordgeo.data.UserPasswordDto;
-import com.nordgeo.exception.UserLastSixPasswordException;
 import com.nordgeo.service.user.UserService;
 import com.nordgeo.utils.Flash;
 import com.nordgeo.validation.validator.UserPasswordValidator;
@@ -67,7 +66,7 @@ public class UserAccountControllerAdmin extends AdminAbstractController {
 
         try {
             userService.changePassword(userPasswordDto);
-        } catch (UserLastSixPasswordException e) {
+        } catch (Exception e) {
             Flash.error(redirectAttributes, "Akcja zakończona niepowodzeniem.");
             return "redirect:/admin/account/password";
         }
