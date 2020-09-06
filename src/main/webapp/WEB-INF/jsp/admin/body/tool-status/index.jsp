@@ -42,7 +42,7 @@
             </i>
         </div>
         <div class="col-md-12" style="text-align: center">
-            <b style="color:#942a25; margin-top: 20px; background-color: #ccffff">Średnia ocen:
+            <b style="color:#942a25; margin-top: 20px; background-color: #ccffff"><fmt:message key="tool.average.rating"/>
                 <fmt:formatNumber type="number" maxFractionDigits="2" value="${ratings}"/>
             </b>
         </div>

@@ -2,6 +2,7 @@ package com.nordgeo.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Formula;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -48,6 +49,9 @@ public class Tool {
     private String image;
 
     private Boolean available = true;
+
+    @Formula(value = "(select avg(tool_status.rating) from tool_status where tool_status.tool_id = id)")
+    private Double averageRating;
 
     @OneToOne
     private User user;
@@ -108,4 +112,6 @@ public class Tool {
     public Date getTakenDate() { return takenDate; }
 
     public void setTakenDate(Date takenDate) { this.takenDate = takenDate; }
+
+    public Double getAverageRating() { return averageRating; }
 }

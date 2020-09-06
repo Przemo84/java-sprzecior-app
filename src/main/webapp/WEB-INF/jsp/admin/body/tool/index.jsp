@@ -132,6 +132,11 @@
                                     <fmt:message key="tool.calibration.date"/>
                                 </tag:th>
                             </th>
+                            <th style="text-align: center;">
+                                <tag:th param="averageRating">
+                                    <fmt:message key="tool.average.rating"/>
+                                </tag:th>
+                            </th>
 
                             <th style="text-align: center;" colspan="3"><fmt:message key="options"/></th>
                         </tr>
@@ -180,7 +185,9 @@
                                 <td style="text-align: center;">
                                     <fmt:formatDate value="${item.calibrationDate}" pattern="YYYY-MM"/>
                                 </td>
-
+                                <td style="text-align: center;">
+                                    <fmt:formatNumber type="number" maxFractionDigits="2" value="${item.averageRating}"/>
+                                </td>
                                 <td style="width: 32px; text-align: center;">
                                     <a href="<c:url value="${moduleBaseUrl}/form/${item.id}"/>" rel="tooltip"
                                        title="Edytuj" class="btn">
