@@ -18,16 +18,16 @@
         </br>
         </br>
         <sec:authorize access="hasAnyAuthority('Editor', 'Employee')">
-            <div style="float: right; margin: 10px 10px 5px 5px">
-                <a class="form-control btn-info" style="text-align: center" href="<c:url value="/app/dashboard/"/> ">
+            <div style="text-align: center">
+                <a class="btn btn-large btn-green" href="<c:url value="/app/dashboard/"/> ">
                     Powrót do Aplikacji
                 </a>
             </div>
         </sec:authorize>
 
         <sec:authorize access="hasAnyAuthority('Admin')">
-            <div style="float: right; margin: 10px 10px 5px 5px">
-                <a class="form-control btn-info" style="text-align: center" href="<c:url value="/admin/dashboard/"/> ">
+            <div style="text-align: center">
+                <a class="btn btn-large btn-green" href="<c:url value="/admin/dashboard/"/> ">
                     Powrót do CMS
                 </a>
             </div>
