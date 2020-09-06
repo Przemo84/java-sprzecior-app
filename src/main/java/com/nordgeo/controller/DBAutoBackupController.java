@@ -26,7 +26,7 @@ public class DBAutoBackupController {
         String backupDateStr = format.format(backupDate);
 
         String fileName = "Daily_DB_Backup"; // default file name
-        String folderPath = "C:\\home\\DB-Backup";
+        String folderPath = "C:\\DB-Backup";
         File filePath = new File(folderPath);
         filePath.mkdir(); // create folder if not exist
 
