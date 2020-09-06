@@ -87,9 +87,9 @@ public class SecurityConfig {
                     .logout()
                     .logoutUrl("/signout")
                     .logoutSuccessUrl(LOGIN_PAGE)
-                    .permitAll();
-                   // .and()
-                  //  .csrf().disable();
+//                    .permitAll();
+                    .and()
+                    .csrf().disable();
 
         }
     }
