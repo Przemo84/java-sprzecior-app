@@ -5,7 +5,7 @@
 
 
 <div class="container-fluid">
-    <a href="#" id="brand">v0.1.0</a>
+    <a href="#" id="brand">v1.0.0</a>
     <a href="#" class="toggle-nav" rel="tooltip" data-placement="bottom" title="Toggle navigation">
         <i class="icon-reorder"></i>
     </a>
@@ -19,14 +19,13 @@
     </ul>
     <div class="user">
         <ul class="icon-nav">
-
             <li style="width: 300px">
-                <h4 class="pull-left" style=" color: white">Sprzęcior Nordgeo CMS</h4>
+                <h4 class="pull-left" style=" color: white; margin-right: 12px">CMS Sprzęcior</h4>
+                <div style="float: left; margin-top: 2px">
+                    <img src="<c:url value="/resources/img/nordgeo-logo-50.png"/> " alt="">
+                </div>
             </li>
 
-            <li class="auth-timer" style="color: white; margin-top: 1px;">
-                <a href="javascript:void(0);" id="session-regenerate"><i class="icon-refresh"></i></a>
-            </li>
             <li class="auth-timer" style="color: white; margin-top: 8px; margin-right: 10px">
                 <strong><fmt:message key="header.seconds.left.to.logout"/> </strong>
                 <%--//TODO timer --%>
@@ -52,7 +51,7 @@
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     </form>
 
-                    <a  href="#" onclick="document.getElementById('logout-form').submit();">
+                    <a href="#" onclick="document.getElementById('logout-form').submit();">
                         <fmt:message key="log-out"/> </a>
                 </li>
             </ul>

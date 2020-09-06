@@ -27,7 +27,8 @@
 <br>
 <div class="row-fluid">
 
-    <div class="alert alert-info">Witaj w panelu zarządzania sprzętem
+    <div class="alert alert-info">
+        <fmt:message key="welcome.mesage.for.employee"/>
         <button data-dismiss="alert" class="close" type="button">×</button>
     </div>
 </div>
