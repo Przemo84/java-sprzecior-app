@@ -4,6 +4,7 @@ package com.nordgeo.controller.admin;
 import com.nordgeo.controller.AdminAbstractController;
 import com.nordgeo.entity.Tool;
 import com.nordgeo.exception.AdminOperationNotAllowedException;
+import com.nordgeo.exception.ItemNotFoundException;
 import com.nordgeo.service.tool.ToolService;
 import com.nordgeo.utils.Flash;
 import com.nordgeo.utils.PageSort;
@@ -55,19 +56,24 @@ public class ToolControllerAdmin extends AdminAbstractController {
     }
 
     @RequestMapping("/form/{id}")
-    public String form(@PathVariable("id") int id, Model model) {
-        Tool tool = toolService.findById(id);
+    public String form(@PathVariable("id") int id, Model model,
+                       final RedirectAttributes redirectAttributes) {
 
-        model.addAttribute("tool", tool);
+        try {
+            Tool tool = toolService.findById(id);
+            model.addAttribute("tool", tool);
+
+        } catch (ItemNotFoundException e) {
+            Flash.error(redirectAttributes, "Nie znaleziono sprzętu");
+            return "redirect:/admin/tools";
+        }
 
         return "tools.form";
     }
 
     @PostMapping(value = "/save")
-    public String submit(
-            @Valid @ModelAttribute("tool") Tool tool,
-            BindingResult result,
-            final RedirectAttributes redirectAttributes) {
+    public String submit(@Valid @ModelAttribute("tool") Tool tool,
+                         BindingResult result, final RedirectAttributes redirectAttributes) {
 
         if (result.hasErrors())
             return "tool.form";
@@ -79,9 +85,7 @@ public class ToolControllerAdmin extends AdminAbstractController {
     }
 
     @RequestMapping(value = "/delete/{id}")
-    public String deleteOne(
-            @PathVariable("id") int id,
-            final RedirectAttributes redirectAttributes) {
+    public String deleteOne(@PathVariable("id") int id, final RedirectAttributes redirectAttributes) {
 
         try {
             toolService.delete(id);

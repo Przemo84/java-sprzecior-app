@@ -7,6 +7,7 @@ import com.nordgeo.data.mapper.UserDtoMapper;
 import com.nordgeo.entity.User;
 import com.nordgeo.exception.AdminNotAllowedToDeleteHimselfException;
 import com.nordgeo.exception.AdminOperationNotAllowedException;
+import com.nordgeo.exception.ItemNotFoundException;
 import com.nordgeo.service.Role.RoleService;
 import com.nordgeo.service.user.UserService;
 import com.nordgeo.utils.Flash;
@@ -70,11 +71,18 @@ public class EmployeeControllerAdmin extends AdminAbstractController {
     }
 
     @RequestMapping("/form/{id}")
-    public String form(@PathVariable("id") int id, Model model) {
-        User employee = userService.findById(id);
-        employee.setPassword(null);
+    public String form(@PathVariable("id") int id, Model model,
+                       final RedirectAttributes redirectAttributes) {
 
-        model.addAttribute("user", employee);
+        try {
+            User adminUser = userService.findById(id);
+            adminUser.setPassword(null);
+
+            model.addAttribute("user", adminUser);
+        } catch (ItemNotFoundException e) {
+            Flash.error(redirectAttributes, "Nie znaleziono użytkownika");
+            return "redirect:/admin/employees";
+        }
 
         return "user.employees.form";
     }
