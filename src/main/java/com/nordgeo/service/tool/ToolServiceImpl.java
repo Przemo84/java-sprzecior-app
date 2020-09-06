@@ -4,6 +4,7 @@ import com.nordgeo.entity.Tool;
 import com.nordgeo.entity.ToolStatus;
 import com.nordgeo.entity.User;
 import com.nordgeo.exception.AdminOperationNotAllowedException;
+import com.nordgeo.exception.ItemNotFoundException;
 import com.nordgeo.exception.ToolAlreadyTakenException;
 import com.nordgeo.persistence.repository.ToolRepository;
 import com.nordgeo.security.AuthManager;
@@ -36,7 +37,13 @@ public class ToolServiceImpl implements ToolService {
 
     @Override
     public Tool findById(Integer id) {
-        return toolRepository.findOne(id);
+
+        Tool tool = toolRepository.findOne(id);
+
+        if (tool == null)
+            throw new ItemNotFoundException();
+
+        return tool;
     }
 
     @Override
@@ -52,9 +59,14 @@ public class ToolServiceImpl implements ToolService {
     @Override
     public void save(Tool tool) {
         tool.setAvailable(true);
+        String action = "Dodanie";
+
+        if (tool.getId() != null)
+            action = "Edycja";
+
         toolRepository.save(tool);
 
-        saveToolActionHistory(tool, "Dodanie nowego sprzętu: ");
+        saveToolActionHistory(tool, action);
 
     }
 
@@ -115,8 +127,8 @@ public class ToolServiceImpl implements ToolService {
 
     private void saveToolActionHistory(Tool tool, String action) {
 
-        userActivitiesService.saveActivity(action + ' ' + tool.getToolType() + " ID: <a href=\"/admin/tools/form/"
-                + tool.getId() + "\">" + tool.getId() + "</a>");
+        userActivitiesService.saveActivity(authManager.user(), action + ": " + tool.getToolType() + ", Model: " + tool.getModel() + ", Nordgeo ID: <a href=\"/admin/tools/form/"
+                + tool.getId() + "\">" + tool.getCompanyId() + "</a>");
     }
 
 }

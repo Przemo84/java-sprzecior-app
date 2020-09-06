@@ -3,9 +3,7 @@ package com.nordgeo.service.user;
 import com.nordgeo.data.UserPasswordDto;
 import com.nordgeo.entity.Role;
 import com.nordgeo.entity.User;
-import com.nordgeo.exception.AdminNotAllowedToDeleteHimselfException;
-import com.nordgeo.exception.AdminOperationNotAllowedException;
-import com.nordgeo.exception.UserLastSixPasswordException;
+import com.nordgeo.exception.*;
 import com.nordgeo.persistence.repository.RoleRepository;
 import com.nordgeo.persistence.repository.UserRepository;
 import com.nordgeo.security.AuthManager;
@@ -69,8 +67,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findById(Integer id) {
-        return repository.findOne(id);
+    public User findById(Integer id)  {
+
+        User user = repository.findOne(id);
+
+        if (user == null)
+            throw new ItemNotFoundException();
+
+        return user;
     }
 
     @Override
@@ -82,8 +86,14 @@ public class UserServiceImpl implements UserService {
     public User save(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
+        String action = "Utworzenie";
+
+        if (user.getId() != null)
+            action = "Edycja";
+
         User savedUser = repository.save(sanitizeUser(user));
-        saveUserActionHistory(user, "Utworzenie");
+
+        saveUserActionHistory(user, action);
 
         return savedUser;
     }
@@ -187,31 +197,18 @@ public class UserServiceImpl implements UserService {
     public void setLastLoginDate(User user) {
         user.setLastLoginDate(new Date());
         repository.save(user);
-
-        saveUserActionHistory(user, "Ostatnie logowanie: ");
     }
 
     private void saveUserActionHistory(User user, String action) {
 
-        switch (user.getRole().getName()) {
-            case "Admin": {
-                userActivitiesService.saveActivity(action + " Administratora: " + user.getFullName() +", ID: <a href=\"/admin/admins/form/"
-                        + user.getId() + "\">" + user.getId() + "</a>");
-                break;
-            }
-
-            case "Employee": {
-                userActivitiesService.saveActivity(action + " Pracownika: " + user.getFullName() + ", ID: <a href=\"/admin/employees/form/"
-                        + user.getId() + "\">" + user.getId() + "</a>");
-                break;
-            }
-
-            case "Editor": {
-                userActivitiesService.saveActivity(action + " Pracownika: " + user.getFullName() + ", ID: <a href=\"/admin/employees/form/"
-                        + user.getId() + "\">" + user.getId() + "</a>");
-                break;
-            }
+        if (user.getRole().getName().equals("Admin")) {
+            userActivitiesService.saveActivity(authManager.user(), action + " Administratora: " + user.getFullName() + ", ID: <a href=\"/admin/admins/form/"
+                    + user.getId() + "\">" + user.getId() + "</a>");
+        } else {
+            userActivitiesService.saveActivity(authManager.user(), action + " Użytkownika: " + user.getFullName() + ", ID: <a href=\"/admin/employees/form/"
+                    + user.getId() + "\">" + user.getId() + "</a>");
         }
+
     }
 
     @Override
@@ -221,7 +218,12 @@ public class UserServiceImpl implements UserService {
         user.setRole(role);
         repository.save(user);
 
-        saveUserActionHistory(user, "Zmiana roli na:" + user.getRole().getName() + " dla ");
+        String changedRoleName = "Edytor";
+
+        if (user.getRole().getName().equals("Employee"))
+            changedRoleName = "Pracownik";
+
+        saveUserActionHistory(user, "Zmiana roli na: " + changedRoleName + " dla ");
     }
 
     private User sanitizeUser(User user) {
