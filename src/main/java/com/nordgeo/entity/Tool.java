@@ -7,7 +7,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Tool {
@@ -34,6 +36,9 @@ public class Tool {
 
     @DateTimeFormat
     private Date takenDate;
+
+    @OneToMany(mappedBy = "tool", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    List<ToolStatus> toolStatuses = new ArrayList<>();
 
     @NotNull
     private String toolType;

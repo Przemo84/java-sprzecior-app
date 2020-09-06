@@ -39,7 +39,7 @@ public class ToolStatus {
     @OneToOne
     private User user;
 
-    @OneToOne
+    @ManyToOne
     private Tool tool;
 
     @Min(1)
