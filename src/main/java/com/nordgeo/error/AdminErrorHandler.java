@@ -9,7 +9,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
-//@Controller
+@Controller
+@ControllerAdvice(basePackages = "com.nordgeo.controller")
 public class AdminErrorHandler implements ErrorController
 {
 
@@ -36,10 +37,6 @@ public class AdminErrorHandler implements ErrorController
                 break;
             }
             case 404: {
-                errorPageName = "not.found.404";
-                break;
-            }
-            case 405: {
                 errorPageName = "not.found.404";
                 break;
             }

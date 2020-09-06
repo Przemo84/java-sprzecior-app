@@ -134,7 +134,7 @@
                                     <td style="width: 32px; text-align: center;">
                                         <a href="javascript:void(0);"
                                            onclick="javascript:confirm_action('<c:url
-                                                   value="${moduleBaseUrl}/lock/${item.id}"/>');"
+                                                   value="../employees/lock/${item.id}"/>');"
                                            rel="tooltip" title="Zablokuj" class="btn btn-danger">
                                             <i class="fas fa-power-off"></i>
                                         </a>

@@ -108,5 +108,25 @@
         <put-attribute name="body" value="/WEB-INF/jsp/app/body/change-password/form.jsp"/>
     </definition>
 
+    <definition name="bad.request.400" extends="defLogin">
+        <put-attribute name="body" value="/WEB-INF/jsp/error-pages/bad-request-400.jsp"/>
+    </definition>
+
+    <definition name="unauthorized.401" extends="defLogin">
+        <put-attribute name="body" value="/WEB-INF/jsp/error-pages/unauthorized-401.jsp"/>
+    </definition>
+
+    <definition name="forbidden.403" extends="defLogin">
+        <put-attribute name="body" value="/WEB-INF/jsp/body/error-pages/forbidden-403.jsp"/>
+    </definition>
+
+    <definition name="not.found.404" extends="defLogin">
+        <put-attribute name="body" value="/WEB-INF/jsp/error-pages/not-found-404.jsp"/>
+    </definition>
+
+    <definition name="server.error.500" extends="defLogin">
+        <put-attribute name="body" value="/WEB-INF/jsp/error-pages/server-error-500.jsp"/>
+    </definition>
+
 
 </tiles-definitions>
