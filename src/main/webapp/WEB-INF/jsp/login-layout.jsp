@@ -39,7 +39,7 @@
 
 <body class="login theme-darkblue">
 <div class="login-logo"  style="text-align: center; padding: 2px; display: compact">
-    <img src="<c:url value="/resources/img/nodrgeo-logo.png"/> " alt="">
+    <img src="<c:url value="/resources/img/nordgeo-logo-250.png"/> " alt="">
 </div>
     <div>
         <tiles:insertAttribute name="body"/>
