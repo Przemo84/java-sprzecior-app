@@ -48,6 +48,14 @@ public class ToolControllerAdmin extends AdminAbstractController {
         return "tools.index";
     }
 
+    @RequestMapping("/unusable")
+    public String indexUnusable(PageSort pageSort, Model model) {
+        Page<Tool> toolPage = toolService.findAllUnusable(pageSort.getPage(model));
+        model.addAttribute("page", toolPage);
+
+        return "tools.index.unusable";
+    }
+
     @RequestMapping("/form")
     public String form(Model model) {
         model.addAttribute("tool", new Tool());
@@ -96,6 +104,34 @@ public class ToolControllerAdmin extends AdminAbstractController {
 
         Flash.success(redirectAttributes);
         return "redirect:/admin/tools";
+    }
+
+    @RequestMapping(value = "/unusable/{id}")
+    public String makeUnusable(@PathVariable("id") int id, final RedirectAttributes redirectAttributes) {
+
+        try {
+            toolService.makeUnusable(id);
+        } catch (AdminOperationNotAllowedException e) {
+            Flash.error(redirectAttributes, "Operacja dozwolona tylko dla Administratora");
+            return "redirect:/admin/tools";
+        }
+
+        Flash.success(redirectAttributes, "Akcja zakończona powodzeniem");
+        return "redirect:/admin/tools/unusable";
+    }
+
+    @RequestMapping(value = "/usable/{id}")
+    public String makeUsable(@PathVariable("id") int id, final RedirectAttributes redirectAttributes) {
+
+        try {
+            toolService.makeUsable(id);
+        } catch (AdminOperationNotAllowedException e) {
+            Flash.error(redirectAttributes, "Operacja dozwolona tylko dla Administratora");
+            return "redirect:/admin/tools";
+        }
+
+        Flash.success(redirectAttributes, "Akcja zakończona powodzeniem");
+        return "redirect:/admin/tools/unusable";
     }
 
 

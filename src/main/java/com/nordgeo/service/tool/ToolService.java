@@ -27,4 +27,10 @@ public interface ToolService {
     Page<Tool> findAllUserTools(PageRequest page);
 
     void returnTool(ToolStatus toolStatus);
+
+    void makeUnusable(int id);
+
+    Page<Tool> findAllUnusable(PageRequest page);
+
+    void makeUsable(int id);
 }

@@ -53,7 +53,7 @@ public class ToolServiceImpl implements ToolService {
 
     @Override
     public Page<Tool> findAll(PageRequest page) {
-        return toolRepository.findAll(page);
+        return toolRepository.findToolByUnusableIsFalseOrUnusableNull(page);
     }
 
     @Override
@@ -123,6 +123,35 @@ public class ToolServiceImpl implements ToolService {
         toolRepository.save(tool);
 
         saveToolActionHistory(tool, "Zwrot: ");
+    }
+
+    @Override
+    public void makeUnusable(int id) {
+        Tool tool = findById(id);
+        tool.setAvailable(false);
+        tool.setUnusable(true);
+        tool.setUnusableDate(new Date());
+
+        toolRepository.save(tool);
+
+        saveToolActionHistory(tool, "Przeniesienie do nieużytków: ");
+    }
+
+    @Override
+    public Page<Tool> findAllUnusable(PageRequest page) {
+        return toolRepository.findToolsByUnusableTrue(page);
+    }
+
+    @Override
+    public void makeUsable(int id) {
+        Tool tool = findById(id);
+        tool.setUnusableDate(null);
+        tool.setUnusable(false);
+        tool.setAvailable(true);
+
+        toolRepository.save(tool);
+
+        saveToolActionHistory(tool, "Przywrócenie do używalnego sprzętu: ");
     }
 
     private void saveToolActionHistory(Tool tool, String action) {

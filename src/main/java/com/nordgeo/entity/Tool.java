@@ -50,6 +50,11 @@ public class Tool {
 
     private Boolean available = true;
 
+    private Boolean unusable = false;
+
+    @DateTimeFormat
+    private Date unusableDate;
+
     @Formula(value = "(select avg(tool_status.rating) from tool_status where tool_status.tool_id = id)")
     private Double averageRating;
 
@@ -116,4 +121,12 @@ public class Tool {
     public void setTakenDate(Date takenDate) { this.takenDate = takenDate; }
 
     public Double getAverageRating() { return averageRating; }
+
+    public Boolean getUnusable() { return unusable; }
+
+    public void setUnusable(Boolean unusable) { this.unusable = unusable; }
+
+    public Date getUnusableDate() { return unusableDate; }
+
+    public void setUnusableDate(Date unusableDate) { this.unusableDate = unusableDate; }
 }
