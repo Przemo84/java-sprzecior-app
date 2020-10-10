@@ -41,8 +41,14 @@
         </a>
     </div>
     <ul class="subnav-menu">
-        <li class="<c:if test="${fn:contains(currentUrl, 'admin/tools')}">active</c:if>">
+        <li class="<c:if test="${fn:contains(currentUrl, 'admin/tools') && fn:endsWith(currentUrl, 'admin/tools/')}">active</c:if>">
             <a href="<c:url value="/admin/tools/"/>"><fmt:message key="menu.action.tools"/> </a>
+        </li>
+    </ul>
+
+    <ul class="subnav-menu">
+        <li class="<c:if test="${fn:contains(currentUrl, 'admin/tools/unusable')}">active</c:if>">
+            <a href="<c:url value="/admin/tools/unusable"/>"><fmt:message key="menu.action.tools.unusable"/> </a>
         </li>
     </ul>
 </div>
