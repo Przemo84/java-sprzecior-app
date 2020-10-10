@@ -100,13 +100,15 @@ public class Tool {
     public Date getProductionDate() { return productionDate; }
 
     public void setProductionDate(String productionDate) throws ParseException {
-        this.productionDate = new SimpleDateFormat("yyyy-MM-dd").parse(productionDate);
+        if (!productionDate.equals(""))
+            this.productionDate = new SimpleDateFormat("yyyy-MM-dd").parse(productionDate);
     }
 
     public Date getCalibrationDate() { return calibrationDate; }
 
     public void setCalibrationDate(String calibrationDate) throws ParseException {
-        this.calibrationDate = new SimpleDateFormat("yyyy-MM-dd").parse(calibrationDate);;
+        if (!calibrationDate.equals(""))
+            this.calibrationDate = new SimpleDateFormat("yyyy-MM-dd").parse(calibrationDate);;
     }
 
     public Date getTakenDate() { return takenDate; }
