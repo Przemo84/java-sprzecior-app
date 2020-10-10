@@ -68,6 +68,10 @@
         <put-attribute name="body" value="/WEB-INF/jsp/admin/body/tool/index.jsp"/>
     </definition>
 
+    <definition name="tools.index.unusable" extends="defAdmin">
+        <put-attribute name="body" value="/WEB-INF/jsp/admin/body/tool/index-unusable.jsp"/>
+    </definition>
+
     <definition name="tools.form" extends="defAdmin">
         <put-attribute name="body" value="/WEB-INF/jsp/admin/body/tool/form.jsp"/>
     </definition>
