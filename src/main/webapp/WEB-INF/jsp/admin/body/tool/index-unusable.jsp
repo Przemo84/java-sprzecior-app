@@ -107,6 +107,11 @@
                                 </tag:th>
                             </th>
                             <th style="text-align: center;">
+                                <tag:th param="user">
+                                    <fmt:message key="tool.user"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;">
                                 <tag:th param="toolType">
                                     <fmt:message key="tool.type"/>
                                 </tag:th>
@@ -169,6 +174,7 @@
                                             ${item.model}
                                     </a>
                                 </td>
+                                <td style="text-align: center;">${item.user.fullName}</td>
                                 <td style="text-align: center;">${item.toolType}</td>
                                 <td style="text-align: center;">${item.serialNo}</td>
                                 <td style="text-align: center;">
