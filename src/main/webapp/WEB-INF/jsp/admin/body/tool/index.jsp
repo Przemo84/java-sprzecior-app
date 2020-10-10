@@ -138,7 +138,7 @@
                                 </tag:th>
                             </th>
 
-                            <th style="text-align: center;" colspan="3"><fmt:message key="options"/></th>
+                            <th style="text-align: center;" colspan="4"><fmt:message key="options"/></th>
                         </tr>
                         </thead>
 
@@ -225,6 +225,14 @@
                                 <td style="width: 32px; text-align: center;">
                                     <a href="javascript:void(0);"
                                        onclick="javascript:confirm_action('<c:url
+                                               value="${moduleBaseUrl}/unusable/${item.id}"/>');"
+                                       rel="tooltip" title="Przenieś do nieużytków" class="btn" style="background-color: #b30000">
+                                        <i class="fas fa-cross"></i>
+                                    </a>
+                                </td>
+                                <td style="width: 32px; text-align: center;">
+                                    <a href="javascript:void(0);"
+                                       onclick="javascript:confirm_action('<c:url
                                                value="${moduleBaseUrl}/delete/${item.id}"/>');"
                                        rel="tooltip" title="Usuń" class="btn btn-danger">
                                         <i class="icon-minus-sign"></i>
@@ -236,7 +244,7 @@
 
                         <tfoot>
                         <tr>
-                            <th colspan="8" style="height:40px;"></th>
+                            <th colspan="14" style="height:40px;"></th>
                         </tr>
                         </tfoot>
                     </table>
