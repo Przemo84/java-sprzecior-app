@@ -110,7 +110,7 @@
                                 </td>
                                 <td style="text-align: center;" colspan="2">
                                     <fmt:formatDate value="${item.createDate}" type="date"
-                                                    pattern="dd-MM-yyyy HH:MM:ss"/>
+                                                    pattern="YYYY-MM-dd HH:MM:ss"/>
                                 </td>
                                 <td style="text-align: center;">${item.user.fullName}</td>
                                 <td style="text-align: center;">${item.description}</td>

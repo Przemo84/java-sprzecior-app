@@ -117,7 +117,7 @@
                             <tr>
                                 <td>${item.user.fullName}</td>
                                 <td>${item.actionName}</td>
-                                <td><fmt:formatDate value="${item.createDate}" pattern="yyyy-MM-dd HH:mm"/></td>
+                                <td><fmt:formatDate value="${item.createDate}" pattern="yyyy-MM-dd HH:MM:ss"/></td>
                             </tr>
                         </c:forEach>
                         </tbody>

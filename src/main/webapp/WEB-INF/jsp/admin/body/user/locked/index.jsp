@@ -112,7 +112,7 @@
                                 <td style="text-align: center;">${item.email}</td>
                                 <td style="text-align: center;">${item.username}</td>
                                 <td style="text-align: center;">
-                                    <fmt:formatDate value="${item.lastLoginDate}" pattern="dd.MM.yyyy"/></td>
+                                    <fmt:formatDate value="${item.lastLoginDate}" pattern="YYYY-MM-dd HH:MM:ss"/></td>
                                 <td style="width: 32px; text-align: center;">
                                     <a href="javascript:void(0);"
                                        onclick="javascript:confirm_action('<c:url

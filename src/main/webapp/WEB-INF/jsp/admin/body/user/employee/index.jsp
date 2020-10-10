@@ -124,7 +124,7 @@
                             <td style="text-align: center;">${item.email}</td>
                             <td style="text-align: center;">${item.username}</td>
                             <td style="text-align: center;">
-                                <fmt:formatDate value="${item.lastLoginDate}" pattern="dd.MM.yyyy HH:MM:ss"/>
+                                <fmt:formatDate value="${item.lastLoginDate}" pattern="YYYY-MM-dd HH:MM:ss"/>
                             </td>
 
                             <c:if test="${item.role.name eq 'Employee'}">

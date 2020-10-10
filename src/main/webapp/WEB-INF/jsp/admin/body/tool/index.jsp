@@ -168,7 +168,7 @@
                                 </td>
                                 <td style="text-align: center;">${item.user.fullName}</td>
                                 <td style="text-align: center;">
-                                    <fmt:formatDate value="${item.takenDate}" pattern="YYYY-MM-D HH:MM:ss"/>
+                                    <fmt:formatDate value="${item.takenDate}" pattern="YYYY-MM-dd HH:MM:ss"/>
                                 </td>
 
                                 <td style="text-align: center;">
