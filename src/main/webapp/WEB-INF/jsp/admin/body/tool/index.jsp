@@ -188,25 +188,29 @@
 
                                 <c:if test="${item.averageRating >= 4.0}">
                                     <td style="text-align: center; background-color: green">
-                                        <strong><fmt:formatNumber type="number" maxFractionDigits="2" value="${item.averageRating}"/></strong>
+                                        <strong><fmt:formatNumber type="number" maxFractionDigits="2"
+                                                                  value="${item.averageRating}"/></strong>
                                     </td>
                                 </c:if>
 
                                 <c:if test="${item.averageRating < 4.0 and item.averageRating >= 3.0}">
                                     <td style="text-align: center; background-color: yellowgreen">
-                                        <strong><fmt:formatNumber type="number" maxFractionDigits="2" value="${item.averageRating}"/></strong>
+                                        <strong><fmt:formatNumber type="number" maxFractionDigits="2"
+                                                                  value="${item.averageRating}"/></strong>
                                     </td>
                                 </c:if>
 
                                 <c:if test="${item.averageRating < 3.0 and item.averageRating >= 2.0}">
                                     <td style="text-align: center; background-color: yellow">
-                                        <strong><fmt:formatNumber type="number" maxFractionDigits="2" value="${item.averageRating}"/></strong>
+                                        <strong><fmt:formatNumber type="number" maxFractionDigits="2"
+                                                                  value="${item.averageRating}"/></strong>
                                     </td>
                                 </c:if>
 
                                 <c:if test="${item.averageRating < 2.0}">
                                     <td style="text-align: center; background-color: red">
-                                        <strong><fmt:formatNumber type="number" maxFractionDigits="2" value="${item.averageRating}"/></strong>
+                                        <strong><fmt:formatNumber type="number" maxFractionDigits="2"
+                                                                  value="${item.averageRating}"/></strong>
                                     </td>
                                 </c:if>
 
@@ -222,14 +226,23 @@
                                         <i class="icon-pencil"></i>
                                     </a>
                                 </td>
-                                <td style="width: 32px; text-align: center;">
-                                    <a href="javascript:void(0);"
-                                       onclick="javascript:confirm_action('<c:url
-                                               value="${moduleBaseUrl}/unusable/${item.id}"/>');"
-                                       rel="tooltip" title="Przenieś do nieużytków" class="btn" style="background-color: #b30000">
+
+                                <td style="text-align: center" colspan="2">
+                                    <a href="javascript:void(0);" class="btn" style="background-color: #b30000"
+                                       rel="tooltip" title="Przenieś do nieużytków" data-toggle="modal"
+                                       data-target="#myModal" data-tool-id="${item.id}" id="toolModal">
                                         <i class="fas fa-cross"></i>
                                     </a>
                                 </td>
+
+                                    <%--                                <td style="width: 32px; text-align: center;">--%>
+                                    <%--                                    <a href="javascript:void(0);"--%>
+                                    <%--                                       onclick="javascript:confirm_action('<c:url--%>
+                                    <%--                                               value="${moduleBaseUrl}/unusable/${item.id}"/>');"--%>
+                                    <%--                                       rel="tooltip" title="Przenieś do nieużytków" class="btn" style="background-color: #b30000">--%>
+                                    <%--                                        <i class="fas fa-cross"></i>--%>
+                                    <%--                                    </a>--%>
+                                    <%--                                </td>--%>
                                 <td style="width: 32px; text-align: center;">
                                     <a href="javascript:void(0);"
                                        onclick="javascript:confirm_action('<c:url
@@ -256,6 +269,41 @@
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <spring:url value="${moduleBaseUrl}/make-unusable" var="action"/>
+            <form:form method="post" class="form-vertical form-bordered" enctype="multipart/form-data"
+                       action="${action}" id="newModalForm">
+            <div class="modal-header">
+                <h4 class="modal-title">Przyczyna przeniesienia do nieużytków</h4>
+            </div>
+            <input hidden name="id" type="text" id="toolId">
+
+            <div class="control-group">
+                <div class="form-group-mx-3 ${status.error ? 'has-error' : ''}">
+                    <label class="control-label">
+                        <fmt:message key="tool.unusable.reason"/>
+                    </label>
+                    <input name="unusableReason" type="text" class="form-control"/>
+                    <span style="color: red"><form:errors path="unusableReason" class="control-label"/></span>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="submit"><fmt:message key="action.save"/></button>
+                <button class="btn" data-dismiss="modal"><fmt:message key="action.cancel"/></button>
+            </div>
+        </div>
+        </form:form>
+
+    </div>
+</div>
+
+
 <script>
     $(document).ready(function () {
         $("#filterInput").on("keyup", function () {
@@ -266,4 +314,61 @@
         });
     });
 
+    $(document).on("click", "#toolModal", function () {
+        var toolId = $(this).data('tool-id');
+        $(".modal-content #toolId").val(toolId);
+    });
+
+    $(function () {
+        $("#newModalForm").validate({
+            rules: {
+                unusableReason: {
+                    required: true,
+                    minlength: 2,
+                    maxlength: 250
+                },
+                action: "required"
+            },
+
+            messages: {
+                unusableReason: {
+                    required: "Pole nie może być puste. Wprowadź krótki komentarz oddawanego sprzętu",
+                    minlength: "Minimalna długość znaków: 2",
+                    maxlength: "Maksymalna długość znaków: 250"
+                },
+                action: "Proszę wprowadzić krótki komentarz oddawanego sprzętu"
+            },
+            highlight: function (element) {
+                $(element).parent().addClass('error')
+            },
+            unhighlight: function (element) {
+                $(element).parent().removeClass('error')
+            }
+        }, {
+            rules: {
+                rating: {
+                    required: true,
+                },
+                action: "required"
+            },
+
+            messages: {
+                rating: {
+                    required: "Pole nie może być puste. Proszę ocenić sprzęt.",
+                },
+                action: "Proszę ocenić sprzęt."
+            },
+            highlight: function (element) {
+                $(element).parent().addClass('error')
+            },
+            unhighlight: function (element) {
+                $(element).parent().removeClass('error')
+            }
+        });
+    });
 </script>
+<style>
+    #newModalForm .error {
+        color: red;
+    }
+</style>

@@ -126,11 +126,12 @@ public class ToolServiceImpl implements ToolService {
     }
 
     @Override
-    public void makeUnusable(int id) {
+    public void makeUnusable(int id, String unusableReason) {
         Tool tool = findById(id);
         tool.setAvailable(false);
         tool.setUnusable(true);
         tool.setUnusableDate(new Date());
+        tool.setUnusableReason(unusableReason);
 
         toolRepository.save(tool);
 
@@ -146,6 +147,7 @@ public class ToolServiceImpl implements ToolService {
     public void makeUsable(int id) {
         Tool tool = findById(id);
         tool.setUnusableDate(null);
+        tool.setUnusableReason(null);
         tool.setUnusable(false);
         tool.setAvailable(true);
 

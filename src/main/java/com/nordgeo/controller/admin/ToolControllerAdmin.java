@@ -13,10 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -106,11 +103,11 @@ public class ToolControllerAdmin extends AdminAbstractController {
         return "redirect:/admin/tools";
     }
 
-    @RequestMapping(value = "/unusable/{id}")
-    public String makeUnusable(@PathVariable("id") int id, final RedirectAttributes redirectAttributes) {
+    @PostMapping(value = "/make-unusable")
+    public String makeUnusable(@RequestParam String id , @RequestParam String unusableReason, final RedirectAttributes redirectAttributes) {
 
         try {
-            toolService.makeUnusable(id);
+            toolService.makeUnusable(Integer.parseInt(id), unusableReason);
         } catch (AdminOperationNotAllowedException e) {
             Flash.error(redirectAttributes, "Operacja dozwolona tylko dla Administratora");
             return "redirect:/admin/tools";

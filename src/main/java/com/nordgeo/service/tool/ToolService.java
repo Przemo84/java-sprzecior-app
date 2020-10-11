@@ -28,7 +28,7 @@ public interface ToolService {
 
     void returnTool(ToolStatus toolStatus);
 
-    void makeUnusable(int id);
+    void makeUnusable(int id, String unusableReason);
 
     Page<Tool> findAllUnusable(PageRequest page);
 

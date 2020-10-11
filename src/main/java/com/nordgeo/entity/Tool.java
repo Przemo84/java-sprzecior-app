@@ -55,6 +55,8 @@ public class Tool {
     @DateTimeFormat
     private Date unusableDate;
 
+    private String unusableReason;
+
     @Formula(value = "(select avg(tool_status.rating) from tool_status where tool_status.tool_id = id)")
     private Double averageRating;
 
@@ -129,4 +131,8 @@ public class Tool {
     public Date getUnusableDate() { return unusableDate; }
 
     public void setUnusableDate(Date unusableDate) { this.unusableDate = unusableDate; }
+
+    public String getUnusableReason() { return unusableReason; }
+
+    public void setUnusableReason(String unusableReason) { this.unusableReason = unusableReason; }
 }
