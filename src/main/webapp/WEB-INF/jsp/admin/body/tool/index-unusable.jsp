@@ -19,7 +19,7 @@
             <i class="icon-angle-right"></i>
         </li>
         <li>
-            <a href="<c:url value="${moduleBaseUrl}"/>"><fmt:message key="menu.action.tools"/></a>
+            <a href="<c:url value="${moduleBaseUrl}/unusable"/>"><fmt:message key="menu.action.tools.unusable"/></a>
         </li>
     </ul>
     <div class="close-bread">
