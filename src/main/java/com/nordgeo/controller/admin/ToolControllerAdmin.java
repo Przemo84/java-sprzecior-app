@@ -131,5 +131,21 @@ public class ToolControllerAdmin extends AdminAbstractController {
         return "redirect:/admin/tools/unusable";
     }
 
+    @RequestMapping("/unusable/{id}")
+    public String unusableInfo(@PathVariable("id") int id, Model model,
+                       final RedirectAttributes redirectAttributes) {
+
+        try {
+            Tool tool = toolService.findById(id);
+            model.addAttribute("tool", tool);
+
+        } catch (ItemNotFoundException e) {
+            Flash.error(redirectAttributes, "Nie znaleziono sprzętu");
+            return "redirect:/admin/tools/unusable";
+        }
+
+        return "tools.unusbale.info";
+    }
+
 
 }

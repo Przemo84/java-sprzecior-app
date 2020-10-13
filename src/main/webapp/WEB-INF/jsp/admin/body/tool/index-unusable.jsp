@@ -91,6 +91,11 @@
                                 </tag:th>
                             </th>
                             <th style="text-align: center;">
+                                <tag:th param="unusableReason">
+                                    <fmt:message key="tool.unusable.reason"/>
+                                </tag:th>
+                            </th>
+                            <th style="text-align: center;">
                                 <tag:th param="unusableDate">
                                     <fmt:message key="tool.unusable.date"/>
                                 </tag:th>
@@ -145,17 +150,18 @@
                         <c:forEach var="item" items="${page.iterator()}">
                             <tr>
                                 <td style="text-align: center;">
-                                    <a href="<c:url value="${moduleBaseUrl}/status/${item.id}"/>"
-                                       rel="tooltip" title="Zobacz historię sprzetu">
+                                    <a href="<c:url value="${moduleBaseUrl}/unusable/${item.id}"/>"
+                                       rel="tooltip" title="Zobacz szczegółowe info">
                                             ${item.id}
                                     </a>
                                 </td>
                                 <td style="text-align: center;">
-                                    <a href="<c:url value="${moduleBaseUrl}/status/${item.id}"/>"
-                                       rel="tooltip" title="Zobacz historię sprzetu">
+                                    <a href="<c:url value="${moduleBaseUrl}/unusable/${item.id}"/>"
+                                       rel="tooltip" title="Zobacz szczegółowe info">
                                             ${item.companyId}
                                     </a>
                                 </td>
+                                <td style="text-align: center;">${item.unusableReason}</td>
                                 <td style="text-align: center;">
                                     <fmt:formatDate value="${item.unusableDate}" pattern="YYYY-MM-dd HH:MM:ss"/>
                                 </td>
@@ -186,25 +192,29 @@
 
                                 <c:if test="${item.averageRating >= 4.0}">
                                     <td style="text-align: center; background-color: green">
-                                        <strong><fmt:formatNumber type="number" maxFractionDigits="2" value="${item.averageRating}"/></strong>
+                                        <strong><fmt:formatNumber type="number" maxFractionDigits="2"
+                                                                  value="${item.averageRating}"/></strong>
                                     </td>
                                 </c:if>
 
                                 <c:if test="${item.averageRating < 4.0 and item.averageRating >= 3.0}">
                                     <td style="text-align: center; background-color: yellowgreen">
-                                        <strong><fmt:formatNumber type="number" maxFractionDigits="2" value="${item.averageRating}"/></strong>
+                                        <strong><fmt:formatNumber type="number" maxFractionDigits="2"
+                                                                  value="${item.averageRating}"/></strong>
                                     </td>
                                 </c:if>
 
                                 <c:if test="${item.averageRating < 3.0 and item.averageRating >= 2.0}">
                                     <td style="text-align: center; background-color: yellow">
-                                        <strong><fmt:formatNumber type="number" maxFractionDigits="2" value="${item.averageRating}"/></strong>
+                                        <strong><fmt:formatNumber type="number" maxFractionDigits="2"
+                                                                  value="${item.averageRating}"/></strong>
                                     </td>
                                 </c:if>
 
                                 <c:if test="${item.averageRating < 2.0}">
                                     <td style="text-align: center; background-color: red">
-                                        <strong><fmt:formatNumber type="number" maxFractionDigits="2" value="${item.averageRating}"/></strong>
+                                        <strong><fmt:formatNumber type="number" maxFractionDigits="2"
+                                                                  value="${item.averageRating}"/></strong>
                                     </td>
                                 </c:if>
 
