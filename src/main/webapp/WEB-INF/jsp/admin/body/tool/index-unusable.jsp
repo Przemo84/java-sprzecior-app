@@ -216,7 +216,7 @@
                                 <td style="width: 32px; text-align: center;">
                                     <a href="javascript:void(0);"
                                        onclick="javascript:confirm_action('<c:url
-                                               value="${moduleBaseUrl}/usable/${item.id}"/>');"
+                                               value="${moduleBaseUrl}/make-usable/${item.id}"/>');"
                                        rel="tooltip" title="Przenieś do sprzętu użytkowanego" class="btn btn-satgreen">
                                         <i class="fas fa-cannabis"></i>
                                     </a>

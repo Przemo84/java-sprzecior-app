@@ -117,7 +117,7 @@ public class ToolControllerAdmin extends AdminAbstractController {
         return "redirect:/admin/tools/unusable";
     }
 
-    @RequestMapping(value = "/usable/{id}")
+    @RequestMapping(value = "/make-usable/{id}")
     public String makeUsable(@PathVariable("id") int id, final RedirectAttributes redirectAttributes) {
 
         try {
