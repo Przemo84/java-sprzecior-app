@@ -21,6 +21,11 @@
         <li class="<c:if test="${fn:contains(currentUrl, 'app/tools/unavailable')}">active</c:if>">
             <a href="<c:url value="/app/tools/unavailable"/>"><fmt:message key="menu.action.tools.unavailable"/> </a>
         </li>
+        <ul class="subnav-menu">
+            <li class="<c:if test="${fn:contains(currentUrl, 'app/tools/unusable')}">active</c:if>">
+                <a href="<c:url value="/app/tools/unusable"/>"><fmt:message key="menu.action.tools.unusable"/> </a>
+            </li>
+        </ul>
         <li class="<c:if test="${fn:contains(currentUrl, 'app/tools/user')}">active</c:if>">
             <a href="<c:url value="/app/tools/user"/>"><fmt:message key="menu.action.tools.user"/> </a>
         </li>
