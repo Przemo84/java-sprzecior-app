@@ -216,6 +216,39 @@
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <spring:url value="${moduleBaseUrl}/make-unusable" var="action"/>
+            <form:form method="post" class="form-vertical form-bordered" enctype="multipart/form-data"
+                       action="${action}" id="newModalForm">
+            <div class="modal-header">
+                <h4 class="modal-title">Przyczyna przeniesienia do nieużytków</h4>
+            </div>
+            <input hidden name="id" type="text" id="toolId">
+
+            <div class="control-group">
+                <div class="form-group-mx-3 ${status.error ? 'has-error' : ''}">
+                    <label class="control-label">
+                        <fmt:message key="tool.unusable.reason"/>
+                    </label>
+                    <input name="unusableReason" type="text" class="form-control"/>
+                    <span style="color: red"><form:errors path="unusableReason" class="control-label"/></span>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="submit"><fmt:message key="action.save"/></button>
+                <button class="btn" data-dismiss="modal"><fmt:message key="action.cancel"/></button>
+            </div>
+        </div>
+        </form:form>
+    </div>
+</div>
+
 <script>
     $(document).ready(function () {
         $("#filterInput").on("keyup", function () {
@@ -225,4 +258,10 @@
             });
         });
     });
+
+    $(document).on("click", "#toolModal", function () {
+        var toolId = $(this).data('tool-id');
+        $(".modal-content #toolId").val(toolId);
+    });
+
 </script>
