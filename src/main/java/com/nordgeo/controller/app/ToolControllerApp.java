@@ -4,6 +4,8 @@ package com.nordgeo.controller.app;
 import com.nordgeo.controller.AppAbstractController;
 import com.nordgeo.entity.Tool;
 import com.nordgeo.entity.ToolStatus;
+import com.nordgeo.exception.AdminOperationNotAllowedException;
+import com.nordgeo.exception.ItemNotFoundException;
 import com.nordgeo.exception.ToolAlreadyTakenException;
 import com.nordgeo.service.tool.ToolService;
 import com.nordgeo.utils.Flash;
@@ -14,10 +16,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -134,5 +133,49 @@ public class ToolControllerApp extends AppAbstractController {
         Flash.success(redirectAttributes);
 
         return "redirect:/app/tools/available";
+    }
+
+    @PostMapping(value = "/make-unusable")
+    public String makeUnusable(@RequestParam String id , @RequestParam String unusableReason, final RedirectAttributes redirectAttributes) {
+
+        try {
+            toolService.makeUnusable(Integer.parseInt(id), unusableReason);
+        } catch (AdminOperationNotAllowedException e) {
+            Flash.error(redirectAttributes, "Operacja dozwolona tylko dla Administratora");
+            return "redirect:/app/tools/available";
+        }
+
+        Flash.success(redirectAttributes, "Akcja zakończona powodzeniem");
+        return "redirect:/app/tools/unusable";
+    }
+
+    @RequestMapping(value = "/make-usable/{id}")
+    public String makeUsable(@PathVariable("id") int id, final RedirectAttributes redirectAttributes) {
+
+        try {
+            toolService.makeUsable(id);
+        } catch (AdminOperationNotAllowedException e) {
+            Flash.error(redirectAttributes, "Operacja dozwolona tylko dla Administratora");
+            return "redirect:/app/tools/available";
+        }
+
+        Flash.success(redirectAttributes, "Akcja zakończona powodzeniem");
+        return "redirect:/app/tools/unusable";
+    }
+
+    @RequestMapping("/unusable/{id}")
+    public String unusableInfo(@PathVariable("id") int id, Model model,
+                               final RedirectAttributes redirectAttributes) {
+
+        try {
+            Tool tool = toolService.findById(id);
+            model.addAttribute("tool", tool);
+
+        } catch (ItemNotFoundException e) {
+            Flash.error(redirectAttributes, "Nie znaleziono sprzętu");
+            return "redirect:/app/tools/unusable";
+        }
+
+        return "app.tools.unusable.info";
     }
 }
