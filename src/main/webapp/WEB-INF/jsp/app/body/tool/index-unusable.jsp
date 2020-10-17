@@ -9,7 +9,7 @@
 
 <div class="page-header">
     <div class="pull-left">
-        <h1><fmt:message key="menu.action.tools"/></h1>
+        <h1><fmt:message key="menu.action.tools.unusable"/></h1>
     </div>
 </div>
 

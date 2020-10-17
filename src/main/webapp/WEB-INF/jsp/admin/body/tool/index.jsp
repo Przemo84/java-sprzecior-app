@@ -249,7 +249,7 @@
 
                         <tfoot>
                         <tr>
-                            <th colspan="14" style="height:40px;"></th>
+                            <th colspan="15" style="height:40px;"></th>
                         </tr>
                         </tfoot>
                     </table>

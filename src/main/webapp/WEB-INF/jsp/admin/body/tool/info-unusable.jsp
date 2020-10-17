@@ -8,7 +8,7 @@
 
 <div class="page-header">
     <div class="pull-left">
-        <h1><fmt:message key="menu.action.tools"/></h1>
+        <h1><fmt:message key="tool.unusable.info"/></h1>
     </div>
 </div>
 
@@ -37,30 +37,32 @@
         <div class="box">
             <div class="box-content nopadding">
                 <div class="tab-content padding tab-content-inline tab-content-bottom">
-                    <h3>
+                    <h3 class="dotted">
                         ID: <strong>${tool.id}</strong>
                     </h3>
-                    <h3>
+                    <h3 class="dotted">
                         Nordgeo ID: <strong>${tool.companyId}</strong>
                     </h3>
-                    <h3>
+                    <h3 class="dotted">
                         Przyczyna: </br>
                         <strong>${tool.unusableReason}</strong>
                     </h3>
-                    <h3>
+                    <h3 class="dotted">
                         Data przeniesienia do nieużytków:
                         <strong><fmt:formatDate value="${tool.unusableDate}" pattern="YYYY-MM-dd HH:MM:ss"/></strong>
                     </h3>
 
-                    <h3>
+                    <h3 class="dotted">
                         Model: <strong>${tool.model}</strong>
                     </h3>
 
-                    <h3>Rodzaj sprzętu: <strong>${tool.toolType}</strong>
+                    <h3 class="dotted">
+                        Rodzaj sprzętu: <strong>${tool.toolType}</strong>
                     </h3>
-                    <h3>Serial No: <strong>${tool.serialNo} </strong>
+                    <h3 class="dotted">
+                        Serial No: <strong>${tool.serialNo} </strong>
                     </h3>
-                    <h3>
+                    <h3 class="dotted">
                         Średnia ocen:
                         <strong>
                             <div style="width:150px">
@@ -99,11 +101,11 @@
                             </div>
                         </strong>
                     </h3>
-                    <h3>
+                    <h3 class="dotted">
                         Data produkcji: <strong><fmt:formatDate value="${tool.productionDate}"
                                                                 pattern="YYYY-MM"/></strong>
                     </h3>
-                    <h3>
+                    <h3 class="dotted">
                         Data kalibracji: <strong><fmt:formatDate value="${tool.calibrationDate}"
                                                                  pattern="YYYY-MM"/></strong>
                     </h3>
@@ -112,3 +114,11 @@
         </div>
     </div>
 </div>
+
+<style>
+    .dotted  {
+        border:none;
+        border-bottom:1px dotted #b0b2b5;
+        padding-bottom: 20px;
+    }
+</style>

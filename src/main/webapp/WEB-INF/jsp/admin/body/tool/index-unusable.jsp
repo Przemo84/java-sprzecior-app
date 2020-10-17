@@ -8,7 +8,7 @@
 
 <div class="page-header">
     <div class="pull-left">
-        <h1><fmt:message key="menu.action.tools"/></h1>
+        <h1><fmt:message key="menu.action.tools.unusable"/></h1>
     </div>
 </div>
 
@@ -64,12 +64,6 @@
                             </div>
                             <span><fmt:message key="elements.per.page"/> </span>
                         </label>
-                    </div>
-                    <div style="float: right; margin: 10px 10px 5px 5px">
-                        <a href="<c:url value="${moduleBaseUrl}/form"/>" class="btn btn-green">
-                            <i class="icon-plus"></i>
-                            <fmt:message key="action.add"/>
-                        </a>
                     </div>
                     <div class="container-fluid">
                         <div class="form-group col-md-4" style="margin: 5px 5px 5px 5px">
@@ -245,7 +239,7 @@
 
                         <tfoot>
                         <tr>
-                            <th colspan="13" style="height:40px;"></th>
+                            <th colspan="14" style="height:40px;"></th>
                         </tr>
                         </tfoot>
                     </table>
