@@ -235,14 +235,6 @@
                                     </a>
                                 </td>
 
-                                    <%--                                <td style="width: 32px; text-align: center;">--%>
-                                    <%--                                    <a href="javascript:void(0);"--%>
-                                    <%--                                       onclick="javascript:confirm_action('<c:url--%>
-                                    <%--                                               value="${moduleBaseUrl}/unusable/${item.id}"/>');"--%>
-                                    <%--                                       rel="tooltip" title="Przenieś do nieużytków" class="btn" style="background-color: #b30000">--%>
-                                    <%--                                        <i class="fas fa-cross"></i>--%>
-                                    <%--                                    </a>--%>
-                                    <%--                                </td>--%>
                                 <td style="width: 32px; text-align: center;">
                                     <a href="javascript:void(0);"
                                        onclick="javascript:confirm_action('<c:url
