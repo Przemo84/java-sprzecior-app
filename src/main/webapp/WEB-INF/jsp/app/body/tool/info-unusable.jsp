@@ -60,45 +60,6 @@
                     <h3>Serial No: <strong>${tool.serialNo} </strong>
                     </h3>
                     <h3>
-                        Średnia ocen:
-                        <strong>
-                            <div style="width:150px">
-                                <c:if test="${tool.averageRating >= 4.0}">
-                                    <h3 style="text-align: center; background-color: green">
-                                        <strong><fmt:formatNumber type="number" maxFractionDigits="2"
-                                                                  value="${tool.averageRating}"/></strong>
-                                    </h3>
-                                </c:if>
-
-                                <c:if test="${tool.averageRating < 4.0 and tool.averageRating >= 3.0}">
-                                    <h3 style="text-align: center; background-color: yellowgreen">
-                                        <strong><fmt:formatNumber type="number" maxFractionDigits="2"
-                                                                  value="${tool.averageRating}"/></strong>
-                                    </h3>
-                                </c:if>
-
-                                <c:if test="${tool.averageRating < 3.0 and tool.averageRating >= 2.0}">
-                                    <h3 style="text-align: center; background-color: yellow">
-                                        <strong><fmt:formatNumber type="number" maxFractionDigits="2"
-                                                                  value="${tool.averageRating}"/></strong>
-                                    </h3>
-                                </c:if>
-
-                                <c:if test="${tool.averageRating < 2.0}">
-                                    <h3 style="text-align: center; background-color: red">
-                                        <strong><fmt:formatNumber type="number" maxFractionDigits="2"
-                                                                  value="${tool.averageRating}"/></strong>
-                                    </h3>
-                                </c:if>
-
-                                <c:if test="${tool.averageRating eq null}">
-                                    <h3 style="width: 32px; text-align: center;">
-                                    </h3>
-                                </c:if>
-                            </div>
-                        </strong>
-                    </h3>
-                    <h3>
                         Data produkcji: <strong><fmt:formatDate value="${tool.productionDate}"
                                                                 pattern="YYYY-MM"/></strong>
                     </h3>
