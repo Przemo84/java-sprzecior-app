@@ -65,6 +65,14 @@ public class ToolControllerApp extends AppAbstractController {
         return "app.tools.my.index";
     }
 
+    @RequestMapping("/unusable")
+    public String indexUnusable(PageSort pageSort, Model model) {
+        Page<Tool> toolPage = toolService.findAllUnusable(pageSort.getPage(model));
+        model.addAttribute("page", toolPage);
+
+        return "app.tools.index.unusable";
+    }
+
     @RequestMapping(value = "/append/{id}")
     public String collectOne(@PathVariable("id") int id, final RedirectAttributes redirectAttributes) {
 

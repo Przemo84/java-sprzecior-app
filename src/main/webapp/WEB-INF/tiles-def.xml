@@ -112,6 +112,14 @@
         <put-attribute name="body" value="/WEB-INF/jsp/app/body/tool/index-user.jsp"/>
     </definition>
 
+    <definition name="app.tools.index.unusable" extends="defApp">
+        <put-attribute name="body" value="/WEB-INF/jsp/app/body/tool/index-unusable.jsp"/>
+    </definition>
+
+    <definition name="app.tools.unusable.info" extends="defApp">
+        <put-attribute name="body" value="/WEB-INF/jsp/app/body/tool/info-unusable.jsp"/>
+    </definition>
+
     <definition name="user.change.password.form" extends="defApp">
         <put-attribute name="body" value="/WEB-INF/jsp/app/body/change-password/form.jsp"/>
     </definition>
