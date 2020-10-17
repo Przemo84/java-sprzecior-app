@@ -20,6 +20,7 @@
         </li>
         <li>
             <a href="<c:url value="${moduleBaseUrl}/unusable"/>"><fmt:message key="menu.action.tools.unusable"/></a>
+            <i class="icon-angle-right"></i>
         </li>
         <li>
             <a href="<c:url value="${moduleBaseUrl}/unusable/${tool.id}"/>"><fmt:message key="tool.unusable.info"/></a>
