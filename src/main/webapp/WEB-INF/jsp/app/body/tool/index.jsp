@@ -137,7 +137,7 @@
                                     <fmt:message key="tool.calibration.date"/>
                                 </tag:th>
                             </th>
-                            <th style="text-align: center;" colspan="2"><fmt:message key="options"/></th>
+                            <th style="text-align: center;" colspan="4"><fmt:message key="options"/></th>
                         </tr>
                         </thead>
 
@@ -180,6 +180,16 @@
                                     </td>
                                 </sec:authorize>
 
+                                <sec:authorize access="hasAnyAuthority('Editor')">
+                                    <td style="text-align: center" colspan="2">
+                                        <a href="javascript:void(0);" class="btn" style="background-color: #b30000"
+                                           rel="tooltip" title="Przenieś do nieużytków" data-toggle="modal"
+                                           data-target="#myModal" data-tool-id="${item.id}" id="toolModal">
+                                            <i class="fas fa-cross"></i>
+                                        </a>
+                                    </td>
+                                </sec:authorize>
+
                                 <td style="text-align: center" colspan="1">
                                     <a href="javascript:void(0);"
                                        onclick="javascript:confirm_action('<c:url
@@ -194,7 +204,7 @@
 
                         <tfoot>
                         <tr>
-                            <th colspan="12"></th>
+                            <th colspan="14"></th>
                         </tr>
                         </tfoot>
                     </table>
