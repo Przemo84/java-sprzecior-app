@@ -161,7 +161,7 @@
                                             ${item.companyId}
                                     </a>
                                 </td>
-                                <td style="text-align: center;">${item.unusableReason}</td>
+                                <td style="text-align: center;" id="unusableReason">${item.unusableReason}</td>
                                 <td style="text-align: center;">
                                     <fmt:formatDate value="${item.unusableDate}" pattern="YYYY-MM-dd HH:MM:ss"/>
                                 </td>
@@ -268,3 +268,12 @@
     });
 
 </script>
+
+<style>
+    #unusableReason {
+        max-width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+</style>

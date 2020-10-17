@@ -144,7 +144,7 @@ public class ToolControllerAdmin extends AdminAbstractController {
             return "redirect:/admin/tools/unusable";
         }
 
-        return "tools.unusbale.info";
+        return "tools.unusable.info";
     }
 
 

@@ -80,7 +80,7 @@
         <put-attribute name="body" value="/WEB-INF/jsp/admin/body/tool-status/index.jsp"/>
     </definition>
 
-    <definition name="tool.unusable.info" extends="defAdmin">
+    <definition name="tools.unusable.info" extends="defAdmin">
         <put-attribute name="body" value="/WEB-INF/jsp/admin/body/tool/info-unusable.jsp"/>
     </definition>
 
