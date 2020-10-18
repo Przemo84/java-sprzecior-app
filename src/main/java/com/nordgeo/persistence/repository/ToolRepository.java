@@ -16,7 +16,7 @@ public interface ToolRepository extends PagingAndSortingRepository<Tool,Integer>
 
     Page<Tool> findToolsByAvailableIsTrue(Pageable page);
 
-    Page<Tool> findToolsByAvailableIsFalse(Pageable page);
+    Page<Tool> findToolsByAvailableIsFalseAndUnusableIsFalse(Pageable page);
 
     Page<Tool> findToolsByUser(User user, Pageable page);
 

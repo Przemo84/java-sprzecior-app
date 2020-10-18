@@ -103,7 +103,7 @@ public class ToolServiceImpl implements ToolService {
 
     @Override
     public Page<Tool> findAllUnavailable(PageRequest page) {
-        return toolRepository.findToolsByAvailableIsFalse(page);
+        return toolRepository.findToolsByAvailableIsFalseAndUnusableIsFalse(page);
     }
 
     @Override
