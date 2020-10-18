@@ -37,76 +37,76 @@
         <div class="box">
             <div class="box-content nopadding">
                 <div class="tab-content padding tab-content-inline tab-content-bottom">
-                    <p class="h3 dotted">
+                    <p class="h4 dotted">
                         ID: <strong>${tool.id}</strong>
                     </p>
-                    <p class="h3 dotted">
+                    <p class="h4 dotted">
                         Nordgeo ID: <strong>${tool.companyId}</strong>
                     </p>
-                    <p class="h3 dotted">
+                    <p class="h4 dotted">
                         Przyczyna:
                         <strong>${tool.unusableReason}</strong>
                     </p>
-                    <p class="h3 dotted">
+                    <p class="h4 dotted">
                         Data przeniesienia do nieużytków:
                         <strong><fmt:formatDate value="${tool.unusableDate}" pattern="YYYY-MM-dd HH:MM:ss"/></strong>
                     </p>
-                    <p class="h3 dotted">
+                    <p class="h4 dotted">
                         Model: <strong>${tool.model}</strong>
                     </p>
 
-                    <p class="h3 dotted">
+                    <p class="h4 dotted">
                         Rodzaj sprzętu: <strong>${tool.toolType}</strong>
                     </p>
-                    <p class="h3 dotted">
+                    <p class="h4 dotted">
                         Serial No: <strong>${tool.serialNo} </strong>
                     </p>
-                    <p class="h3 dotted">
-                        Średnia ocen:
-                        <strong>
-                            <div style="width:150px">
-                                <c:if test="${tool.averageRating >= 4.0}">
-                                    <h3 style="text-align: center; background-color: green">
-                                        <strong><fmt:formatNumber type="number" maxFractionDigits="2"
-                                                                  value="${tool.averageRating}"/></strong>
-                                    </h3>
-                                </c:if>
-
-                                <c:if test="${tool.averageRating < 4.0 and tool.averageRating >= 3.0}">
-                                    <h3 style="text-align: center; background-color: yellowgreen">
-                                        <strong><fmt:formatNumber type="number" maxFractionDigits="2"
-                                                                  value="${tool.averageRating}"/></strong>
-                                    </h3>
-                                </c:if>
-
-                                <c:if test="${tool.averageRating < 3.0 and tool.averageRating >= 2.0}">
-                                    <h3 style="text-align: center; background-color: yellow">
-                                        <strong><fmt:formatNumber type="number" maxFractionDigits="2"
-                                                                  value="${tool.averageRating}"/></strong>
-                                    </h3>
-                                </c:if>
-
-                                <c:if test="${tool.averageRating < 2.0}">
-                                    <h3 style="text-align: center; background-color: red">
-                                        <strong><fmt:formatNumber type="number" maxFractionDigits="2"
-                                                                  value="${tool.averageRating}"/></strong>
-                                    </h3>
-                                </c:if>
-
-                                <c:if test="${tool.averageRating eq null}">
-                                    <h3 style="width: 32px; text-align: center;">
-                                    </h3>
-                                </c:if>
-                            </div>
-                        </strong>
-                    </p>
-                    <p class="h3 dotted">
+                    <p class="h4 dotted">
                         Data produkcji: <strong><fmt:formatDate value="${tool.productionDate}"
                                                                 pattern="YYYY-MM"/></strong>
                     </p>
-                    <p class="h3 dotted">
+                    <p class="h4 dotted">
                         Data kalibracji: <strong><fmt:formatDate value="${tool.calibrationDate}"
                                                                  pattern="YYYY-MM"/></strong>
+                    </p>
+                    <p class="h4" style="text-align: left">
+                        Średnia ocen:
+                        <strong>
+                            <div style="width:112px">
+                                <c:if test="${tool.averageRating >= 4.0}">
+                                    <h4 class="rating-style" style="background-color: green">
+                                        <strong><fmt:formatNumber type="number" maxFractionDigits="2"
+                                                                  value="${tool.averageRating}"/></strong>
+                                    </h4>
+                                </c:if>
+
+                                <c:if test="${tool.averageRating < 4.0 and tool.averageRating >= 3.0}">
+                                    <h4 class="rating-style" style="background-color: yellowgreen">
+                                        <strong><fmt:formatNumber type="number" maxFractionDigits="2"
+                                                                  value="${tool.averageRating}"/></strong>
+                                    </h4>
+                                </c:if>
+
+                                <c:if test="${tool.averageRating < 3.0 and tool.averageRating >= 2.0}">
+                                    <h4 class="rating-style" style="background-color: yellow">
+                                        <strong><fmt:formatNumber type="number" maxFractionDigits="2"
+                                                                  value="${tool.averageRating}"/></strong>
+                                    </h4>
+                                </c:if>
+
+                                <c:if test="${tool.averageRating < 2.0}">
+                                    <h4 class="rating-style" style="background-color: red">
+                                        <strong><fmt:formatNumber type="number" maxFractionDigits="2"
+                                                                  value="${tool.averageRating}"/></strong>
+                                    </h4>
+                                </c:if>
+
+                                <c:if test="${tool.averageRating eq null}">
+                                    <h4 style="width: 32px; text-align: center;">
+                                    </h4>
+                                </c:if>
+                            </div>
+                        </strong>
                     </p>
                 </div>
             </div>
@@ -115,9 +115,14 @@
 </div>
 
 <style>
-    .dotted  {
-        border:none;
-        border-bottom:1px dotted #b0b2b5;
-        padding-bottom: 20px;
+    .dotted {
+        border: none;
+        border-bottom: 1px dotted #b0b2b5;
+        padding-bottom: 12px;
+    }
+
+    .rating-style {
+        text-align: center;
+        border-radius: 6px;
     }
 </style>
