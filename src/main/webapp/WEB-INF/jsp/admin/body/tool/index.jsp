@@ -324,31 +324,11 @@
 
             messages: {
                 unusableReason: {
-                    required: "Pole nie może być puste. Wprowadź krótki komentarz oddawanego sprzętu",
+                    required: "Pole nie może być puste. Wprowadź krótką przyczynę nieużytkowanego sprzętu",
                     minlength: "Minimalna długość znaków: 2",
                     maxlength: "Maksymalna długość znaków: 250"
                 },
-                action: "Proszę wprowadzić krótki komentarz oddawanego sprzętu"
-            },
-            highlight: function (element) {
-                $(element).parent().addClass('error')
-            },
-            unhighlight: function (element) {
-                $(element).parent().removeClass('error')
-            }
-        }, {
-            rules: {
-                rating: {
-                    required: true,
-                },
-                action: "required"
-            },
-
-            messages: {
-                rating: {
-                    required: "Pole nie może być puste. Proszę ocenić sprzęt.",
-                },
-                action: "Proszę ocenić sprzęt."
+                action: "Proszę wprowadzić krótką przyczynę nieużytkowanego sprzętu"
             },
             highlight: function (element) {
                 $(element).parent().addClass('error')
