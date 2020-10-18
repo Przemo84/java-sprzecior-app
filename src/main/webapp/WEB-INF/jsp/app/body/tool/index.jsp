@@ -264,4 +264,36 @@
         $(".modal-content #toolId").val(toolId);
     });
 
+    $(function () {
+        $("#newModalForm").validate({
+            rules: {
+                unusableReason: {
+                    required: true,
+                    minlength: 2,
+                    maxlength: 250
+                },
+                action: "required"
+            },
+
+            messages: {
+                unusableReason: {
+                    required: "Pole nie może być puste. Wprowadź krótką przyczynę nieużytkowanego sprzętu",
+                    minlength: "Minimalna długość znaków: 2",
+                    maxlength: "Maksymalna długość znaków: 250"
+                },
+                action: "Proszę wprowadzić krótką przyczynę nieużytkowanego sprzętu"
+            },
+            highlight: function (element) {
+                $(element).parent().addClass('error')
+            },
+            unhighlight: function (element) {
+                $(element).parent().removeClass('error')
+            }
+        });
+    });
 </script>
+<style>
+    #newModalForm .error {
+        color: red;
+    }
+</style>
