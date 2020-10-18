@@ -62,7 +62,7 @@
 <%--    <script src="<c:url value="/resources/js/jquery/jquery.custom.js"/> "></script>--%>
     <script src="<c:url value="/resources/js/cropper/cropper.js"/>"></script>
     <script src="<c:url value="/resources/js/chosen/chosen.jquery.js"/>"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/jquery.validate.min.js"></script>
     <script src="<c:url value="/resources/Chart.min.js"/>"></script>
 
     <script>
