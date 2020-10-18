@@ -14,7 +14,7 @@
     </div>
 </div>
 
-<div class="breadcrumbs">
+<div class="breadcrumbs" style="margin-bottom: 20px">
     <ul>
         <li>
             <a href="<c:url value="${baseUrl}"/>"><fmt:message key="home"/></a>
@@ -28,26 +28,60 @@
         <a href="#"><i class="icon-remove"></i></a>
     </div>
 </div>
-<h3>
-    <div class="container-fluid" style="text-align: center">
-        <div class="col-md-12" style="text-align: center; padding-bottom: 20px">
-            <i style="color:#942a25; margin-top: 20px; background-color: #ccffff">Nordgeo ID: ${tool.companyId}</i>
-        </div>
-        <div class="col-md-12" style="text-align: center; padding-bottom: 20px">
-            <i style="color:#942a25; margin-top: 20px; background-color: #ccffff">Model: ${tool.model}
-            </i>
-        </div>
-        <div class="col-md-12" style="text-align: center; padding-bottom: 20px">
-            <i style="color:#942a25; margin-top: 20px; background-color: #ccffff">Serial No: ${tool.serialNo}
-            </i>
-        </div>
-        <div class="col-md-12" style="text-align: center">
-            <b style="color:#942a25; margin-top: 20px; background-color: #ccffff"><fmt:message key="tool.average.rating"/>
-                <fmt:formatNumber type="number" maxFractionDigits="2" value="${ratings}"/>
-            </b>
-        </div>
-    </div>
-</h3>
+<div class="container-fluid" style="text-align: center">
+
+    <p class="h4 dotted">
+        ID: <strong>${tool.id}</strong>
+    </p>
+    <p class="h4 dotted">
+        Nordgeo ID: <strong>${tool.companyId}</strong>
+    </p>
+    <p class="h4 dotted">
+        Moodel: <strong>${tool.model}</strong>
+    </p>
+    <p class="h4 dotted">
+        Serial No: <strong>${tool.serialNo}</strong>
+    </p>
+    <p class="h4" style="text-align: left">
+        Średnia ocen:
+        <strong>
+            <div style="width:112px">
+                <c:if test="${tool.averageRating >= 4.0}">
+                    <h4 class="rating-style" style="background-color: green">
+                        <strong><fmt:formatNumber type="number" maxFractionDigits="2"
+                                                  value="${tool.averageRating}"/></strong>
+                    </h4>
+                </c:if>
+
+                <c:if test="${tool.averageRating < 4.0 and tool.averageRating >= 3.0}">
+                    <h4 class="rating-style" style="background-color: yellowgreen">
+                        <strong><fmt:formatNumber type="number" maxFractionDigits="2"
+                                                  value="${tool.averageRating}"/></strong>
+                    </h4>
+                </c:if>
+
+                <c:if test="${tool.averageRating < 3.0 and tool.averageRating >= 2.0}">
+                    <h4 class="rating-style" style="background-color: yellow">
+                        <strong><fmt:formatNumber type="number" maxFractionDigits="2"
+                                                  value="${tool.averageRating}"/></strong>
+                    </h4>
+                </c:if>
+
+                <c:if test="${tool.averageRating < 2.0}">
+                    <h4 class="rating-style" style="background-color: red">
+                        <strong><fmt:formatNumber type="number" maxFractionDigits="2"
+                                                  value="${tool.averageRating}"/></strong>
+                    </h4>
+                </c:if>
+
+                <c:if test="${tool.averageRating eq null}">
+                    <h4 style="width: 32px; text-align: center;">
+                    </h4>
+                </c:if>
+            </div>
+        </strong>
+    </p>
+</div>
 
 <div class="row-fluid">
     <div class="span12">
@@ -181,3 +215,17 @@
     });
 
 </script>
+
+<style>
+    .dotted {
+        border: none;
+        border-bottom: 1px dotted #b0b2b5;
+        padding-bottom: 12px;
+        text-align: left;
+    }
+
+    .rating-style {
+        text-align: center;
+        border-radius: 6px;
+    }
+</style>
