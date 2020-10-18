@@ -44,7 +44,7 @@
                         Nordgeo ID: <strong>${tool.companyId}</strong>
                     </h3>
                     <h3 class="dotted">
-                        Przyczyna: </br>
+                        Przyczyna:
                         <strong>${tool.unusableReason}</strong>
                     </h3>
                     <h3 class="dotted">
