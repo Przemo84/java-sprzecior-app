@@ -227,13 +227,20 @@
                                     </a>
                                 </td>
 
-                                <td style="text-align: center" colspan="2">
-                                    <a href="javascript:void(0);" class="btn" style="background-color: #b30000"
-                                       rel="tooltip" title="Przenieś do nieużytków" data-toggle="modal"
-                                       data-target="#myModal" data-tool-id="${item.id}" id="toolModal">
-                                        <i class="fas fa-cross"></i>
-                                    </a>
-                                </td>
+                                <c:if test="${item.available eq true}">
+                                    <td style="text-align: center" colspan="2">
+                                        <a href="javascript:void(0);" class="btn" style="background-color: #b30000"
+                                           rel="tooltip" title="Przenieś do nieużytków" data-toggle="modal"
+                                           data-target="#myModal" data-tool-id="${item.id}" id="toolModal">
+                                            <i class="fas fa-cross"></i>
+                                        </a>
+                                    </td>
+                                </c:if>
+                                <c:if test="${item.available eq false}">
+                                    <td style="text-align: center" colspan="2">
+
+                                    </td>
+                                </c:if>
 
                                 <td style="width: 32px; text-align: center;">
                                     <a href="javascript:void(0);"
