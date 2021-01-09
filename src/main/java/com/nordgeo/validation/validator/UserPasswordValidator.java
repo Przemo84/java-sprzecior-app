@@ -1,6 +1,6 @@
 package com.nordgeo.validation.validator;
 
-import com.nordgeo.data.UserPasswordDto;
+import com.nordgeo.data.dto.UserPasswordDto;
 import com.nordgeo.entity.User;
 import com.nordgeo.security.AuthManager;
 import org.springframework.beans.factory.annotation.Autowired;
