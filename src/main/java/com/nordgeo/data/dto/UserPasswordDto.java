@@ -1,4 +1,4 @@
-package com.nordgeo.data;
+package com.nordgeo.data.dto;
 
 import com.nordgeo.validation.validator.ValidPassword;
 
