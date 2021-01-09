@@ -4,8 +4,6 @@ package com.nordgeo;
 import com.nordgeo.security.MySimpleUrlAuthenticationSuccessHandler;
 import com.nordgeo.security.encoder.TokenProperties;
 import com.nordgeo.storage.StorageProperties;
-import com.nordgeo.storage.StorageService;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -28,11 +26,6 @@ public class SprzeciorApp extends SpringBootServletInitializer {
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
         return builder.sources(SprzeciorApp.class);
-    }
-
-    @Bean
-    CommandLineRunner init(StorageService storageService) {
-        return (args) -> storageService.init();
     }
 
     @Bean

@@ -8,7 +8,6 @@ import com.nordgeo.persistence.repository.RoleRepository;
 import com.nordgeo.persistence.repository.UserRepository;
 import com.nordgeo.security.AuthManager;
 import com.nordgeo.service.user.activity.UserActivitiesService;
-import com.nordgeo.storage.StorageService;
 import com.nordgeo.utils.Sanitizer;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
@@ -23,30 +22,26 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private UserRepository repository;
+    private final UserRepository repository;
 
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
-    private AuthManager authManager;
+    private final AuthManager authManager;
 
-    private StorageService storageService;
+    private final UserActivitiesService userActivitiesService;
 
-    private UserActivitiesService userActivitiesService;
-
-    private RoleRepository roleRepository;
-
+    private final RoleRepository roleRepository;
 
     private static Role admin;
     private static Role editor;
     private static Role employee;
 
     public UserServiceImpl(UserRepository repository, @Lazy PasswordEncoder passwordEncoder, AuthManager authManager,
-                           RoleRepository roleRepository, StorageService storageService,
+                           RoleRepository roleRepository,
                            UserActivitiesService userActivitiesService) {
         this.repository = repository;
         this.passwordEncoder = passwordEncoder;
         this.authManager = authManager;
-        this.storageService = storageService;
         this.userActivitiesService = userActivitiesService;
         this.roleRepository = roleRepository;
 
