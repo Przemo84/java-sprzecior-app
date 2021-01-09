@@ -2,7 +2,7 @@ package com.nordgeo.controller.app;
 
 
 import com.nordgeo.controller.AppAbstractController;
-import com.nordgeo.data.UserPasswordDto;
+import com.nordgeo.data.dto.UserPasswordDto;
 import com.nordgeo.service.user.UserService;
 import com.nordgeo.utils.Flash;
 import com.nordgeo.validation.validator.UserPasswordValidator;
