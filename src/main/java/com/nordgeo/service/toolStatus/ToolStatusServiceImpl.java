@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class ToolStatusServiceImpl implements ToolStatusService {
 
-    private ToolStatusRepository toolStatusRepository;
+    private final ToolStatusRepository toolStatusRepository;
 
-    private AuthManager authManager;
+    private final AuthManager authManager;
 
     public ToolStatusServiceImpl(ToolStatusRepository toolStatusRepository, AuthManager authManager) {
         this.toolStatusRepository = toolStatusRepository;
