@@ -1,6 +1,6 @@
 package com.nordgeo.service.user;
 
-import com.nordgeo.data.UserPasswordDto;
+import com.nordgeo.data.dto.UserPasswordDto;
 import com.nordgeo.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

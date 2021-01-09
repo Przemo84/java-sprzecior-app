@@ -1,6 +1,6 @@
 package com.nordgeo.service.user;
 
-import com.nordgeo.data.UserPasswordDto;
+import com.nordgeo.data.dto.UserPasswordDto;
 import com.nordgeo.entity.Role;
 import com.nordgeo.entity.User;
 import com.nordgeo.exception.*;
