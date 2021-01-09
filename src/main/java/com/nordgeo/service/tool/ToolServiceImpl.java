@@ -1,5 +1,7 @@
 package com.nordgeo.service.tool;
 
+import com.nordgeo.data.dto.ToolDto;
+import com.nordgeo.data.mapper.ToolDtoMapper;
 import com.nordgeo.entity.Tool;
 import com.nordgeo.entity.ToolStatus;
 import com.nordgeo.entity.User;
@@ -10,29 +12,33 @@ import com.nordgeo.persistence.repository.ToolRepository;
 import com.nordgeo.security.AuthManager;
 import com.nordgeo.service.toolStatus.ToolStatusService;
 import com.nordgeo.service.user.activity.UserActivitiesService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
 import java.util.Date;
 
 @Service
 public class ToolServiceImpl implements ToolService {
 
-    private ToolRepository toolRepository;
+    private final ToolRepository toolRepository;
 
-    private AuthManager authManager;
+    private final AuthManager authManager;
 
-    private UserActivitiesService userActivitiesService;
+    private final UserActivitiesService userActivitiesService;
 
-    @Autowired
-    private ToolStatusService toolStatusService;
+    private final ToolStatusService toolStatusService;
 
-    public ToolServiceImpl(ToolRepository toolrepository, AuthManager authManager, UserActivitiesService userActivitiesService) {
+    private final ToolDtoMapper toolDtoMapper;
+
+    public ToolServiceImpl(ToolRepository toolrepository, AuthManager authManager, ToolDtoMapper toolDtoMapper,
+                           UserActivitiesService userActivitiesService, ToolStatusService toolStatusService) {
         this.toolRepository = toolrepository;
         this.authManager = authManager;
         this.userActivitiesService = userActivitiesService;
+        this.toolDtoMapper = toolDtoMapper;
+        this.toolStatusService = toolStatusService;
     }
 
     @Override
@@ -57,11 +63,12 @@ public class ToolServiceImpl implements ToolService {
     }
 
     @Override
-    public void save(Tool tool) {
-        tool.setAvailable(true);
-        String action = "Dodanie";
+    public void save(ToolDto toolDto) throws ParseException {
+        toolDto.setAvailable(true);
+        Tool tool = toolDtoMapper.map(toolDto);
 
-        if (tool.getId() != null)
+        String action = "Dodanie";
+        if (toolDto.getId() != null)
             action = "Edycja";
 
         toolRepository.save(tool);

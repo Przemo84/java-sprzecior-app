@@ -1,10 +1,12 @@
 package com.nordgeo.service.tool;
 
+import com.nordgeo.data.dto.ToolDto;
 import com.nordgeo.entity.Tool;
 import com.nordgeo.entity.ToolStatus;
 import com.nordgeo.exception.AdminOperationNotAllowedException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import java.text.ParseException;
 
 public interface ToolService {
 
@@ -14,7 +16,7 @@ public interface ToolService {
 
     Page<Tool> findAll(PageRequest page);
 
-    void save(Tool tool);
+    void save(ToolDto toolDto) throws ParseException;
 
     void delete(int id) throws AdminOperationNotAllowedException;
 
