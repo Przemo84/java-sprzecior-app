@@ -2,6 +2,8 @@ package com.nordgeo.controller.admin;
 
 
 import com.nordgeo.controller.AdminAbstractController;
+import com.nordgeo.data.dto.ToolDto;
+import com.nordgeo.data.mapper.ToolDtoMapper;
 import com.nordgeo.entity.Tool;
 import com.nordgeo.exception.AdminOperationNotAllowedException;
 import com.nordgeo.exception.ItemNotFoundException;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.text.ParseException;
 
 
 @Controller
@@ -25,6 +28,9 @@ public class ToolControllerAdmin extends AdminAbstractController {
 
     @Autowired
     private ToolService toolService;
+
+    @Autowired
+    private ToolDtoMapper toolDtoMapper;
 
     @ModelAttribute("moduleBaseUrl")
     public String moduleBaseUrl() {
@@ -55,7 +61,7 @@ public class ToolControllerAdmin extends AdminAbstractController {
 
     @RequestMapping("/form")
     public String form(Model model) {
-        model.addAttribute("tool", new Tool());
+        model.addAttribute("tool", new ToolDto());
 
         return "tools.form";
     }
@@ -66,24 +72,29 @@ public class ToolControllerAdmin extends AdminAbstractController {
 
         try {
             Tool tool = toolService.findById(id);
-            model.addAttribute("tool", tool);
+            model.addAttribute("tool", toolDtoMapper.map(tool));
 
         } catch (ItemNotFoundException e) {
-            Flash.error(redirectAttributes, "Nie znaleziono sprzętu");
+            Flash.error(redirectAttributes, "tool.not.found");
             return "redirect:/admin/tools";
+        } catch (ParseException e) {
+            Flash.error(redirectAttributes, "action.failed");
         }
 
         return "tools.form";
     }
 
     @PostMapping(value = "/save")
-    public String submit(@Valid @ModelAttribute("tool") Tool tool,
+    public String submit(@Valid @ModelAttribute("tool") ToolDto toolDto,
                          BindingResult result, final RedirectAttributes redirectAttributes) {
 
         if (result.hasErrors())
             return "tools.form";
-
-        toolService.save(tool);
+        try {
+            toolService.save(toolDto);
+        } catch (ParseException e) {
+            Flash.error(redirectAttributes, "action.failed");
+        }
         Flash.success(redirectAttributes);
 
         return "redirect:/admin/tools";
@@ -95,7 +106,7 @@ public class ToolControllerAdmin extends AdminAbstractController {
         try {
             toolService.delete(id);
         } catch (AdminOperationNotAllowedException e) {
-            Flash.error(redirectAttributes, "Operacja dozwolona tylko dla Administratora");
+            Flash.error(redirectAttributes, "action.only.admin.allowed");
             return "redirect:/admin/tools";
         }
 
@@ -109,11 +120,11 @@ public class ToolControllerAdmin extends AdminAbstractController {
         try {
             toolService.makeUnusable(Integer.parseInt(id), unusableReason);
         } catch (AdminOperationNotAllowedException e) {
-            Flash.error(redirectAttributes, "Operacja dozwolona tylko dla Administratora");
+            Flash.error(redirectAttributes, "action.only.admin.allowed");
             return "redirect:/admin/tools";
         }
 
-        Flash.success(redirectAttributes, "Akcja zakończona powodzeniem");
+        Flash.success(redirectAttributes, "action.success");
         return "redirect:/admin/tools/unusable";
     }
 
@@ -123,11 +134,11 @@ public class ToolControllerAdmin extends AdminAbstractController {
         try {
             toolService.makeUsable(id);
         } catch (AdminOperationNotAllowedException e) {
-            Flash.error(redirectAttributes, "Operacja dozwolona tylko dla Administratora");
+            Flash.error(redirectAttributes, "action.only.admin.allowed");
             return "redirect:/admin/tools";
         }
 
-        Flash.success(redirectAttributes, "Akcja zakończona powodzeniem");
+        Flash.success(redirectAttributes, "action.success");
         return "redirect:/admin/tools/unusable";
     }
 
@@ -140,7 +151,7 @@ public class ToolControllerAdmin extends AdminAbstractController {
             model.addAttribute("tool", tool);
 
         } catch (ItemNotFoundException e) {
-            Flash.error(redirectAttributes, "Nie znaleziono sprzętu");
+            Flash.error(redirectAttributes, "tool.not.found");
             return "redirect:/admin/tools/unusable";
         }
 

@@ -2,6 +2,8 @@ package com.nordgeo.controller.app;
 
 
 import com.nordgeo.controller.AppAbstractController;
+import com.nordgeo.data.dto.ToolDto;
+import com.nordgeo.data.mapper.ToolDtoMapper;
 import com.nordgeo.entity.Tool;
 import com.nordgeo.entity.ToolStatus;
 import com.nordgeo.exception.AdminOperationNotAllowedException;
@@ -18,8 +20,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import javax.validation.Valid;
+import java.text.ParseException;
 
 
 @Controller
@@ -28,6 +30,9 @@ public class ToolControllerApp extends AppAbstractController {
 
     @Autowired
     private ToolService toolService;
+
+    @Autowired
+    private ToolDtoMapper toolDtoMapper;
 
     @ModelAttribute("moduleBaseUrl")
     public String moduleBaseUrl() {
@@ -78,7 +83,7 @@ public class ToolControllerApp extends AppAbstractController {
         try {
             toolService.append(id);
         } catch (ToolAlreadyTakenException e) {
-            Flash.error(redirectAttributes, "Sprzęt już wcześniej pobrany");
+            Flash.error(redirectAttributes, "tool.already.taken");
             return "redirect:/app/tools/available";
         }
 
@@ -93,7 +98,7 @@ public class ToolControllerApp extends AppAbstractController {
         try {
             toolService.returnTool(toolStatus);
         } catch (ToolAlreadyTakenException e) {
-            Flash.error(redirectAttributes, "Sprzęt już wcześniej pobrany");
+            Flash.error(redirectAttributes, "tool.already.taken");
             return "redirect:/app/tools/user";
         }
 
@@ -104,7 +109,7 @@ public class ToolControllerApp extends AppAbstractController {
     @PreAuthorize("hasAuthority('Editor')")
     @RequestMapping("/form")
     public String form(Model model) {
-        model.addAttribute("tool", new Tool());
+        model.addAttribute("tool", new ToolDto());
 
         return "app.tools.form";
     }
@@ -114,7 +119,11 @@ public class ToolControllerApp extends AppAbstractController {
     public String form(@PathVariable("id") int id, Model model) {
         Tool tool = toolService.findById(id);
 
-        model.addAttribute("tool", tool);
+        try {
+            model.addAttribute("tool", toolDtoMapper.map(tool));
+        } catch (ParseException e) {
+            e.printStackTrace(); // TODO
+        }
 
         return "app.tools.form";
     }
@@ -122,14 +131,18 @@ public class ToolControllerApp extends AppAbstractController {
     @PreAuthorize("hasAuthority('Editor')")
     @PostMapping(value = "/save")
     public String submit(
-            @Valid @ModelAttribute("tool") Tool tool,
+            @Valid @ModelAttribute("tool") ToolDto toolDto,
             BindingResult result,
             final RedirectAttributes redirectAttributes) {
 
         if (result.hasErrors())
             return "app.tools.form";
 
-        toolService.save(tool);
+        try {
+            toolService.save(toolDto);
+        } catch (ParseException e) {
+            e.printStackTrace(); // TODO
+        }
         Flash.success(redirectAttributes);
 
         return "redirect:/app/tools/available";
@@ -141,11 +154,11 @@ public class ToolControllerApp extends AppAbstractController {
         try {
             toolService.makeUnusable(Integer.parseInt(id), unusableReason);
         } catch (AdminOperationNotAllowedException e) {
-            Flash.error(redirectAttributes, "Operacja dozwolona tylko dla Administratora");
+            Flash.error(redirectAttributes, "action.only.admin.allowed");
             return "redirect:/app/tools/available";
         }
 
-        Flash.success(redirectAttributes, "Akcja zakończona powodzeniem");
+        Flash.success(redirectAttributes, "action.success");
         return "redirect:/app/tools/unusable";
     }
 
@@ -155,11 +168,11 @@ public class ToolControllerApp extends AppAbstractController {
         try {
             toolService.makeUsable(id);
         } catch (AdminOperationNotAllowedException e) {
-            Flash.error(redirectAttributes, "Operacja dozwolona tylko dla Administratora");
+            Flash.error(redirectAttributes, "action.only.admin.allowed");
             return "redirect:/app/tools/available";
         }
 
-        Flash.success(redirectAttributes, "Akcja zakończona powodzeniem");
+        Flash.success(redirectAttributes, "action.success");
         return "redirect:/app/tools/unusable";
     }
 
@@ -172,7 +185,7 @@ public class ToolControllerApp extends AppAbstractController {
             model.addAttribute("tool", tool);
 
         } catch (ItemNotFoundException e) {
-            Flash.error(redirectAttributes, "Nie znaleziono sprzętu");
+            Flash.error(redirectAttributes, "tool.not.found");
             return "redirect:/app/tools/unusable";
         }
 
