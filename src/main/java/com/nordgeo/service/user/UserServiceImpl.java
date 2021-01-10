@@ -32,10 +32,6 @@ public class UserServiceImpl implements UserService {
 
     private final RoleRepository roleRepository;
 
-    private static Role admin;
-    private static Role editor;
-    private static Role employee;
-
     public UserServiceImpl(UserRepository repository, @Lazy PasswordEncoder passwordEncoder, AuthManager authManager,
                            RoleRepository roleRepository,
                            UserActivitiesService userActivitiesService) {
@@ -44,10 +40,6 @@ public class UserServiceImpl implements UserService {
         this.authManager = authManager;
         this.userActivitiesService = userActivitiesService;
         this.roleRepository = roleRepository;
-
-        admin = roleRepository.findOne(User.RoleName.ADMIN_ROLE.getValue());
-        editor = roleRepository.findOne(User.RoleName.EDITOR_ROLE.getValue());
-        employee = roleRepository.findOne(User.RoleName.EMPLOYEE_ROLE.getValue());
     }
 
 
@@ -151,12 +143,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Page<User> findAllAdmins(PageRequest page) {
-        return repository.findUsersByRoleAndLockDateIsNull(admin, page);
+        return repository.findUsersByRoleAndLockDateIsNull(roleRepository.findOne(User.RoleName.ADMIN_ROLE.getValue()), page);
     }
 
     @Override
     public Page<User> findAllEditors(PageRequest page) {
-        return repository.findUsersByRoleAndLockDateIsNull(editor, page);
+        return repository.findUsersByRoleAndLockDateIsNull(roleRepository.findOne(User.RoleName.EDITOR_ROLE.getValue()), page);
     }
 
 
