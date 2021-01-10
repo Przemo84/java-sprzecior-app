@@ -3,7 +3,6 @@ package com.nordgeo;
 
 import com.nordgeo.security.MySimpleUrlAuthenticationSuccessHandler;
 import com.nordgeo.security.encoder.TokenProperties;
-import com.nordgeo.storage.StorageProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -14,7 +13,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @SpringBootApplication
-@EnableConfigurationProperties({StorageProperties.class, TokenProperties.class})
+@EnableConfigurationProperties({TokenProperties.class})
 @EnableScheduling
 public class SprzeciorApp extends SpringBootServletInitializer {
 
