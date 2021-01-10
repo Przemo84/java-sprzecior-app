@@ -9,7 +9,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -27,15 +26,12 @@ public class ToolDto {
 
     @NotEmpty
     @NotNull
-    @Max(255)
     private String companyId;
 
     @NotEmpty
     @NotNull
-    @Max(255)
     private String model;
 
-    @Max(255)
     private String serialNo;
 
     @DateTimeFormat
@@ -51,7 +47,6 @@ public class ToolDto {
     List<ToolStatus> toolStatuses = new ArrayList<>();
 
     @NotNull
-    @Max(255)
     private String toolType;
 
     private String image;
@@ -63,7 +58,6 @@ public class ToolDto {
     @DateTimeFormat
     private Date unusableDate;
 
-    @Max(255)
     private String unusableReason;
 
     public void setAverageRating(Double averageRating) {
