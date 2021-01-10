@@ -11,20 +11,4 @@ target/
 
 ### IntelliJ IDEA ###
 .idea
-*.iws
 *.iml
-*.ipr
-
-### NetBeans ###
-nbproject/private/
-build/
-nbbuild/
-dist/
-nbdist/
-.nb-gradle/
-ci
-
-#.upload-dir
-applogs/
-catalina.base_IS_UNDEFINED/
-logs/
