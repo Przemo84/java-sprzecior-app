@@ -19,12 +19,11 @@ public class DBAutoBackupController {
     public void schedule() {
 
         Logger logger = LoggerFactory.getLogger(this.getClass());
-        System.out.println("Backup Started at " + new Date());
+        Date backupDate =  new Date();
 
-        Date backupDate = new Date();
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        String backupDateStr = format.format(backupDate);
+        System.out.println("Backup Started at " + backupDate);
 
+        String backupDateStr = new SimpleDateFormat("yyyy-MM-dd").format(backupDate);
         String fileName = "Daily_DB_Backup"; // default file name
         String folderPath = "C:\\DB-Backup";
         File filePath = new File(folderPath);
