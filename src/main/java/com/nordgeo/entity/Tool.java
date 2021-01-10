@@ -16,6 +16,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"companyId"})})
 public class Tool {
 
     public Tool() {
