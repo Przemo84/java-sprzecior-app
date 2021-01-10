@@ -17,6 +17,19 @@ import java.util.List;
 @Entity
 public class Tool {
 
+    public Tool() {
+    }
+
+    public Tool(String companyId, String model, String toolType, String serialNo, Date productionDate, Date calibrationDate, Boolean available) {
+        this.companyId = companyId;
+        this.model = model;
+        this.toolType = toolType;
+        this.serialNo = serialNo;
+        this.productionDate = productionDate;
+        this.calibrationDate = calibrationDate;
+        this.available = available;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
