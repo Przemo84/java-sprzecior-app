@@ -10,6 +10,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,12 +27,15 @@ public class ToolDto {
 
     @NotEmpty
     @NotNull
+    @Size(max = 250)
     private String companyId;
 
     @NotEmpty
     @NotNull
+    @Size(max = 250)
     private String model;
 
+    @Size(max = 250)
     private String serialNo;
 
     @DateTimeFormat
@@ -47,6 +51,7 @@ public class ToolDto {
     List<ToolStatus> toolStatuses = new ArrayList<>();
 
     @NotNull
+    @Size(max = 250)
     private String toolType;
 
     private String image;
@@ -58,6 +63,7 @@ public class ToolDto {
     @DateTimeFormat
     private Date unusableDate;
 
+    @Size(max = 250)
     private String unusableReason;
 
     public void setAverageRating(Double averageRating) {
