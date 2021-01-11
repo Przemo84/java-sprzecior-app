@@ -35,7 +35,6 @@
     <link href="<c:url value="/resources/css/bootstrap-custom.css"/>" rel="stylesheet">
     <link href="<c:url value="/resources/css/style.css"/>" rel="stylesheet">
     <link href="<c:url value="/resources/css/themes.css"/>" rel="stylesheet">
-    <link href="<c:url value="/resources/css/chosen/chosen.css"/>" rel="stylesheet"/>
 
     <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap-datetimepicker.min.css"/>"/>
 
@@ -50,7 +49,6 @@
     <script src="<c:url value="/resources/js/bootstrap-datetimepicker.min.js"/>"></script>
     <script src="<c:url value="/resources/js/date.js"/> "></script>
     <script src="<c:url value="/resources/js/application.min.js"/> "></script>
-    <script src="<c:url value="/resources/js/chosen/chosen.jquery.js"/>"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/jquery.validate.min.js"></script>
 
     <script>
