@@ -31,12 +31,10 @@
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 
-    <link href="<c:url value="/resources/summernote/summernote-lite.css"/>" rel="stylesheet">
     <link href="<c:url value="/resources/css/sb-admin.css"/>" rel="stylesheet">
     <link href="<c:url value="/resources/css/bootstrap-custom.css"/>" rel="stylesheet">
     <link href="<c:url value="/resources/css/style.css"/>" rel="stylesheet">
     <link href="<c:url value="/resources/css/themes.css"/>" rel="stylesheet">
-    <link href="<c:url value="/resources/css/cropper/cropper.css"/>" rel="stylesheet">
     <link href="<c:url value="/resources/css/chosen/chosen.css"/>" rel="stylesheet"/>
 
     <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap-datetimepicker.min.css"/>"/>
@@ -44,14 +42,7 @@
     <script src="<c:url value="/resources/jquery4.js"/>"></script>
     <script src="<c:url value="/resources/boot.js"/>"></script>
 
-<%--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>--%>
-
-<%--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"--%>
-<%--            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"--%>
-<%--            crossorigin="anonymous"></script>--%>
-    <script src="<c:url value="/resources/summernote/summernote-lite.js"/>"></script>
     <script src="<c:url value="/resources/js/sb-admin.js"/>"></script>
-<%--    <script src="<c:url value="/resources/js/jquery/jquery.ui.js"/> "></script>--%>
 
     <script src="<c:url value="/resources/js/jquery/jquery.alerts.js"/> "></script>
     <script src="<c:url value="/resources/js/jquery/bootbox.js"/> "></script>
@@ -59,21 +50,11 @@
     <script src="<c:url value="/resources/js/bootstrap-datetimepicker.min.js"/>"></script>
     <script src="<c:url value="/resources/js/date.js"/> "></script>
     <script src="<c:url value="/resources/js/application.min.js"/> "></script>
-<%--    <script src="<c:url value="/resources/js/jquery/jquery.custom.js"/> "></script>--%>
-    <script src="<c:url value="/resources/js/cropper/cropper.js"/>"></script>
     <script src="<c:url value="/resources/js/chosen/chosen.jquery.js"/>"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/jquery.validate.min.js"></script>
-    <script src="<c:url value="/resources/Chart.min.js"/>"></script>
 
     <script>
         $(document).ready(function () {
-            $('.wysiwyg-small').summernote({
-                height: "120px"
-            });
-
-            $('.wysiwyg').summernote({
-                height: "500px"
-            });
 
             $('.datepicker').datetimepicker({
                 format: 'YYYY-MM-DD HH:mm',
@@ -122,19 +103,6 @@
                 }
                 checkflag = "false";
                 return "check_none";
-            }
-        }
-
-        function check_all_box(form) {
-            var checked = 0;
-            if (form) {
-                for (var i = 0; i < form.length; i++) {
-                    if (form[i].value != 'check_none') {
-                        if (form[i].type == 'checkbox') {
-                            form[i].checked = !form[i].checked;
-                        }
-                    }
-                }
             }
         }
 
