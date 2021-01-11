@@ -47,7 +47,6 @@
 <%--            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"--%>
 <%--            crossorigin="anonymous"></script>--%>
     <script src="<c:url value="/resources/js/sb-admin.js"/>"></script>
-<%--    <script src="<c:url value="/resources/js/jquery/jquery.ui.js"/> "></script>--%>
 
     <script src="<c:url value="/resources/js/jquery/jquery.alerts.js"/> "></script>
     <script src="<c:url value="/resources/js/jquery/bootbox.js"/> "></script>
@@ -55,7 +54,6 @@
     <script src="<c:url value="/resources/js/bootstrap-datetimepicker.min.js"/>"></script>
     <script src="<c:url value="/resources/js/date.js"/> "></script>
     <script src="<c:url value="/resources/js/application.min.js"/> "></script>
-<%--    <script src="<c:url value="/resources/js/jquery/jquery.custom.js"/> "></script>--%>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/jquery.validate.min.js"></script>
 
 
