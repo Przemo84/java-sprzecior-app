@@ -40,12 +40,10 @@
     <script src="<c:url value="/resources/jquery4.js"/>"></script>
     <script src="<c:url value="/resources/boot.js"/>"></script>
     <script src="<c:url value="/resources/js/sb-admin.js"/>"></script>
-    <script src="<c:url value="/resources/js/jquery/jquery.alerts.js"/> "></script>
     <script src="<c:url value="/resources/js/jquery/bootbox.js"/> "></script>
     <script src="<c:url value="/resources/js/moment.min.js"/>"></script>
     <script src="<c:url value="/resources/js/bootstrap-datetimepicker.min.js"/>"></script>
     <script src="<c:url value="/resources/js/date.js"/> "></script>
-    <script src="<c:url value="/resources/js/application.min.js"/> "></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/jquery.validate.min.js"></script>
 
     <script>
@@ -84,22 +82,6 @@
             }
 
         });
-
-        function check(field) {
-            if (checkflag == "false") {
-                for (i = 0; i < field.length; i++) {
-                    field[i].checked = true;
-                }
-                checkflag = "true";
-                return "check_all";
-            } else {
-                for (i = 0; i < field.length; i++) {
-                    field[i].checked = false;
-                }
-                checkflag = "false";
-                return "check_none";
-            }
-        }
 
 
         function confirm_action(redirect_uri) {

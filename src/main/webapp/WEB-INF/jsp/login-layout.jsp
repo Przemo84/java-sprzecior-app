@@ -24,13 +24,11 @@
     <link href="<c:url value="/resources/css/style.css"/>" rel="stylesheet">
     <link href="<c:url value="/resources/css/themes.css"/>" rel="stylesheet">
     <script src="<c:url value="/resources/jquery4.js"/>"></script>
-    <script src="<c:url value="/resources/js/jquery/jquery.alerts.js"/> "></script>
     <script src="<c:url value="/resources/js/jquery/jquery.form.js"/> "></script>
     <script src="<c:url value="/resources/js/jquery/jquery.bootbox.js"/> "></script>
     <script src="<c:url value="/resources/js/sb-admin.js"/> "></script>
     <script src="<c:url value="/resources/js/bootstrap.min.js"/> "></script>
     <script src="<c:url value="/resources/js/date.js"/> "></script>
-    <script src="<c:url value="/resources/js/application.min.js"/> "></script>
 </head>
 
 <body class="login theme-darkblue">
