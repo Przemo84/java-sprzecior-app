@@ -35,19 +35,11 @@
     <link href="<c:url value="/resources/css/bootstrap-custom.css"/>" rel="stylesheet">
     <link href="<c:url value="/resources/css/style.css"/>" rel="stylesheet">
     <link href="<c:url value="/resources/css/themes.css"/>" rel="stylesheet">
-
     <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap-datetimepicker.min.css"/>"/>
 
     <script src="<c:url value="/resources/jquery4.js"/>"></script>
     <script src="<c:url value="/resources/boot.js"/>"></script>
-
-<%--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>--%>
-
-<%--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"--%>
-<%--            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"--%>
-<%--            crossorigin="anonymous"></script>--%>
     <script src="<c:url value="/resources/js/sb-admin.js"/>"></script>
-
     <script src="<c:url value="/resources/js/jquery/jquery.alerts.js"/> "></script>
     <script src="<c:url value="/resources/js/jquery/bootbox.js"/> "></script>
     <script src="<c:url value="/resources/js/moment.min.js"/>"></script>
