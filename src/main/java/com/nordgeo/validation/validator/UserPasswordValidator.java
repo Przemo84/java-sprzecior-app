@@ -23,7 +23,6 @@ public class UserPasswordValidator implements Validator {
         return User.class.equals(aClass);
     }
 
-    //TODO - jeszcze validacja na obowiązkowe znaki i cyferki
     @Override
     public void validate(Object o, Errors errors) {
         UserPasswordDto userPasswordDto = (UserPasswordDto) o;
