@@ -3,7 +3,7 @@ package com.nordgeo.controller.admin;
 
 import com.nordgeo.controller.AdminAbstractController;
 import com.nordgeo.entity.ActionHistory;
-import com.nordgeo.error.DatesSelectValidator;
+import com.nordgeo.validators.DatesSelectValidator;
 import com.nordgeo.service.history.ActionHistoryService;
 import com.nordgeo.service.importers.exporters.ActionHistoryExporter;
 import com.nordgeo.utils.Flash;

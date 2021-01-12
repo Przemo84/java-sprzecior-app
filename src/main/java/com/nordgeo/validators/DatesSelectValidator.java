@@ -1,4 +1,4 @@
-package com.nordgeo.error;
+package com.nordgeo.validators;
 
 import org.springframework.stereotype.Component;
 
