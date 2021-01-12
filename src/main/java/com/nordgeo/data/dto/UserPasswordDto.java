@@ -1,6 +1,6 @@
 package com.nordgeo.data.dto;
 
-import com.nordgeo.validation.validator.ValidPassword;
+import com.nordgeo.validators.ValidPassword;
 
 public class UserPasswordDto {
 

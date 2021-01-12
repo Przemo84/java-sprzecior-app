@@ -1,4 +1,4 @@
-package com.nordgeo.validation.validator;
+package com.nordgeo.validators;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

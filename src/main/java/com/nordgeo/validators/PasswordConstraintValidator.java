@@ -1,4 +1,4 @@
-package com.nordgeo.validation.validator;
+package com.nordgeo.validators;
 
 import org.passay.*;
 

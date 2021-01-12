@@ -5,7 +5,7 @@ import com.nordgeo.controller.AppAbstractController;
 import com.nordgeo.data.dto.UserPasswordDto;
 import com.nordgeo.service.user.UserService;
 import com.nordgeo.utils.Flash;
-import com.nordgeo.validation.validator.UserPasswordValidator;
+import com.nordgeo.validators.UserPasswordValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

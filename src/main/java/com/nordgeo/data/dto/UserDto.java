@@ -1,6 +1,6 @@
 package com.nordgeo.data.dto;
 
-import com.nordgeo.validation.validator.ValidPassword;
+import com.nordgeo.validators.ValidPassword;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;

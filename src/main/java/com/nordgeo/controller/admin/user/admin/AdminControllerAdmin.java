@@ -12,7 +12,7 @@ import com.nordgeo.service.Role.RoleService;
 import com.nordgeo.service.user.UserService;
 import com.nordgeo.utils.Flash;
 import com.nordgeo.utils.PageSort;
-import com.nordgeo.validation.validator.UserValidator;
+import com.nordgeo.validators.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import javax.websocket.server.PathParam;
 
 
 @Controller
