@@ -1,4 +1,4 @@
-package com.nordgeo.persistence.repository;
+package com.nordgeo.repository;
 
 import com.nordgeo.entity.ToolStatus;
 import org.springframework.data.domain.Page;

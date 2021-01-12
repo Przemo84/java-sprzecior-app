@@ -1,7 +1,7 @@
 package com.nordgeo.security;
 
 import com.nordgeo.entity.User;
-import com.nordgeo.persistence.repository.UserRepository;
+import com.nordgeo.repository.UserRepository;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

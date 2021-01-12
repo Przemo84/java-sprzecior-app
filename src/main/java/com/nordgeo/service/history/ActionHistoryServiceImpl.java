@@ -1,7 +1,7 @@
 package com.nordgeo.service.history;
 
 import com.nordgeo.entity.ActionHistory;
-import com.nordgeo.persistence.repository.ActionHistoryRepository;
+import com.nordgeo.repository.ActionHistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

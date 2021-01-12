@@ -1,9 +1,8 @@
 package com.nordgeo.security.provider;
 
 import com.nordgeo.entity.User;
-import com.nordgeo.persistence.repository.UserRepository;
+import com.nordgeo.repository.UserRepository;
 import com.nordgeo.security.userdetails.UserDetailsService;
-import com.nordgeo.service.history.ActionHistoryService;
 import com.nordgeo.service.user.UserService;
 import com.nordgeo.service.user.activity.UserActivitiesService;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

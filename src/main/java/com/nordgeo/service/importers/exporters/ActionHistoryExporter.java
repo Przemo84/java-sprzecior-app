@@ -1,7 +1,7 @@
 package com.nordgeo.service.importers.exporters;
 
 import com.nordgeo.entity.ActionHistory;
-import com.nordgeo.persistence.repository.ActionHistoryRepository;
+import com.nordgeo.repository.ActionHistoryRepository;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CreationHelper;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;

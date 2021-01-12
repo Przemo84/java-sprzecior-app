@@ -1,4 +1,4 @@
-package com.nordgeo.persistence.repository;
+package com.nordgeo.repository;
 
 import com.nordgeo.entity.Tool;
 import com.nordgeo.entity.User;

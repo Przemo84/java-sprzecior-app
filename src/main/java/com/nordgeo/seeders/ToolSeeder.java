@@ -1,9 +1,7 @@
 package com.nordgeo.seeders;
 
-import com.nordgeo.entity.Role;
 import com.nordgeo.entity.Tool;
-import com.nordgeo.entity.User;
-import com.nordgeo.persistence.repository.ToolRepository;
+import com.nordgeo.repository.ToolRepository;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.core.annotation.Order;

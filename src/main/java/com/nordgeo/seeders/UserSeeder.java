@@ -2,8 +2,8 @@ package com.nordgeo.seeders;
 
 import com.nordgeo.entity.Role;
 import com.nordgeo.entity.User;
-import com.nordgeo.persistence.repository.RoleRepository;
-import com.nordgeo.persistence.repository.UserRepository;
+import com.nordgeo.repository.RoleRepository;
+import com.nordgeo.repository.UserRepository;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.core.annotation.Order;

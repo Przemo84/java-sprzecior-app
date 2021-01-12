@@ -2,7 +2,7 @@ package com.nordgeo.security.provider;
 
 import com.nordgeo.entity.User;
 import com.nordgeo.exception.auth.DisabledException;
-import com.nordgeo.persistence.repository.UserRepository;
+import com.nordgeo.repository.UserRepository;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.AuthenticationException;

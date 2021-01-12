@@ -3,7 +3,7 @@ package com.nordgeo.service.toolStatus;
 import com.nordgeo.entity.Tool;
 import com.nordgeo.entity.ToolStatus;
 import com.nordgeo.entity.User;
-import com.nordgeo.persistence.repository.ToolStatusRepository;
+import com.nordgeo.repository.ToolStatusRepository;
 import com.nordgeo.security.AuthManager;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

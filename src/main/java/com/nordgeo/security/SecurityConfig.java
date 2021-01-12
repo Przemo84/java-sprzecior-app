@@ -1,6 +1,6 @@
 package com.nordgeo.security;
 
-import com.nordgeo.persistence.repository.UserRepository;
+import com.nordgeo.repository.UserRepository;
 import com.nordgeo.security.provider.AdminAuthenticationProvider;
 import com.nordgeo.security.userdetails.UserDetailsService;
 import com.nordgeo.service.user.UserService;

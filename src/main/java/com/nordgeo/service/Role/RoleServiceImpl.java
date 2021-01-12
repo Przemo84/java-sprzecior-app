@@ -3,7 +3,7 @@ package com.nordgeo.service.Role;
 import com.nordgeo.entity.Role;
 import com.nordgeo.entity.User;
 import com.nordgeo.exception.AdminOperationNotAllowedException;
-import com.nordgeo.persistence.repository.RoleRepository;
+import com.nordgeo.repository.RoleRepository;
 import com.nordgeo.security.AuthManager;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

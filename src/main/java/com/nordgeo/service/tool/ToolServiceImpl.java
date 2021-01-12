@@ -8,7 +8,7 @@ import com.nordgeo.entity.User;
 import com.nordgeo.exception.AdminOperationNotAllowedException;
 import com.nordgeo.exception.ItemNotFoundException;
 import com.nordgeo.exception.ToolAlreadyTakenException;
-import com.nordgeo.persistence.repository.ToolRepository;
+import com.nordgeo.repository.ToolRepository;
 import com.nordgeo.security.AuthManager;
 import com.nordgeo.service.toolStatus.ToolStatusService;
 import com.nordgeo.service.user.activity.UserActivitiesService;
