@@ -28,7 +28,7 @@
 <div class="row-fluid">
 
     <div class="alert alert-info">
-        <fmt:message key="welcome.mesage.for.admin"/>
+        <fmt:message key="welcome.message.for.admin"/>
         <button data-dismiss="alert" class="close" type="button">×</button>
     </div>
 </div>

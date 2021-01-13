@@ -42,11 +42,11 @@ public class UserValidator implements Validator {
         }
 
         if (userService.findByUsername(user.getUsername()) != null) {
-            errors.rejectValue("username", "Duplicate.userForm.username");
+            errors.rejectValue("username", "duplicate.user.form.username");
         }
 
         if (userService.findByEmail(user.getEmail()) != null) {
-            errors.rejectValue("email", "Duplicate.userForm.email");
+            errors.rejectValue("email", "duplicate.user.form.email");
         }
     }
 
@@ -57,11 +57,11 @@ public class UserValidator implements Validator {
 
 
         if (userByUsername != null && !userByUsername.getId().equals(user.getId())) {
-            errors.rejectValue("username", "Duplicate.userForm.username");
+            errors.rejectValue("username", "duplicate.user.form.username");
         }
 
         if (userByEmail != null && !userByEmail.getId().equals(user.getId())) {
-            errors.rejectValue("email", "Duplicate.userForm.email");
+            errors.rejectValue("email", "duplicate.user.form.email");
         }
 
         if (!user.getPassword().isEmpty() && !user.getPassword().equals(user.getPasswordConfirm())) {

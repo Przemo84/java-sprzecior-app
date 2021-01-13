@@ -35,7 +35,7 @@ public class UserPasswordValidator implements Validator {
             errors.rejectValue("currentPassword", "old.password.not.match");
 
         if (!userPasswordDto.getNewPassword().isEmpty() && userPasswordDto.getNewPassword().length() < 6)
-            errors.rejectValue("newPassword", "Size.userForm.password");
+            errors.rejectValue("newPassword", "size.user.form.password");
 
         if (!userPasswordDto.getNewPassword().isEmpty() && !userPasswordDto.getNewPassword().equals(userPasswordDto.getPasswordConfirm())) {
             errors.rejectValue("newPassword", "password.equal", "Hasła nie są Identyczne");
