@@ -48,7 +48,6 @@ public abstract class AppAbstractController {
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
 
-
     protected ModelAndView redirect(String uri) {
         RedirectView redirectView = new RedirectView();
         redirectView.setExposeModelAttributes(true);

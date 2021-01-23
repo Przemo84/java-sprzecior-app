@@ -41,14 +41,11 @@ public abstract class AdminAbstractController {
         return authManager.user();
     }
 
-
-
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
-
 
     protected ModelAndView redirect(String uri) {
         RedirectView redirectView = new RedirectView();
