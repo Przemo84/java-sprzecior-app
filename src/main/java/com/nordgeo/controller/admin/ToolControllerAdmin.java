@@ -1,6 +1,7 @@
 package com.nordgeo.controller.admin;
 
 
+
 import com.nordgeo.controller.AdminAbstractController;
 import com.nordgeo.data.dto.ToolDto;
 import com.nordgeo.data.mapper.ToolDtoMapper;
@@ -101,7 +102,7 @@ public class ToolControllerAdmin extends AdminAbstractController {
     }
 
     @RequestMapping(value = "/delete/{id}")
-    public String deleteOne(@PathVariable("id") int id, final RedirectAttributes redirectAttributes) {
+    public String delete(@PathVariable("id") int id, final RedirectAttributes redirectAttributes) {
 
         try {
             toolService.delete(id);

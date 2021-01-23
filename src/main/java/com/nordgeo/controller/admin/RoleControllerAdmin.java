@@ -76,7 +76,7 @@ public class RoleControllerAdmin extends AdminAbstractController {
     }
 
     @RequestMapping(value = "/delete/{id}")
-    public String deleteOne(
+    public String delete(
             @PathVariable("id") int id,
             final RedirectAttributes redirectAttributes) {
 

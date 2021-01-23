@@ -1,4 +1,4 @@
-package com.nordgeo.controller.admin.user.employee;
+package com.nordgeo.controller.admin.admin.employee;
 
 
 import com.nordgeo.controller.AdminAbstractController;

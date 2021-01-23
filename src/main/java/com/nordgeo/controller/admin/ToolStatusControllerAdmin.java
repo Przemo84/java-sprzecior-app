@@ -41,6 +41,7 @@ public class ToolStatusControllerAdmin extends AdminAbstractController {
         Page<ToolStatus> toolStatusesPage = toolStatusService.findAllToolStatuses(pageSort.getPage(model), id);
         Double averageOfRatings = toolStatusService.getToolAverageOfRatings(id);
         Tool tool = toolService.findById(id);
+
         model.addAttribute("page", toolStatusesPage);
         model.addAttribute("tool", tool);
         model.addAttribute("ratings", averageOfRatings);

@@ -1,4 +1,4 @@
-package com.nordgeo.controller.admin.user.editor;
+package com.nordgeo.controller.admin.admin.editor;
 
 
 import com.nordgeo.controller.AdminAbstractController;
@@ -53,7 +53,7 @@ public class EditorControllerAdmin extends AdminAbstractController {
     }
 
     @RequestMapping(value = "/make-employee/{id}")
-    public String upgradeToEditor(@PathVariable("id") int id, final RedirectAttributes redirectAttributes) {
+    public String makeAsEmployee(@PathVariable("id") int id, final RedirectAttributes redirectAttributes) {
 
         try {
             userService.changeRole(id, User.RoleName.EMPLOYEE_ROLE);
