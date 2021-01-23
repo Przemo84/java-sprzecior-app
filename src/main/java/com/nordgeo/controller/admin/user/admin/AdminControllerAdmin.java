@@ -109,7 +109,7 @@ public class AdminControllerAdmin extends AdminAbstractController {
     }
 
     @RequestMapping(value = "/lock/{id}")
-    public String lockOne(@PathVariable("id") int id, final RedirectAttributes redirectAttributes) {
+    public String lock(@PathVariable("id") int id, final RedirectAttributes redirectAttributes) {
 
         try {
             userService.lock(id);
