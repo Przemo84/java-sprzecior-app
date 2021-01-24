@@ -1,5 +1,6 @@
 package com.nordgeo.service.user;
 
+import com.nordgeo.data.dto.UserDto;
 import com.nordgeo.data.dto.UserPasswordDto;
 import com.nordgeo.entity.User;
 import org.springframework.data.domain.Page;
@@ -37,4 +38,6 @@ public interface UserService {
     Page<User> findAllEditors(PageRequest page);
 
     void changeRole(int id, User.RoleName roleName);
+
+    void saveOrUpdate(UserDto userDto, User.RoleName roleName);
 }

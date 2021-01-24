@@ -1,6 +1,8 @@
 package com.nordgeo.service.user;
 
+import com.nordgeo.data.dto.UserDto;
 import com.nordgeo.data.dto.UserPasswordDto;
+import com.nordgeo.data.mapper.UserDtoMapper;
 import com.nordgeo.entity.Role;
 import com.nordgeo.entity.User;
 import com.nordgeo.exception.*;
@@ -32,14 +34,18 @@ public class UserServiceImpl implements UserService {
 
     private final RoleRepository roleRepository;
 
+    private final UserDtoMapper userDtoMapper;
+
+
     public UserServiceImpl(UserRepository repository, @Lazy PasswordEncoder passwordEncoder, AuthManager authManager,
                            RoleRepository roleRepository,
-                           UserActivitiesService userActivitiesService) {
+                           UserActivitiesService userActivitiesService, UserDtoMapper userDtoMapper) {
         this.repository = repository;
         this.passwordEncoder = passwordEncoder;
         this.authManager = authManager;
         this.userActivitiesService = userActivitiesService;
         this.roleRepository = roleRepository;
+        this.userDtoMapper = userDtoMapper;
     }
 
 
@@ -54,7 +60,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findById(Integer id)  {
+    public User findById(Integer id) {
 
         User user = repository.findOne(id);
 
@@ -200,6 +206,20 @@ public class UserServiceImpl implements UserService {
             changedRoleName = "Pracownik";
 
         saveUserActionHistory(user, "Zmiana roli na: " + changedRoleName + " dla ");
+    }
+
+    @Override
+    public void saveOrUpdate(UserDto userDto, User.RoleName roleName) {
+
+        User user = userDtoMapper.map(userDto);
+        user.setRole(roleRepository.findOne(roleName.getValue()));
+
+        if (userDto.getId() != null && userDto.getPassword().isEmpty()) {
+            user.setPassword(repository.findById(userDto.getId()).getPassword());
+            updateWithOldPassword(user);
+        } else {
+            save(user);
+        }
     }
 
     private User sanitizeUser(User user) {
