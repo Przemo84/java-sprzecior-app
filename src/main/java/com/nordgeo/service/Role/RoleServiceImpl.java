@@ -21,15 +21,9 @@ public class RoleServiceImpl implements RoleService {
         this.authManager = authManager;
     }
 
-
     @Override
     public Role findById(Integer id) {
         return roleRepository.findOne(id);
-    }
-
-    @Override
-    public Iterable<Role> findAll() {
-        return roleRepository.findAll();
     }
 
     @Override

@@ -52,10 +52,6 @@ public class ToolServiceImpl implements ToolService {
         return tool;
     }
 
-    @Override
-    public Iterable<Tool> findAll() {
-        return toolRepository.findAll();
-    }
 
     @Override
     public Page<Tool> findAll(PageRequest page) {

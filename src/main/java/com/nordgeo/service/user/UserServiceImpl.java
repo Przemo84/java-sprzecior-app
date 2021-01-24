@@ -161,10 +161,6 @@ public class UserServiceImpl implements UserService {
         return repository.findUsersByRoleIsNotInAndLockDateIsNull(roles, page);
     }
 
-    @Override
-    public Iterable<User> findAll() {
-        return repository.findAll();
-    }
 
     @Override
     public void updateWithOldPassword(User user) {

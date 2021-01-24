@@ -12,8 +12,6 @@ public interface ToolService {
 
     Tool findById(Integer id);
 
-    Iterable<Tool> findAll();
-
     Page<Tool> findAll(PageRequest page);
 
     void save(ToolDto toolDto) throws ParseException;

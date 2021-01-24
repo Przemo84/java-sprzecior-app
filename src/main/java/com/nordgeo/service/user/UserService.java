@@ -30,8 +30,6 @@ public interface UserService {
 
     Page<User> findAllEmployees(PageRequest page);
 
-    Iterable<User> findAll();
-
     void updateWithOldPassword(User user);
 
     void setLastLoginDate(User user);
