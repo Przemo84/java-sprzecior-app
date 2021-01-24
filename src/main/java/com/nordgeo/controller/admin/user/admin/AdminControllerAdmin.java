@@ -91,18 +91,7 @@ public class AdminControllerAdmin extends AdminAbstractController {
         if (result.hasErrors())
             return "users.admins.form";
 
-
-        if (userDto.getId() != null && userDto.getPassword().isEmpty()) {
-            User user = userService.findById(userDto.getId());
-            userDto.setPassword(user.getPassword());
-            user = userDtoMapper.map(userDto);
-            user.setRole(roleService.findById(User.RoleName.ADMIN_ROLE.getValue()));
-            userService.updateWithOldPassword(user);
-        } else {
-            User adminUser = userDtoMapper.map(userDto);
-            adminUser.setRole(roleService.findById(User.RoleName.ADMIN_ROLE.getValue()));
-            userService.save(adminUser);
-        }
+        userService.saveOrUpdate(userDto, User.RoleName.ADMIN_ROLE);
 
         Flash.success(redirectAttributes, "Akcja zakończona powodzeniem.");
         return "redirect:/admin/admins";

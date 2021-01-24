@@ -97,17 +97,7 @@ public class EmployeeControllerAdmin extends AdminAbstractController {
         if (result.hasErrors())
             return "user.employees.form";
 
-        if (userDto.getId() != null && userDto.getPassword().isEmpty()) {
-            User user = userService.findById(userDto.getId());
-            userDto.setPassword(user.getPassword());
-            user = userDtoMapper.map(userDto);
-            user.setRole(roleService.findById(User.RoleName.EMPLOYEE_ROLE.getValue()));
-            userService.updateWithOldPassword(user);
-        } else {
-            User employee = userDtoMapper.map(userDto);
-            employee.setRole(roleService.findById(User.RoleName.EMPLOYEE_ROLE.getValue()));
-            userService.save(employee);
-        }
+        userService.saveOrUpdate(userDto, User.RoleName.EMPLOYEE_ROLE);
 
         Flash.success(redirectAttributes);
 
