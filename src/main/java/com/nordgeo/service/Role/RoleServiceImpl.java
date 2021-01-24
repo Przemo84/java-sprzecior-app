@@ -27,6 +27,11 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+    public Iterable<Role> findAll() {
+        return roleRepository.findAll();
+    }
+
+    @Override
     public Page<Role> findAll(PageRequest page) {
         return roleRepository.findAll(page);
     }

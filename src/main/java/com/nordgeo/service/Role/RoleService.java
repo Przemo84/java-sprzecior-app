@@ -9,6 +9,8 @@ public interface RoleService {
 
     Role findById(Integer id);
 
+    Iterable<Role> findAll();
+
     Page<Role> findAll(PageRequest page);
 
     void save(Role role);
