@@ -1,4 +1,4 @@
-# Simple App for managing tools in surveyor company    
+# Simple App for managing tools among employees in surveyor company    
  - Admin panel  
  - App panel for employees  
 
