@@ -29,7 +29,6 @@ public class UserDto implements SystemUserDto {
     @Size(max = 250)
     private String email;
 
-    @ValidPassword
     private String password;
 
     private String passwordConfirm;
