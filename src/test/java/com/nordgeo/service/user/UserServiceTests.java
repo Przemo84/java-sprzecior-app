@@ -1,6 +1,8 @@
 package com.nordgeo.service.user;
 
+import com.nordgeo.data.dto.UserDto;
 import com.nordgeo.data.dto.UserPasswordDto;
+import com.nordgeo.data.mapper.UserDtoMapper;
 import com.nordgeo.entity.Role;
 import com.nordgeo.entity.User;
 import com.nordgeo.repository.RoleRepository;
@@ -42,6 +44,9 @@ public class UserServiceTests {
 
     @Mock
     private UserActivitiesService activitiesService;
+
+    @Mock
+    private UserDtoMapper userDtoMapper;
 
     private final PageRequest pageRequest = mock(PageRequest.class);
 
@@ -267,6 +272,63 @@ public class UserServiceTests {
 
         //when
         userService.changeRole(user.getId(), User.RoleName.EDITOR_ROLE);
+
+        //then
+        verify(userRepository, times(1)).save(user);
+    }
+
+    @Test
+    public void shouldPerformSaveOrUpdateWithAdminRole() {
+        //given user
+        UserDto userDto = spy(UserDto.class);
+        userDto.setUsername("user_name");
+        userDto.setEmail("user@email.com");
+        userDto.setFirstName("user_first_name");
+        userDto.setLastName("user_last_name");
+        userDto.setPassword("user_password");
+        userDto.setPasswordConfirm("user_password");
+
+        User user = spy(User.class);
+        user.setUsername("user_name");
+        user.setEmail("user@email.com");
+        user.setFirstName("user_first_name");
+        user.setLastName("user_last_name");
+        user.setPassword("user_password");
+        user.setPasswordConfirm("user_password");
+
+        when(userDtoMapper.map(userDto)).thenReturn(user);
+        when(roleRepository.findOne(User.RoleName.ADMIN_ROLE.getValue())).thenReturn(role);
+        //when
+        userService.saveOrUpdate(userDto, User.RoleName.ADMIN_ROLE);
+
+        //then
+        verify(userRepository, times(1)).save(user);
+    }
+
+    @Test
+    public void shouldPerformSaveOrUpdateWithEditorRoleWithNoPasswordChanged() {
+        //given user
+        UserDto userDto = spy(UserDto.class);
+        userDto.setId(10);
+        userDto.setUsername("user_name");
+        userDto.setEmail("user@email.com");
+        userDto.setFirstName("user_first_name");
+        userDto.setLastName("user_last_name");
+        userDto.setPassword("");
+
+        User user = spy(User.class);
+        user.setId(10);
+        user.setUsername("user_name");
+        user.setEmail("user@email.com");
+        user.setFirstName("user_first_name");
+        user.setLastName("user_last_name");
+        user.setPassword("");
+
+        when(userDtoMapper.map(userDto)).thenReturn(user);
+        when(roleRepository.findOne(User.RoleName.ADMIN_ROLE.getValue())).thenReturn(role);
+        when(userRepository.findById(userDto.getId())).thenReturn(user);
+        //when
+        userService.saveOrUpdate(userDto, User.RoleName.ADMIN_ROLE);
 
         //then
         verify(userRepository, times(1)).save(user);
