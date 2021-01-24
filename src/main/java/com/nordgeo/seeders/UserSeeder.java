@@ -39,7 +39,7 @@ public class UserSeeder {
 
         User admin = new User();
         admin.setEmail("admin@bar.com");
-        admin.setUsername("mike");
+        admin.setUsername("admin");
         admin.setFirstName("Mike");
         admin.setLastName("Mike");
         admin.setMustChangePassword(false);
@@ -48,7 +48,7 @@ public class UserSeeder {
 
         User editor = new User();
         editor.setEmail("editor@bar.com");
-        editor.setUsername("marta");
+        editor.setUsername("editor");
         editor.setFirstName("Marta");
         editor.setLastName("Marta");
         editor.setMustChangePassword(false);
