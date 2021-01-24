@@ -1,7 +1,7 @@
 package com.nordgeo;
 
 
-import com.nordgeo.security.MySimpleUrlAuthenticationSuccessHandler;
+import com.nordgeo.security.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -26,6 +26,6 @@ public class SprzeciorApp extends SpringBootServletInitializer {
 
     @Bean
     public AuthenticationSuccessHandler myAuthenticationSuccessHandler(){
-        return new MySimpleUrlAuthenticationSuccessHandler();
+        return new SimpleUrlAuthenticationSuccessHandler();
     }
 }
