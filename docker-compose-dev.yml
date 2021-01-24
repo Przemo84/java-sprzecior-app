@@ -4,7 +4,8 @@ services:
         build: ./src/main/docker/mysql
         container_name: "mysql-sprzecior"
         environment:
-            - MYSQL_DATABASE=nordgeo_db
-            - MYSQL_ROOT_PASSWORD=antek2012pola2013
+            - MYSQL_DATABASE=db
+#       Set your MYSQL_ROOT_PASSWORD password below
+            - MYSQL_ROOT_PASSWORD=
         ports:
           - 3307:3306
