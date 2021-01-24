@@ -45,7 +45,7 @@ public class ToolControllerApp extends AppAbstractController {
     }
 
     @RequestMapping("/available")
-    public String index(PageSort pageSort, Model model) {
+    public String indexAvailable(PageSort pageSort, Model model) {
         Page<Tool> toolPage = toolService.findAllAvailable(pageSort.getPage(model));
         model.addAttribute("page", toolPage);
 
